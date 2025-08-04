@@ -43,6 +43,9 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* =======================
+   BASE THEME 
+   ======================= */
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -76,6 +79,34 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* =======================
+   CUSTOMER THEME
+   ======================= */
+.customer-theme {
+  --primary: oklch(0.45 0.25 260); /* bluish */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.94 0.05 240);
+  --secondary-foreground: oklch(0.205 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --accent: oklch(0.95 0.1 250);
+  --accent-foreground: oklch(0.145 0 0);
+}
+
+/* =======================
+   PROFESSIONAL THEME
+   ======================= */
+.professional-theme {
+  --primary: oklch(0.55 0.25 70); /* orange */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.96 0.08 70);
+  --secondary-foreground: oklch(0.205 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --accent: oklch(0.95 0.1 70);
+  --accent-foreground: oklch(0.145 0 0);
 }
 
 @layer base {
