@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { customerApi } from "../services/apiCustomer";
-import { professionalApi } from "../services/apiProfessional";
+import { customerApi } from "./customer/apiCustomer";
+import { professionalApi } from "./professional/apiProfessional";
 
 // ===== CUSTOMER STORE =====
 export const createCustomerStore = () => {

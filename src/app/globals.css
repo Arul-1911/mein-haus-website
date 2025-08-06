@@ -47,6 +47,10 @@
    BASE THEME 
    ======================= */
 :root {
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "Ubuntu", sans-serif;
+  --color-gray: rgba(33, 37, 41, 0.75);
+  --color-orange: #f88b36;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -117,6 +121,15 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+
+  .font-primary {
+    font-family: var(--font-primary), -apple-system, BlinkMacSystemFont,
+      sans-serif;
+  }
+  .font-secondary {
+    font-family: var(--font-secondary), -apple-system, BlinkMacSystemFont,
+      sans-serif;
   }
 }

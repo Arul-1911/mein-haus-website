@@ -1,11 +1,13 @@
 import { CustomerProviders } from "@/providers/storeProviders";
-import "@/styles/globals.css";
+// import "@/globals.css";
 
 export default function CustomerLayout({ children }) {
   return (
     <CustomerProviders>
-      <div className="customer-theme min-h-screen bg-secondary text-primary">
+      <div className="customer-theme min-h-screen bg-primary text-primary">
+        customer header
         {children}
+        customer footer
       </div>
     </CustomerProviders>
   );
