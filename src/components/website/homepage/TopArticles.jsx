@@ -36,20 +36,26 @@ const ArticleCarousel = ({ slides = [], options = {} }) => {
           <button
             onClick={scrollPrev}
             disabled={prevDisabled}
-            className="bg-gray-200 p-2 rounded hover:bg-gray-300 disabled:opacity-40"
+            className=" p-1 rounded hover:bg-gray-300 disabled:opacity-40 cursor-pointer"
           >
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-              <path d="M15 6l-6 6 6 6" stroke="black" strokeWidth="2" />
-            </svg>
+            <Image
+              src="/website/home/left-arrow.png"
+              height={20}
+              width={40}
+              alt="Left Arrow"
+            />
           </button>
           <button
             onClick={scrollNext}
             disabled={nextDisabled}
-            className="bg-gray-200 p-2 rounded hover:bg-gray-300 disabled:opacity-40"
+            className="p-1 rounded hover:bg-gray-300 disabled:opacity-40 cursor-pointer"
           >
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-              <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" />
-            </svg>
+            <Image
+              src="/website/home/right-arrow.png"
+              height={20}
+              width={40}
+              alt="Left Arrow"
+            />
           </button>
         </div>
       </div>
@@ -60,21 +66,23 @@ const ArticleCarousel = ({ slides = [], options = {} }) => {
           {slides.map((item, index) => (
             <div
               key={index}
-              className="flex-[0_0_100%] md:flex-[0_0_50%] md:max-w-[50%] bg-white rounded "
+              className="flex-[0_0_100%] md:flex-[0_0_50%] md:max-w-[50%] bg-white rounded lg:pr-3"
             >
               <Image
                 src={item.image}
                 alt={item.title}
                 height={200}
                 width={300}
-                className="w-full h-78 object-cover rounded-2xl"
+                className="w-full h-78  rounded-2xl"
               />
               <div className="p-4">
-                <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-                <p className="text-sm text-[#545454] font-light">
-                  {item.description}...{" "}
+                <h3 className="text-lg font-semibold mb-1">
+                  {item.title.slice(0, 30)}
+                </h3>
+                <p className="text-sm text-[#545454] font-medium">
+                  {item.description.slice(0, 90)}...{" "}
                   <span>
-                    <Link href="/" className="text-black">
+                    <Link href="/" className="text-black font-bold">
                       Read More
                     </Link>
                   </span>

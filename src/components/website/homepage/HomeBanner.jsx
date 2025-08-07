@@ -40,14 +40,14 @@ const HomeBanner = () => {
       {/* Carousel */}
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {images.map((src, i) => (
+          {images?.map((src, i) => (
             <div key={i} className="flex-[0_0_100%] relative">
               <Image
                 src={src}
                 alt={`Slide ${i}`}
                 height={200}
                 width={300}
-                className="w-full h-[30dvh] md:h-[60dvh] object-cover"
+                className="w-full h-[30dvh] md:h-[45dvh] lg:h-[60dvh]"
               />
 
               {/* Centered CTA on slide 3 (index 3) */}

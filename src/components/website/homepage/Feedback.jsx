@@ -43,7 +43,7 @@ const Feedback = () => {
   return (
     <section className="bg-[#F6F6F6] py-7">
       <div>
-        <h2 className="font-secondary text-center text-3xl">
+        <h2 className="font-secondary text-center text-2xl font-medium md:text-3xl">
           What Clients are Saying
         </h2>
       </div>

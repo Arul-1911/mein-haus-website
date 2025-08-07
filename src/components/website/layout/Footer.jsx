@@ -4,7 +4,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="z-2">
       <div className="mt-2 flex flex-col justify-center">
         {/* CONTENT SECTION  */}
         <div className="flex flex-col justify-center items-center  lg:flex-row lg:justify-between flex-wrap mx-1 p-6 lg:items-center bg-[#F6F6F6] gap-3">
@@ -12,9 +12,9 @@ const Footer = () => {
             <Image
               src="/mein-haus-logo.png"
               alt="Mein Haus Logo"
-              height="100"
-              width="300"
-              className="my-3 ml-5"
+              height={100}
+              width={300}
+              className="my-3 max-sm:w-[30dvh] lg:ml-5"
             />
           </div>
           <div className="flex flex-wrap items-center justify-between gap-12">
