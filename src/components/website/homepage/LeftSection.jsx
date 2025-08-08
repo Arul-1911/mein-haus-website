@@ -137,6 +137,17 @@ const Leftsection = () => {
         <Complimentary carouselItems={carouselItems} />
       </div>
       <Footer />
+      {/* MOBILE VIEW OF GET QUTOE AND PRO REG  */}
+      <div className="grid grid-cols-2 w-full fixed  bottom-0  z-11 lg:hidden">
+        <div className="bg-[#1E9BD0] w-full text-white mx-auto">
+          <p className="text-center py-2 font-medium text-sm">Get a Quote</p>
+        </div>
+        <div className="bg-[#F88B36] w-full text-white m-auto">
+          <p className="text-center py-2 font-medium text-sm">
+            Pro Registration
+          </p>
+        </div>
+      </div>
     </main>
   );
 };

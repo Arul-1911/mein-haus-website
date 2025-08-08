@@ -15,7 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -38,44 +38,56 @@ const Header = () => {
             <SheetContent side="left">
               <SheetHeader className="flex flex-col justify-between gap-10">
                 <SheetTitle>
-                  <Link href="/">Home</Link>
+                  <Link
+                    href="/"
+                    className="text-[color:var(--color-gray)] hover:text-black"
+                  >
+                    Home
+                  </Link>
                 </SheetTitle>
                 <SheetTitle>
-                  <Link href="/">About</Link>
+                  <Link
+                    href="/about"
+                    className="text-[color:var(--color-gray)] hover:text-black"
+                  >
+                    About
+                  </Link>
                 </SheetTitle>
                 <SheetTitle>
-                  <Link href="/">Education</Link>
+                  <Link
+                    href="/"
+                    className="text-[color:var(--color-gray)] hover:text-black"
+                  >
+                    Education
+                  </Link>
                 </SheetTitle>
                 <SheetTitle>
-                  <Link href="/">Gallery</Link>
+                  <Link
+                    href="/"
+                    className="text-[color:var(--color-gray)] hover:text-black"
+                  >
+                    Gallery
+                  </Link>
                 </SheetTitle>
                 <SheetTitle>
-                  <Link href="/">Contact Us</Link>
+                  <Link
+                    href="/"
+                    className="text-[color:var(--color-gray)] hover:text-black"
+                  >
+                    Contact Us
+                  </Link>
                 </SheetTitle>
               </SheetHeader>
               <div className="absolute bottom-30">
                 <a href="tel:+18447774287" className="flex gap-2 ml-3">
-                  <Image
-                    className=""
-                    src="https://meinhaus.ca/home/images/icons/phone-icon.svg"
-                    alt="Phone Icon"
-                    height={20}
-                    width={20}
-                  />
+                  <Phone />
                   Call us at +1 (844) 777-4287
                 </a>
                 <a
                   href="mailto:info@meinhaus.ca"
                   className="flex gap-1 ml-3 my-2"
                 >
-                  <Image
-                    className="me-2"
-                    src="https://meinhaus.ca/home/images/icons/hugeicons_mail-open.svg"
-                    alt="Email Icon"
-                    height="20"
-                    width="20"
-                  />{" "}
-                  info@meinhaus.ca
+                  <Mail /> info@meinhaus.ca
                 </a>
               </div>
               <div className="bg-[#1E9BD00F] absolute bottom-0 right-0 left-0 p-4 flex flex-col justify-center items-center">
@@ -91,15 +103,13 @@ const Header = () => {
                     />
                   </span>
                   <span>
-                    <Link href="/about">
-                      <Image
-                        src="/website/home/instagram.png"
-                        alt="Instagram Logo"
-                        height="10"
-                        width="30"
-                        className=""
-                      />
-                    </Link>
+                    <Image
+                      src="/website/home/instagram.png"
+                      alt="Instagram Logo"
+                      height="10"
+                      width="30"
+                      className=""
+                    />
                   </span>
                 </div>
                 {/* BOTTOM SECTION  */}
@@ -126,19 +136,19 @@ const Header = () => {
         {/* RIGHT SIDE  */}
         <div className="flex items-center justify-end mr-3 lg:mr-8 gap-6">
           <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black">
-            Home
+            <Link href="/"> Home</Link>
           </nav>
           <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black">
-            About
+            <Link href="/about"> About</Link>
           </nav>
           <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black">
-            Education
+            <Link href="/"> Education</Link>
           </nav>
           <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black">
-            Gallery
+            <Link href="/"> Gallery</Link>
           </nav>
           <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black line-clamp-1">
-            Contact Us
+            <Link href="/"> Contact Us</Link>
           </nav>
           <nav>
             <DropdownMenu>
@@ -152,11 +162,13 @@ const Header = () => {
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     {" "}
-                    <Link href="/customer/login">Login as Home Owner</Link>
+                    <Link href="https://meinhaus.ca/customer/login">
+                      Login as Home Owner
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
-                    <Link href="/professional/login">
+                    <Link href="https://meinhaus.ca/professional/login">
                       Login as Professional
                     </Link>
                   </DropdownMenuItem>
