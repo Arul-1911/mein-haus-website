@@ -20,7 +20,7 @@ const page = () => {
         {/* Left Section  */}
         <div className="flex flex-col max-lg:items-center gap-7 p-3 lg:px-20 lg:py-10">
           <h2 className="font-semibold text-2xl lg:text-3xl">
-            Feel free to contact us we're always ready to assist you.
+            Feel free to contact us we&apos;re always ready to assist you.
           </h2>
           <div>
             {/* Top div  */}
