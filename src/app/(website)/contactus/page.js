@@ -15,7 +15,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <main className="my-5">
+    <main className="my-7">
       <div className="grid lg:grid-cols-2">
         {/* Left Section  */}
         <div className="flex flex-col max-lg:items-center gap-7 p-3 lg:px-20 lg:py-10">
@@ -87,7 +87,7 @@ const page = () => {
           </div>
         </div>
         {/* Right Section  */}
-        <div className="my-5 mb-10">
+        <div className="my-5">
           <ContactusForm />
         </div>
       </div>

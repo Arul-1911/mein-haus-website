@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <main className="container mx-1 mt-4 lg:mt-8">
+    <main className="mx-1 mt-4 lg:mt-8">
       {/* Our Story Section */}
       <section className="flex flex-col px-5 lg:px-20 lg:flex-row items-center gap-6 mb-12">
         <div className="lg:w-7/12">
