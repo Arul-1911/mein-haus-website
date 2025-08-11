@@ -22,7 +22,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 w-full z-20 bg-white">
+    <header className="sticky top-0 w-full z-20 bg-[#F6F6F6]">
       <div className="grid grid-cols-3 lg:grid-cols-2 items-center w-full shadow-xl">
         {/* MOBILE HAMBURGER MENU  */}
         <div className="lg:hidden ">
@@ -71,7 +71,7 @@ const Header = () => {
                 </SheetTitle>
                 <SheetTitle>
                   <Link
-                    href="/"
+                    href="/contactus"
                     className="text-[color:var(--color-gray)] hover:text-black"
                   >
                     Contact Us
@@ -148,7 +148,7 @@ const Header = () => {
             <Link href="/"> Gallery</Link>
           </nav>
           <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black line-clamp-1">
-            <Link href="/"> Contact Us</Link>
+            <Link href="/contactus"> Contact Us</Link>
           </nav>
           <nav>
             <DropdownMenu>

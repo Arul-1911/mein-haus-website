@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 const ArticleCarousel = ({ slides = [], options = {} }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
