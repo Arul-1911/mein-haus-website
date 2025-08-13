@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,7 +13,6 @@ import {
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -20,12 +22,25 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Header = () => {
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/education", label: "Education" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/contactus", label: "Contact Us" },
+];
+
+export default function Header() {
+  const pathname = usePathname()?.toLowerCase();
+
+  const isActive = (href) =>
+    pathname === href || (href !== "/" && pathname.startsWith(href));
+
   return (
     <header className="sticky top-0 w-full z-20 bg-[#F6F6F6]">
       <div className="grid grid-cols-3 lg:grid-cols-2 items-center w-full shadow-xl">
-        {/* MOBILE HAMBURGER MENU  */}
-        <div className="lg:hidden ">
+        {/* MOBILE MENU */}
+        <div className="lg:hidden">
           <Sheet>
             <SheetTrigger className="ml-3">
               <Image
@@ -37,46 +52,20 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent side="left">
               <SheetHeader className="flex flex-col justify-between gap-10">
-                <SheetTitle>
-                  <Link
-                    href="/"
-                    className="text-[color:var(--color-gray)] hover:text-black"
-                  >
-                    Home
-                  </Link>
-                </SheetTitle>
-                <SheetTitle>
-                  <Link
-                    href="/about"
-                    className="text-[color:var(--color-gray)] hover:text-black"
-                  >
-                    About
-                  </Link>
-                </SheetTitle>
-                <SheetTitle>
-                  <Link
-                    href="/"
-                    className="text-[color:var(--color-gray)] hover:text-black"
-                  >
-                    Education
-                  </Link>
-                </SheetTitle>
-                <SheetTitle>
-                  <Link
-                    href="/"
-                    className="text-[color:var(--color-gray)] hover:text-black"
-                  >
-                    Gallery
-                  </Link>
-                </SheetTitle>
-                <SheetTitle>
-                  <Link
-                    href="/contactus"
-                    className="text-[color:var(--color-gray)] hover:text-black"
-                  >
-                    Contact Us
-                  </Link>
-                </SheetTitle>
+                {navLinks.map((link) => (
+                  <SheetTitle key={link.href}>
+                    <Link
+                      href={link.href}
+                      className={` ${
+                        isActive(link.href)
+                          ? "text-[#F88B36]"
+                          : "text-[color:var(--color-gray)] hover:text-black"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </SheetTitle>
+                ))}
               </SheetHeader>
               <div className="absolute bottom-30">
                 <a href="tel:+18447774287" className="flex gap-2 ml-3">
@@ -85,34 +74,26 @@ const Header = () => {
                 </a>
                 <a
                   href="mailto:info@meinhaus.ca"
-                  className="flex gap-1 ml-3 my-2"
+                  className="flex gap-2 ml-3 my-2"
                 >
                   <Mail /> info@meinhaus.ca
                 </a>
               </div>
-              <div className="bg-[#1E9BD00F] absolute bottom-0 right-0 left-0 p-4 flex flex-col justify-center items-center">
-                {/* TOP SECTION  */}
-                <div className="flex justify-around gap-3">
-                  <span className="">
-                    <Image
-                      src="/website/home/facebook.png"
-                      alt="Facebook Logo"
-                      height="10"
-                      width="30"
-                      className=""
-                    />
-                  </span>
-                  <span>
-                    <Image
-                      src="/website/home/instagram.png"
-                      alt="Instagram Logo"
-                      height="10"
-                      width="30"
-                      className=""
-                    />
-                  </span>
+              <div className="bg-[#1E9BD00F] absolute bottom-0 right-0 left-0 p-4 flex flex-col items-center">
+                <div className="flex gap-3">
+                  <Image
+                    src="/website/home/facebook.png"
+                    alt="Facebook Logo"
+                    height="10"
+                    width="30"
+                  />
+                  <Image
+                    src="/website/home/instagram.png"
+                    alt="Instagram Logo"
+                    height="10"
+                    width="30"
+                  />
                 </div>
-                {/* BOTTOM SECTION  */}
                 <div className="text-center mt-1">
                   {new Date().getFullYear()} &copy; MeinHaus | All rights
                   reserved.
@@ -121,7 +102,8 @@ const Header = () => {
             </SheetContent>
           </Sheet>
         </div>
-        {/* LEFT SIDE  */}
+
+        {/* LEFT LOGO */}
         <div>
           <Link href="/">
             <Image
@@ -133,27 +115,28 @@ const Header = () => {
             />
           </Link>
         </div>
-        {/* RIGHT SIDE  */}
+
+        {/* DESKTOP MENU */}
         <div className="flex items-center justify-end mr-3 lg:mr-8 gap-6">
-          <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black">
-            <Link href="/"> Home</Link>
-          </nav>
-          <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black">
-            <Link href="/about"> About</Link>
-          </nav>
-          <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black">
-            <Link href="/"> Education</Link>
-          </nav>
-          <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black">
-            <Link href="/"> Gallery</Link>
-          </nav>
-          <nav className="hidden lg:block cursor-pointer text-[color:var(--color-gray)] hover:text-black line-clamp-1">
-            <Link href="/contactus"> Contact Us</Link>
-          </nav>
+          {navLinks?.map((link) => (
+            <nav key={link.href} className="hidden lg:block">
+              <Link
+                href={link.href}
+                className={`${
+                  isActive(link.href)
+                    ? "text-[#F88B36]"
+                    : "text-[color:var(--color-gray)] hover:text-black"
+                }`}
+              >
+                {link.label}
+              </Link>
+            </nav>
+          ))}
+
           <nav>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="cursor-pointer my-3 text-sm lg:text-md lg:px-4 py-2 bg-black text-white rounded-4xl">
+                <Button className="my-3 text-sm lg:text-md lg:px-4 py-2 bg-black text-white rounded-4xl">
                   Login
                   <ChevronDown />
                 </Button>
@@ -161,7 +144,6 @@ const Header = () => {
               <DropdownMenuContent className="w-50 mr-3 mt-2" align="start">
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
-                    {" "}
                     <Link href="https://meinhaus.ca/customer/login">
                       Login as Home Owner
                     </Link>
@@ -180,6 +162,4 @@ const Header = () => {
       </div>
     </header>
   );
-};
-
-export default Header;
+}
