@@ -19,17 +19,33 @@ const Footer = () => {
           </div>
           <div className="flex flex-wrap items-center justify-between gap-12">
             {/* LEFT SIDE  */}
-            <div>
-              <p>Home</p>
-              <p>About</p>
-              <p>Gallery</p>
+            <div className="">
+              <p>
+                <Link href="/">Home</Link>
+              </p>
+              <p>
+                <Link href="/about">About</Link>
+              </p>
+              <p>
+                <Link href="/gallery">Gallery</Link>
+              </p>
             </div>
-            {/* RIGHT SIDE  */}
-            <div>
-              <p>Education</p>
-              <p>Careers</p>
-              <p>Terms & Conditions</p>
-              <p>Contact Us</p>
+
+            {/* RIGHT SIDE */}
+            <div className="">
+              <p>
+                <Link href="/education">Education</Link>
+              </p>
+              <p>
+                <Link href="/contact">Contact Us</Link>
+              </p>
+
+              <p>
+                <Link href="/terms&conditions">Terms & Conditions</Link>
+              </p>
+              <p>
+                <Link href="/privacy-policy">Privacy Policy</Link>
+              </p>
             </div>
           </div>
           <div className="flex justify-around gap-4 items-center">

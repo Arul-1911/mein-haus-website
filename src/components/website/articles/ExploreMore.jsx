@@ -6,10 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import slugify from "slugify";
 
-const ArticleCarousel = ({ slides = [], options = {} }) => {
+const ExploreArticleCarousel = ({ slides = [], options = {} }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [nextDisabled, setNextDisabled] = useState(true);
+
+  const AUTOPLAY_INTERVAL = 4000;
 
   const scrollPrev = () => emblaApi?.scrollPrev();
   const scrollNext = () => emblaApi?.scrollNext();
@@ -21,52 +23,48 @@ const ArticleCarousel = ({ slides = [], options = {} }) => {
 
   useEffect(() => {
     if (!emblaApi) return;
+
+    onSelect(emblaApi);
+    emblaApi.on("reInit", onSelect).on("select", onSelect);
+
+    let autoplay = setInterval(() => {
+      if (!emblaApi) return;
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0);
+      }
+    }, AUTOPLAY_INTERVAL);
+
+    // Clear on unmount or user interaction
+    return () => clearInterval(autoplay);
+  }, [emblaApi, onSelect]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
     onSelect(emblaApi);
     emblaApi.on("reInit", onSelect).on("select", onSelect);
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="w-full py-8">
+    <section className="w-full px-8 py-8">
       {/* Header Controls */}
-      <div className="flex flex-row-reverse items-center justify-between px-4 mb-4">
+      <div className="flex flex-row items-center justify-between md:px-4 mb-4">
+        <div className="font-secondary font-bold text-xl md:text-3xl">
+          Explore more articles
+        </div>
         <button className="to-blackext text-lg font-medium  hover:underline">
           <Link href="/articles">View All</Link>
         </button>
-        <div className="flex gap-2">
-          <button
-            onClick={scrollPrev}
-            disabled={prevDisabled}
-            className=" p-1 rounded hover:bg-gray-300 disabled:opacity-40 cursor-pointer"
-          >
-            <Image
-              src="/website/home/left-arrow.png"
-              height={20}
-              width={40}
-              alt="Left Arrow"
-            />
-          </button>
-          <button
-            onClick={scrollNext}
-            disabled={nextDisabled}
-            className="p-1 rounded hover:bg-gray-300 disabled:opacity-40 cursor-pointer"
-          >
-            <Image
-              src="/website/home/right-arrow.png"
-              height={20}
-              width={40}
-              alt="Left Arrow"
-            />
-          </button>
-        </div>
       </div>
 
       {/* Carousel Viewport */}
       <div className="overflow-hidden mt-8" ref={emblaRef}>
         <div className="flex gap-4 px-4">
-          {slides.map((item, index) => (
+          {slides?.map((item, index) => (
             <div
               key={index}
-              className="flex-[0_0_100%] md:flex-[0_0_50%] md:max-w-[50%] bg-white rounded lg:pr-3"
+              className="flex-[0_0_100%] md:flex-[0_0_31%] md:max-w-[100%] bg-white rounded"
             >
               <Image
                 src={item.image}
@@ -97,8 +95,35 @@ const ArticleCarousel = ({ slides = [], options = {} }) => {
           ))}
         </div>
       </div>
+
+      <div className="flex gap-2 justify-center mt-7">
+        <button
+          onClick={scrollPrev}
+          disabled={prevDisabled}
+          className=" p-1 rounded hover:bg-gray-300 disabled:opacity-40 cursor-pointer"
+        >
+          <Image
+            src="/website/home/left-arrow.png"
+            height={20}
+            width={40}
+            alt="Left Arrow"
+          />
+        </button>
+        <button
+          onClick={scrollNext}
+          disabled={nextDisabled}
+          className="p-1 rounded hover:bg-gray-300 disabled:opacity-40 cursor-pointer"
+        >
+          <Image
+            src="/website/home/right-arrow.png"
+            height={20}
+            width={40}
+            alt="Left Arrow"
+          />
+        </button>
+      </div>
     </section>
   );
 };
 
-export default ArticleCarousel;
+export default ExploreArticleCarousel;

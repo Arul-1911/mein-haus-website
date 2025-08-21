@@ -7,7 +7,6 @@ export default function Home() {
     <main>
       <Header />
       <HomePage />
-      {/* <Footer /> */}
     </main>
   );
 }
