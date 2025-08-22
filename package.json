@@ -20,6 +20,7 @@
     "lightgallery": "^2.9.0-beta.1",
     "lucide-react": "^0.534.0",
     "next": "^15.4.6",
+    "nextjs-toploader": "^3.8.16",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-redux": "^9.2.0",

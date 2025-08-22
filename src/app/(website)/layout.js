@@ -1,5 +1,6 @@
 import Header from "@/components/website/layout/Header";
 import Footer from "@/components/website/layout/Footer";
+import NextTopLoader from "nextjs-toploader";
 
 export const metadata = {
   title: "MeinHaus | Online General Contractor",
@@ -14,6 +15,13 @@ export default function RootLayout({ children }) {
   return (
     <>
       <Header />
+      <NextTopLoader
+        color="#F88B36"
+        initialPosition={0.08}
+        crawlSpeed={600}
+        height={7}
+        zIndex={1600}
+      />
       {children}
       <Footer />
     </>

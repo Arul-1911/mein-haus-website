@@ -53,7 +53,7 @@ const RightSection = () => {
       peopleImage: "/website/home/customer-people.png",
       peopleText: "120k+ Home Owner",
       buttonText: "Get a Quote",
-      buttonLink: "/",
+      buttonLink: "/job",
       buttonClass: "bg-[#1E9BD0] py-1  md:text-lg md:py-5",
     },
     {

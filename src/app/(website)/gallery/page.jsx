@@ -204,7 +204,6 @@ const Gallery = () => {
       )}
 
       {/* Modal */}
-      {/* Modal */}
       <Dialog open={!!activeItem} onOpenChange={() => setActiveItem(null)}>
         <DialogContent className="w-[90vw] max-w-[1200px]">
           {activeItem && (

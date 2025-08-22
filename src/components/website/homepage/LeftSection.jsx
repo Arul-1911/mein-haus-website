@@ -98,7 +98,9 @@ const Leftsection = () => {
               </p>
             </div>
             <Button className="mt-2 bg-[#3AC0B4] hover:bg-[#3AC0B4]/70 cursor-pointer text-lg py-4 px-7">
-              Get Now
+              <Link href="https://app.zensurance.com/quote?utm_source=meinhaus&utm_medium=referral&utm_campaign=partner&qid=68a7f5b6293295094d36cbb3&token=d6e69709-4862-48fb-a21e-cb8076fc5058">
+                Get now
+              </Link>
             </Button>
           </div>
         </div>
@@ -125,7 +127,7 @@ const Leftsection = () => {
             away.
           </p>
           <Button className="bg-white text-black hover:bg-black hover:text-white text-lg py-5 px-8 mt-1">
-            <Link href="/about">Get a Quote</Link>
+            <Link href="/job">Get a Quote</Link>
           </Button>
         </div>
       </div>
