@@ -29,7 +29,11 @@ const Complimentary = ({ carouselItems }) => {
         <CarouselContent className="-ml-2">
           {carouselItems?.map((data, index) => (
             <CarouselItem key={index} className="basis-2/3  pl-2">
-              <Link href={`/feature-${index + 1}`} className="block">
+              <a
+                target="_blank"
+                href={`/complimentary/${data.title}`}
+                className="block"
+              >
                 <div className="relative rounded-xl overflow-hidden">
                   <Image
                     src={data.img}
@@ -39,7 +43,7 @@ const Complimentary = ({ carouselItems }) => {
                   />
                   <div className="absolute inset-0 " />
                 </div>
-              </Link>
+              </a>
             </CarouselItem>
           ))}
         </CarouselContent>

@@ -46,10 +46,18 @@ const Leftsection = () => {
   ];
 
   const carouselItems = [
-    { id: 1, img: "/website/home/education.png" },
-    { id: 2, img: "/website/home/lending-service.png" },
-    { id: 3, img: "/website/home/paralelgal-service.png" },
-    { id: 4, img: "/website/home/realty-network.png" },
+    { id: 1, img: "/website/home/education.png", title: "education-services" },
+    {
+      id: 2,
+      img: "/website/home/lending-service.png",
+      title: "lending-services",
+    },
+    {
+      id: 3,
+      img: "/website/home/paralelgal-service.png",
+      title: "paralelgal-services",
+    },
+    { id: 4, img: "/website/home/realty-network.png", title: "realty-network" },
   ];
   return (
     <main className="z-2">

@@ -1,4 +1,5 @@
 import Projectphotos from "@/components/website/jobpage/projectphotos";
+import JobRegisterForm from "@/components/website/jobpage/rightsection";
 import Image from "next/image";
 
 const JobPage = () => {
@@ -107,7 +108,7 @@ const JobPage = () => {
   };
   return (
     <main>
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="grid mx-auto px-3 pt-1 grid-cols-1 md:grid-cols-2">
         <div className="bg-[#F6F6F6] h-full">
           <section className="mx-auto max-w-xl">
             <div className="flex justify-center">
@@ -152,7 +153,17 @@ const JobPage = () => {
             <Projectphotos data={mockData?.data} />
           </section>
         </div>
-        <div>right section</div>
+        <div>
+          <div>
+            <h2 className="font-semibold text-3xl text-center my-2">
+              Kickstart Your Dream Project Today!
+            </h2>
+            <p className="font-medium texxt-sm text-center text-[#262626] my-2">
+              Please complete the form below to proceed with your request.
+            </p>
+            <JobRegisterForm />
+          </div>
+        </div>
       </div>
     </main>
   );
