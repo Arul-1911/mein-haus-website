@@ -1,15 +1,13 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { Button } from "@/components/ui/button";
+import { useCallback, useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+  ReactCompareSlider,
+  ReactCompareSliderImage,
+} from "react-compare-slider";
+import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
 
 // --- Static Data ---
 const mockData = {
@@ -40,9 +38,9 @@ const mockData = {
         "https://meinhaus.ca/images/service_gallery/r4t9czzRnRdaKduxv9avSLDGY3j54Xh61qbmGOGc.jpg",
       ],
       after: [
-        "https://meinhaus.ca/images/service_gallery/clFL3jQcF6lFasTENwgmgsAg4Yqk1hftq7fJFYHt.jpg",
-        "https://meinhaus.ca/images/service_gallery/3ybuHcTCJPhllH5OKmdUx3ib5PSnqlksLNpO99os.jpg",
         "https://meinhaus.ca/images/service_gallery/MkkvUBnMONwiIxA0yVC70IpOnBAVBdd76fKc9Odj.jpg",
+        "https://meinhaus.ca/images/service_gallery/3ybuHcTCJPhllH5OKmdUx3ib5PSnqlksLNpO99os.jpg",
+        "https://meinhaus.ca/images/service_gallery/clFL3jQcF6lFasTENwgmgsAg4Yqk1hftq7fJFYHt.jpg",
       ],
     },
     {
@@ -51,7 +49,9 @@ const mockData = {
       service_name: "Flooring & Tile Services",
       title: "bathroom renos",
       price_range: "$4000 - $6500",
-      before: [],
+      before: [
+        "https://meinhaus.ca/images/service_gallery/kCj0AyHPMeABxdqYSfkIMcldQhnctkCJILYRu1WE.png",
+      ],
       after: [
         "https://meinhaus.ca/images/service_gallery/TsOiNvLGtNTPOoDgUM3xC9R9ooArqQRaQXEJTSgi.png",
         "https://meinhaus.ca/images/service_gallery/JBkaqLX7x1fOAa5tDK1D6RMnf5YVghBMvhmO7gym.png",
@@ -82,7 +82,9 @@ const mockData = {
       service_name: "Stone, Masonry, & Asphalt",
       title: "concrete projects",
       price_range: "$1500 - $10000",
-      before: [],
+      before: [
+        "https://meinhaus.ca/images/service_gallery/kCj0AyHPMeABxdqYSfkIMcldQhnctkCJILYRu1WE.png",
+      ],
       after: [
         "https://meinhaus.ca/images/service_gallery/xnUya8CRTb8DxgK2WfsB5fkSeVIBrNUNsQjKEXCP.png",
         "https://meinhaus.ca/images/service_gallery/LAfmht0JA6N34ORQM6MhoZGbsqrP1p2rrfZYwKom.png",
@@ -96,12 +98,13 @@ const mockData = {
       service_name: "Demolition",
       title: "Home Demolition",
       price_range: "$1000 - $5000",
-      before: [],
+      before: [
+        "https://meinhaus.ca/images/service_gallery/kCj0AyHPMeABxdqYSfkIMcldQhnctkCJILYRu1WE.png",
+      ],
       after: [
         "https://meinhaus.ca/images/service_gallery/V1Ppp40i8OkjaU8OJVl8kEC2uVvhM02NZkDmDhWh.png",
         "https://meinhaus.ca/images/service_gallery/edF7legFsSUdX5wb6E4Mpjcb3vRRPnznPsM8Njx4.png",
         "https://meinhaus.ca/images/service_gallery/WIlvVQUuUdj33srSSHP26PPw4CjVI2SXt7pN5NE7.png",
-        "https://meinhaus.ca/images/service_gallery/kCj0AyHPMeABxdqYSfkIMcldQhnctkCJILYRu1WE.png",
       ],
     },
   ],
@@ -111,181 +114,150 @@ const mockData = {
 };
 
 const Gallery = () => {
-  const [services, setServices] = useState([]);
   const [items, setItems] = useState([]);
-  const [page, setPage] = useState(1);
-  const [lastPage, setLastPage] = useState(1);
-  const [selectedService, setSelectedService] = useState(null);
-  const [activeItem, setActiveItem] = useState(null);
-  const scrollRef = useRef(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const [prevDisabled, setPrevDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(true);
+
+  const scrollPrev = () => emblaApi?.scrollPrev();
+  const scrollNext = () => emblaApi?.scrollNext();
+
+  const onSelect = useCallback((embla) => {
+    setPrevDisabled(!embla.canScrollPrev());
+    setNextDisabled(!embla.canScrollNext());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect(emblaApi);
+    emblaApi.on("reInit", onSelect).on("select", onSelect);
+  }, [emblaApi, onSelect]);
 
   // Initialize static data
   useEffect(() => {
-    const allServices = [
-      ...new Map(
-        mockData.data.map((d) => [
-          d.service_id,
-          { id: d.service_id, name: d.service_name },
-        ])
-      ).values(),
-    ];
-    setServices(allServices);
     setItems(mockData.data);
-    setLastPage(mockData.last_page);
+    setSelectedItem(mockData.data[0]); // first item as default
   }, []);
 
-  const fetchPage = (p, serviceId = null) => {
-    let filtered = mockData.data;
-    if (serviceId) {
-      filtered = filtered.filter((d) => d.service_id === serviceId);
-    }
-    setItems(p === 1 ? filtered : [...items, ...filtered]);
-    setPage(p);
-    setLastPage(mockData.last_page);
-  };
-
-  const scroll = (dir) => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: dir === "left" ? -200 : 200,
-        behavior: "smooth",
-      });
-    }
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
   };
 
   return (
     <div className="p-6 space-y-6">
-      {/* Services Horizontal Scroll */}
-      <div className="flex items-center space-x-2">
-        <Button variant="outline" size="icon" onClick={() => scroll("left")}>
-          <ChevronLeft />
-        </Button>
-        <div
-          ref={scrollRef}
-          className="flex items-center overflow-x-auto no-scrollbar space-x-3 w-full"
-        >
-          {services.map((s) => (
-            <Button
-              key={s.id}
-              variant={selectedService === s.id ? "default" : "outline"}
-              onClick={() => {
-                setSelectedService(s.id);
-                fetchPage(1, s.id);
-              }}
-              className="cursor-pointer"
-            >
-              {s.name}
-            </Button>
-          ))}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Left Section → Only Selected Item */}
+        <div className="space-y-6">
+          {selectedItem && <GalleryCard item={selectedItem} />}
         </div>
-        <Button variant="outline" size="icon" onClick={() => scroll("right")}>
-          <ChevronRight />
-        </Button>
-      </div>
 
-      {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {items.map((item) => (
-          <GalleryCard
-            key={item.id}
-            item={item}
-            onClick={() => setActiveItem(item)}
-          />
-        ))}
-      </div>
+        {/* Right Section */}
+        <div className="w-full h-full justify-between p-4 flex flex-col">
+          {/* top section */}
+          <div className="text-start  mb-4">
+            <h2 className="text-[#262626] font-semibold my-3 text-2xl md:text-4xl">
+              {selectedItem?.service_name}
+            </h2>
+            <p className="text-[#9D9D9D] font-normal">{selectedItem?.title}</p>
+          </div>
 
-      {/* Load More */}
-      {page < lastPage && (
-        <div className="flex justify-center">
-          <Button onClick={() => fetchPage(page + 1, selectedService)}>
-            Load More
-          </Button>
+          {/* bottom section */}
+          <div className="w-full mt-0">
+            {/* Arrows */}
+            <div className="flex max-sm:justify-center justify-end gap-1 mb-6">
+              <button
+                onClick={scrollPrev}
+                disabled={prevDisabled}
+                className="px-2 rounded hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
+              >
+                <Image
+                  src="/website/home/left-arrow.png"
+                  height={24}
+                  width={44}
+                  alt="Left Arrow"
+                />
+              </button>
+              <button
+                onClick={scrollNext}
+                disabled={nextDisabled}
+                className="p-2 rounded hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
+              >
+                <Image
+                  src="/website/home/right-arrow.png"
+                  height={24}
+                  width={44}
+                  alt="Right Arrow"
+                />
+              </button>
+            </div>
+
+            {/* Carousel */}
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex">
+                {items?.map((item, index) => (
+                  <div
+                    key={index}
+                    className="relative flex-[0_0_100%]  md:flex-[0_0_30%] cursor-pointer rounded overflow-hidden"
+                    onClick={() => handleItemClick(item)}
+                  >
+                    {/* {after text}  */}
+                    <span className="absolute bg-[#282A2C] text-white p-2 rounded-md right-10 md:right-8 top-4 z-1">
+                      After
+                    </span>
+                    {item.after?.length > 0 && (
+                      <Image
+                        src={item.after[0]}
+                        alt={item.title || "Project Image"}
+                        width={150}
+                        height={150}
+                        className="w-[90%] h-80 object-cover rounded-2xl"
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      )}
-
-      {/* Modal */}
-      <Dialog open={!!activeItem} onOpenChange={() => setActiveItem(null)}>
-        <DialogContent className="w-[90vw] max-w-[1200px]">
-          {activeItem && (
-            <>
-              <div className="my-1">
-                <h2 className="text-2xl font-semibold">{activeItem.title}</h2>
-                <p className="text-sm text-muted-foreground">
-                  Price Range: {activeItem.price_range}
-                </p>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-6">
-                {/* Before Section */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Before</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {activeItem.before.map((url, i) => (
-                      <img
-                        key={i}
-                        src={url}
-                        alt="Before"
-                        className="rounded-lg w-full max-w-[400px] h-48 object-cover"
-                      />
-                    ))}
-                  </div>
-                </div>
-                {/* After Section */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">After</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {activeItem.after.map((url, i) => (
-                      <img
-                        key={i}
-                        src={url}
-                        alt="After"
-                        className="rounded-md"
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
+      </div>
     </div>
   );
 };
 
-// Card Component with autoplay before/after images
-const GalleryCard = ({ item, onClick }) => {
-  const [index, setIndex] = useState(0);
-  const images = [
-    ...item.before.map((url) => ({ type: "Before", url })),
-    ...item.after.map((url) => ({ type: "After", url })),
-  ];
+// Card Component
+const GalleryCard = ({ item }) => {
+  const beforeImage = item.before[0];
+  const afterImage = item.after[0];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
-    }, 2500);
-    return () => clearInterval(timer);
-  }, [images.length]);
+  if (!beforeImage || !afterImage) return null;
 
   return (
-    <Card
-      onClick={onClick}
-      className="cursor-pointer hover:shadow-lg transition py-0"
-    >
-      <CardContent className="p-0 relative bg-[#1E9BD00F]">
-        <span className="absolute top-2 left-2 bg-black text-white text-xs px-2 py-1 rounded">
-          {images[index].type}
+    <Card className="h-[80dvh] bg-transparent shadow-none border-none relative">
+      <CardContent className="p-1 relative">
+        {/* {Content}  */}
+        <span className="absolute bg-[#282A2C] text-white p-2 rounded-md left-4 top-4 z-1">
+          Before
         </span>
-        <img
-          src={images[index].url}
-          alt={item.title}
-          className="rounded-lg h-50 w-full object-cover"
+        <span className="absolute bg-[#282A2C] text-white p-2 rounded-md right-4 top-4 z-1">
+          After
+        </span>
+        <ReactCompareSlider
+          itemOne={
+            <ReactCompareSliderImage
+              src={beforeImage}
+              alt={`${item.title} - Before`}
+            />
+          }
+          itemTwo={
+            <ReactCompareSliderImage
+              src={afterImage}
+              alt={`${item.title} - After`}
+            />
+          }
+          style={{ width: "100%", height: "75dvh", borderRadius: "15px" }}
         />
-        {/* <div className="p-3">
-          <h3 className="font-normal text-lg text-start ">
-            {item.service_name}
-          </h3>
-        </div> */}
       </CardContent>
     </Card>
   );
