@@ -150,12 +150,16 @@ const Leftsection = () => {
       {/* MOBILE VIEW OF GET QUTOE AND PRO REG  */}
       <div className="grid grid-cols-2 w-full fixed  bottom-0  z-11 lg:hidden">
         <div className="bg-[#1E9BD0] w-full text-white mx-auto">
-          <p className="text-center py-2 font-medium text-sm">Get a Quote</p>
+          <Link href="/job">
+            <p className="text-center py-2 font-medium text-sm">Get a Quote</p>
+          </Link>
         </div>
         <div className="bg-[#F88B36] w-full text-white m-auto">
-          <p className="text-center py-2 font-medium text-sm">
-            Pro Registration
-          </p>
+          <Link href="https://meinhaus.ca/professional/register">
+            <p className="text-center py-2 font-medium text-sm">
+              Pro Registration
+            </p>
+          </Link>
         </div>
       </div>
     </main>

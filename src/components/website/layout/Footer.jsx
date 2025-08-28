@@ -27,7 +27,7 @@ const Footer = () => {
                 <Link href="/about">About</Link>
               </p>
               <p>
-                <Link href="/gallery">Gallery</Link>
+                <Link href="/download">Download</Link>
               </p>
             </div>
 
@@ -51,23 +51,27 @@ const Footer = () => {
           <div className="flex justify-around gap-4 items-center">
             {/* APP STORE  */}
             <div>
-              <Image
-                src="/website/home/app-store.png"
-                alt="Apple store Logo"
-                height="100"
-                width="120"
-                className=""
-              />
+              <a href="https://apps.apple.com/in/app/meinhaus-pro/id6474660404">
+                <Image
+                  src="/website/home/app-store.png"
+                  alt="Apple store Logo"
+                  height="100"
+                  width="120"
+                  className=""
+                />
+              </a>
             </div>
             {/* PLAY STORE  */}
             <div>
-              <Image
-                src="/website/home/play-store.png"
-                alt="Play Store Logo"
-                height="100"
-                width="120"
-                className=""
-              />
+              <a href="https://play.google.com/store/apps/details?id=ca.meinhaus.app.pro">
+                <Image
+                  src="/website/home/play-store.png"
+                  alt="Play Store Logo"
+                  height="100"
+                  width="120"
+                  className=""
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -76,16 +80,18 @@ const Footer = () => {
           {/* TOP SECTION  */}
           <div className="flex justify-around gap-3">
             <span className="">
-              <Image
-                src="/website/home/facebook.png"
-                alt="Facebook Logo"
-                height="10"
-                width="30"
-                className=""
-              />
+              <Link href="https://www.facebook.com/share/Dk57zGZtvTAut6Nu/?mibextid=dGKdO6">
+                <Image
+                  src="/website/home/facebook.png"
+                  alt="Facebook Logo"
+                  height="10"
+                  width="30"
+                  className=""
+                />
+              </Link>
             </span>
             <span>
-              <Link href="/about">
+              <Link href="https://www.instagram.com/meinhaus.ca">
                 <Image
                   src="/website/home/instagram.png"
                   alt="Instagram Logo"

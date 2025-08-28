@@ -81,18 +81,28 @@ export default function Header() {
               </div>
               <div className="bg-[#1E9BD00F] absolute bottom-0 right-0 left-0 p-4 flex flex-col items-center">
                 <div className="flex gap-3">
-                  <Image
-                    src="/website/home/facebook.png"
-                    alt="Facebook Logo"
-                    height="10"
-                    width="30"
-                  />
-                  <Image
-                    src="/website/home/instagram.png"
-                    alt="Instagram Logo"
-                    height="10"
-                    width="30"
-                  />
+                  <span className="">
+                    <Link href="https://www.facebook.com/share/Dk57zGZtvTAut6Nu/?mibextid=dGKdO6">
+                      <Image
+                        src="/website/home/facebook.png"
+                        alt="Facebook Logo"
+                        height="10"
+                        width="30"
+                        className=""
+                      />
+                    </Link>
+                  </span>
+                  <span>
+                    <Link href="https://www.instagram.com/meinhaus.ca">
+                      <Image
+                        src="/website/home/instagram.png"
+                        alt="Instagram Logo"
+                        height="10"
+                        width="30"
+                        className=""
+                      />
+                    </Link>
+                  </span>
                 </div>
                 <div className="text-center mt-1">
                   {new Date().getFullYear()} &copy; MeinHaus | All rights

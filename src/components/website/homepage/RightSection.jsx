@@ -64,7 +64,7 @@ const RightSection = () => {
       peopleImage: "/website/home/professional-people.png",
       peopleText: "120k+ Pro Registered",
       buttonText: "Pro Registration",
-      buttonLink: "/",
+      buttonLink: "https://meinhaus.ca/professional/register",
       buttonClass: "bg-[#F88B36] py-1  md:text-lg md:py-5",
     },
   ];
