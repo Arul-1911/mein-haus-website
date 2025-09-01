@@ -146,7 +146,7 @@ export default function Header() {
           <nav>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="my-3 text-sm lg:text-md lg:px-4 py-2 bg-black text-white rounded-4xl">
+                <Button className="my-3 text-sm lg:text-md lg:px-4 cursor-pointer py-2 bg-black text-white rounded-4xl">
                   Login
                   <ChevronDown />
                 </Button>

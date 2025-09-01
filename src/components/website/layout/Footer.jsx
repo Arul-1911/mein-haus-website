@@ -9,13 +9,15 @@ const Footer = () => {
         {/* CONTENT SECTION  */}
         <div className="flex flex-col justify-center items-center  lg:flex-row lg:justify-between flex-wrap mx-1 p-6 lg:items-center bg-[#F6F6F6] gap-3">
           <div className="items-center justify-center">
-            <Image
-              src="/mein-haus-logo.png"
-              alt="Mein Haus Logo"
-              height={100}
-              width={300}
-              className="my-3 max-sm:w-[30dvh] lg:ml-5"
-            />
+            <Link href="/">
+              <Image
+                src="/mein-haus-logo.png"
+                alt="Mein Haus Logo"
+                height={100}
+                width={300}
+                className="my-3 max-sm:w-[30dvh] lg:ml-5"
+              />
+            </Link>
           </div>
           <div className="flex flex-wrap items-center justify-between gap-12">
             {/* LEFT SIDE  */}
