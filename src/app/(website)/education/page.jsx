@@ -1,8 +1,10 @@
+import { fetchEducationSection } from "@/serverCalls/website";
 import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
-const page = () => {
+const page = async () => {
+  const data = await fetchEducationSection();
   return (
     <main>
       <div className="">
@@ -10,14 +12,15 @@ const page = () => {
         <div className="flex flex-col md:flex-row items-center justify-center gap-2  lg:gap-20 text-center md:text-left">
           <div className="max-w-4xl">
             <h2 className="font-bold mt-3 text-2xl lg:text-3xl mb-4">
-              Welcome to Meinhaus Education
+              {data?.title || "Welcome to Meinhaus Education"}
             </h2>
             <p className="text-[#9D9D9D] max-w-xl p-2">
-              At Meinhaus, we&apos;re committed to empowering trades
+              {data?.heading ||
+                `At Meinhaus, we&apos;re committed to empowering trades
               professionals with the tools and knowledge they need to succeed.
               That&apos;s why we&apos;re excited to announce the upcoming launch
               of Meinhaus Education, a platform designed for the continuing
-              education and growth of our trades community.
+              education and growth of our trades community.`}
             </p>
           </div>
           <div className="">
@@ -50,130 +53,29 @@ const page = () => {
             <div className="flex flex-col max-sm:p-3 md:flex-row mdjustify-start gap-10 mt-5">
               <div>
                 <ul>
-                  <li className="flex gap-1 my-1">
-                    {/* <Ticket /> */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="#48B02C"
-                      stroke="white"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-circle-check-icon lucide-circle-check"
-                    >
-                      <circle cx="12" cy="12" r="10" fill="#48B02C" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
+                  {data?.onlineCourseNames &&
+                    data?.onlineCourseNames?.map((dt) => (
+                      <li className="flex gap-1 my-1">
+                        {/* <Ticket /> */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width={24}
+                          height={24}
+                          viewBox="0 0 24 24"
+                          fill="#48B02C"
+                          stroke="white"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="lucide lucide-circle-check-icon lucide-circle-check"
+                        >
+                          <circle cx="12" cy="12" r="10" fill="#48B02C" />
+                          <path d="m9 12 2 2 4-4" />
+                        </svg>
 
-                    <span>Carpentry techniques</span>
-                  </li>
-                  <li className="flex gap-1 my-1">
-                    {/* <Ticket /> */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="#48B02C"
-                      stroke="white"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-circle-check-icon lucide-circle-check"
-                    >
-                      <circle cx="12" cy="12" r="10" fill="#48B02C" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-
-                    <span>Tiling</span>
-                  </li>
-                  <li className="flex gap-1 my-1">
-                    {/* <Ticket /> */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="#48B02C"
-                      stroke="white"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-circle-check-icon lucide-circle-check"
-                    >
-                      <circle cx="12" cy="12" r="10" fill="#48B02C" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-
-                    <span>Painting</span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <ul>
-                  <li className="flex gap-1 my-1">
-                    {/* <Ticket /> */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="#48B02C"
-                      stroke="white"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-circle-check-icon lucide-circle-check"
-                    >
-                      <circle cx="12" cy="12" r="10" fill="#48B02C" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-
-                    <span>Plumbing</span>
-                  </li>
-                  <li className="flex gap-1 my-1">
-                    {/* <Ticket /> */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="#48B02C"
-                      stroke="white"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-circle-check-icon lucide-circle-check"
-                    >
-                      <circle cx="12" cy="12" r="10" fill="#48B02C" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-
-                    <span>Electrical</span>
-                  </li>
-                  <li className="flex gap-1 my-1">
-                    {/* <Ticket /> */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="#48B02C"
-                      stroke="white"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-circle-check-icon lucide-circle-check"
-                    >
-                      <circle cx="12" cy="12" r="10" fill="#48B02C" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-
-                    <span>Advanced construction technologies</span>
-                  </li>
+                        <span>{dt}</span>
+                      </li>
+                    ))}
                 </ul>
               </div>
             </div>
@@ -236,17 +138,22 @@ const page = () => {
           {/* Left  */}
           <div className="max-w-lg max-md:text-center">
             <h2 className="font-semibold text-2xl lg:text-3xl my-2 text-[#262626]">
-              Partnerships with Colleges & Government
+              {data?.partnershipTitle ||
+                "Partnerships with Colleges & Government"}
             </h2>
             <p className="text-[#9D9D9D] font-normal text-md my-2">
-              We&apos;re building partnerships to provide comprehensive learning
+              {/* We&apos;re building partnerships to provide comprehensive learning
               opportunities and help you achieve mandatory licenses for trades
-              like:
+              like: */}
+              {data?.description ||
+                `We&apos;re building partnerships to provide comprehensive learning
+              opportunities and help you achieve mandatory licenses for trades
+              like`}
             </p>
-            <p className="text-[#9D9D9D] font-normal text-md">
+            {/* <p className="text-[#9D9D9D] font-normal text-md">
               By working together, we aim to simplify the licensing process and
               help you meet industry requirements while advancing your career.
-            </p>
+            </p> */}
           </div>
           {/* right  */}
           <div className="max-md:mt-5">
@@ -274,11 +181,13 @@ const page = () => {
             <div>
               <span className="flex gap-2 items-center mt-8">
                 <Phone />
-                <a href="tel:(647) 930-9066">Call us at (647) 930-9066</a>
+                <a
+                  href={`tel:${data?.mobile}`}
+                >{`Call us at ${data?.mobile}`}</a>
               </span>
               <span className="flex gap-2 items-center my-1">
                 <Mail />
-                <a href="mailto:info@example.com">meinhaus@gmail.com</a>
+                <a href={`mailto:${data?.email}`}>{data?.email}</a>
               </span>
             </div>
             <p className="mt-8 font-semibold text-md">

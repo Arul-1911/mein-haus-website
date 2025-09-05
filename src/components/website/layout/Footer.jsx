@@ -39,7 +39,7 @@ const Footer = () => {
                 <Link href="/education">Education</Link>
               </p>
               <p>
-                <Link href="/contact">Contact Us</Link>
+                <Link href="/contactus">Contact Us</Link>
               </p>
 
               <p>
@@ -57,8 +57,8 @@ const Footer = () => {
                 <Image
                   src="/website/home/app-store.png"
                   alt="Apple store Logo"
-                  height="100"
-                  width="120"
+                  height={100}
+                  width={120}
                   className=""
                 />
               </a>
@@ -69,8 +69,8 @@ const Footer = () => {
                 <Image
                   src="/website/home/play-store.png"
                   alt="Play Store Logo"
-                  height="100"
-                  width="120"
+                  height={100}
+                  width={120}
                   className=""
                 />
               </a>

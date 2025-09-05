@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
-import Link from "next/link";
 
 const Complimentary = ({ carouselItems }) => {
   const plugin = useRef(Autoplay({ delay: 3500, stopOnInteraction: true }));
@@ -26,22 +25,39 @@ const Complimentary = ({ carouselItems }) => {
         onMouseEnter={() => plugin.current.stop()}
         onMouseLeave={() => plugin.current.play()}
       >
-        <CarouselContent className="-ml-2">
+        <CarouselContent className="">
           {carouselItems?.map((data, index) => (
-            <CarouselItem key={index} className="basis-2/3  pl-2">
+            <CarouselItem key={index} className="md:basis-3/4 my-2 mx-2">
               <a
                 target="_blank"
-                href={`/complimentary/${data.title}`}
+                href={`/complimentary/${encodeURIComponent(data?.id)}`}
                 className="block"
               >
-                <div className="relative rounded-xl overflow-hidden">
+                <div className="relative rounded-xl shadow-md overflow-hidden">
                   <Image
-                    src={data.img}
-                    alt={`Feature ${index + 1}`}
-                    width={500}
-                    height={400}
+                    src={`https://dev-carenest.s3.ap-south-1.amazonaws.com${data.picPath}`}
+                    alt={data.name}
+                    width={200}
+                    height={200}
+                    className="object-cover w-[100%] h-[40dvh]"
                   />
-                  <div className="absolute inset-0 " />
+                  <div className="absolute inset-0" />
+                  <div className="flex gap-2 my-2 justify-center items-center">
+                    <div>
+                      <Image
+                        src="/website/complimentary/logo.png"
+                        alt="Meinhaus logo"
+                        width={60}
+                        height={40}
+                      />
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[#FD760D] text-3xl">
+                        <span className="font-extrabold">MEIN</span>HAUS
+                      </h2>
+                      <p className="-my-1 text-[#1E9BD0]">{data.name}</p>
+                    </div>
+                  </div>
                 </div>
               </a>
             </CarouselItem>

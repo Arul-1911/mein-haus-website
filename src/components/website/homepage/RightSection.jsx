@@ -23,7 +23,7 @@ const Card = ({
     />
     <div className="absolute top-2 md:top-3 text-start ml-3">
       <h2 className="font-semibold text-sm md:text-2xl mt:mt-2">{title}</h2>
-      <p className="mt-2 text-[#545454] max-w-sm text-[10px] lg:text-sm font-medium text-wrap md:max-w-md">
+      <p className="mt-2 text-[#545454] max-w-sm text-[8px] lg:text-sm font-medium text-wrap md:max-w-md">
         {description}
       </p>
       <div className="flex items-center my-4 gap-2">
@@ -54,7 +54,8 @@ const RightSection = () => {
       peopleText: "120k+ Home Owner",
       buttonText: "Get a Quote",
       buttonLink: "/job",
-      buttonClass: "bg-[#1E9BD0] py-1  md:text-lg md:py-5",
+      buttonClass:
+        "bg-[#1E9BD0] hover:bg-[#1E9BD0]/80 py-1  md:text-lg md:py-5",
     },
     {
       title: "Trade Professional",
@@ -65,18 +66,19 @@ const RightSection = () => {
       peopleText: "120k+ Pro Registered",
       buttonText: "Pro Registration",
       buttonLink: "https://meinhaus.ca/professional/register",
-      buttonClass: "bg-[#F88B36] py-1  md:text-lg md:py-5",
+      buttonClass:
+        "bg-[#F88B36] hover:bg-[#F88B36]/80 py-1  md:text-lg md:py-5",
     },
   ];
 
   return (
-    <section className="bg-[#F0F0F0] w-full lg:fixed text-center lg:top-0 lg:right-0 lg:w-1/2 h-auto max-lg:pb-2 lg:h-screen lg:overflow-y-auto z-4 pt-2  lg:pt-22">
-      <div className="mx-auto">
-        <h1 className="font-secondary font-bold text-2xl text-center md:text-4xl">
+    <section className="bg-[#F0F0F0] w-full lg:fixed text-center lg:top-0 lg:right-0 lg:w-1/2 h-auto max-lg:pb-2 lg:h-[100dvh] lg:overflow-y-auto z-4 pt-2 scrollbar-hide">
+      <div className="mx-auto md:mt-15 lg:mt-17">
+        <h1 className="font-secondary font-bold text-xl text-center md:text-4xl">
           Any Reno. Any Size. Any Time.
         </h1>
       </div>
-      <div className="my-3 md:font-medium mx-auto text-[#9D9D9D] max-w-lg text-center">
+      <div className="my-2 md:font-medium mx-auto text-[#9D9D9D] max-w-lg text-center">
         Manage all your essential tasks effortlessly with a single platform that
         brings together a wide range of services in one convenient place.
       </div>

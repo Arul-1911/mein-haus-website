@@ -1,5 +1,7 @@
 import { Poppins, Ubuntu } from "next/font/google";
 import "./globals.css";
+import { WebsiteProviders } from "@/providers/storeProviders";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,7 +30,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${poppins.variable} ${ubuntu.variable} antialiased`}
     >
-      <body className="font-primary">{children}</body>
+      <body className="font-primary">
+        <WebsiteProviders>{children}</WebsiteProviders>
+        <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
+      </body>
     </html>
   );
 }

@@ -1,6 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { customerApi } from "./customer/apiCustomer";
 import { professionalApi } from "./professional/apiProfessional";
+import { websiteApi } from "./website/apiWebsite";
+
+// ===== WEBSITE STORE =====
+export const createWebsiteStore = () => {
+  return configureStore({
+    reducer: {
+      [websiteApi.reducerPath]: websiteApi.reducer,
+      //  website slices here
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(websiteApi.middleware),
+  });
+};
 
 // ===== CUSTOMER STORE =====
 export const createCustomerStore = () => {

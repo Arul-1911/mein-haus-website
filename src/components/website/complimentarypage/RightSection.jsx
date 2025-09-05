@@ -1,11 +1,7 @@
 "use client";
 
+import { useCreateServiceRequestMutation } from "@/features/website/apiWebsite";
 import {
-  Clock,
-  Eye,
-  EyeOff,
-  FileText,
-  Lock,
   Mail,
   MapPin,
   MessageSquare,
@@ -16,26 +12,74 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useParams } from "next/navigation";
+import { use } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+
+const schema = yup.object().shape({
+  fullname: yup
+    .string()
+    .required("Name is required !")
+    .min(2, "Full name must be at least 2 characters long"),
+  email: yup
+    .string()
+    .email("Enter a valid email")
+    .required("Email is required !"),
+  mobile: yup
+    .string()
+    .required("Phone number is required")
+    .matches(/^(\+?\d{10,15})$/, "Enter a valid phone number !"),
+  address: yup.string().required("Address is required !"),
+  notes: yup.string(),
+});
 
 const RightSection = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [createServiceRequest, { isLoading, isError, isSuccess }] =
+    useCreateServiceRequestMutation();
+  const { id } = useParams();
+  // console.log("Service ID:", id);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onBlur",
+  });
+
+  const onSubmit = async (data) => {
+    const formData = new URLSearchParams();
+
+    formData.append("comp_service_id", id);
+    formData.append("name", data.fullname);
+    formData.append("email", data.email);
+    formData.append("mobile", data.mobile);
+    formData.append("address", data.address || "");
+    formData.append("notes", data.notes || "");
+
+    try {
+      const res = await createServiceRequest(formData.toString()).unwrap();
+      if (res.success) {
+        toast.success("Service request sent!");
+        reset();
+      }
+    } catch (error) {
+      toast.error("Failed to submit service request");
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <form
         className="px-4 md:w-[70%] mx-auto mt-5 space-y-4"
-        id="job-register-form"
-        method="POST"
-        action="https://meinhaus.ca/customer-landing-post"
-        encType="multipart/form-data"
-        noValidate
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <input
-          type="hidden"
-          name="_token"
-          value="SmYJ8UFuQH8ytsKpH135RzJhLjQ5ujmgygRQLvaP"
-        />
-
         {/* Full Name */}
         <div className="relative">
           <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
@@ -43,15 +87,17 @@ const RightSection = () => {
             <input
               type="text"
               id="fullname"
-              name="fullname"
+              {...register("fullname")}
               className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
-              placeholder="Full Name"
+              placeholder="Full Name *"
+              disabled={isLoading}
             />
           </div>
-          <span
-            id="fullname-error"
-            className="text-red-500 text-xs mt-1"
-          ></span>
+          {errors.fullname && (
+            <span className="text-red-500 text-md mt-1">
+              {errors.fullname.message}
+            </span>
+          )}
         </div>
 
         {/* Email */}
@@ -61,12 +107,17 @@ const RightSection = () => {
             <input
               type="email"
               id="email"
-              name="email"
+              {...register("email")}
               className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
-              placeholder="Mail ID"
+              placeholder="Mail ID *"
+              disabled={isLoading}
             />
           </div>
-          <span id="email-error" className="text-red-500 text-xs mt-1"></span>
+          {errors.email && (
+            <span className="text-red-500 text-md mt-1">
+              {errors.email.message}
+            </span>
+          )}
         </div>
 
         {/* Phone Number */}
@@ -76,26 +127,39 @@ const RightSection = () => {
             <input
               type="tel"
               id="phone"
-              name="phone"
+              {...register("mobile")}
               className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
-              placeholder="Phone Number"
+              placeholder="Phone Number *"
               autoComplete="tel"
+              disabled={isLoading}
             />
           </div>
-          <span id="phone-error" className="text-red-500 text-xs mt-1"></span>
+          {errors.mobile && (
+            <span id="phone-error" className="text-red-500 text-md mt-1">
+              {errors.mobile.message}
+            </span>
+          )}
         </div>
 
         {/* Address */}
-        <div className="relative flex p-1 hover:border bg-[#F6F6F6] items-center">
-          <MapPin className="w-5 h-5  text-gray-500 ml-3" />
-          <input
-            type="text"
-            id="new_address"
-            name="address"
-            className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
-            placeholder="Enter location"
-            autoComplete="off"
-          />
+        <div>
+          <div className="relative flex p-1 hover:border bg-[#F6F6F6] items-center">
+            <MapPin className="w-5 h-5  text-gray-500 ml-3" />
+            <input
+              type="text"
+              id="new_address"
+              {...register("address")}
+              className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
+              placeholder="Enter location *"
+              autoComplete="off"
+              disabled={isLoading}
+            />
+          </div>
+          {errors.address && (
+            <span id="phone-error" className="text-red-500 text-md mt-1">
+              {errors.address.message}
+            </span>
+          )}
         </div>
 
         {/* Project Description */}
@@ -104,10 +168,11 @@ const RightSection = () => {
             <MessageSquare className="w-5 h-5 text-gray-500 ml-3 mt-2" />
             <textarea
               id="notes"
-              name="notes"
+              {...register("notes")}
               className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
               placeholder="Notes"
               rows="6"
+              disabled={isLoading}
             ></textarea>
           </div>
           <span id="notes-error" className="text-red-500 text-xs mt-1"></span>
@@ -115,9 +180,9 @@ const RightSection = () => {
 
         <div>
           <p className="text-[#545454] font-normal text-start">
-            <input type="checkbox" className="mr-2 justify-items-center" />I
-            agree to the{" "}
-            <Link href="https://meinhaus.ca/customer/login">
+            {/* <input type="checkbox" className="mr-2 justify-items-center" /> */}
+            I agree to the{" "}
+            <Link href="/terms&conditions" target="_blank">
               <span className="text-[#1E9BD0] font-medium">
                 Terms and Conditions
               </span>
@@ -128,12 +193,24 @@ const RightSection = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full flex justify-center items-center gap-2 bg-[#262626] cursor-pointer text-white py-2 rounded-md font-semibold hover:bg-gray-900 transition"
+          className={`w-full flex justify-center items-center gap-2 bg-[#262626] text-white py-2 rounded-md font-semibold transition 
+    ${
+      isLoading
+        ? "cursor-not-allowed opacity-50"
+        : "cursor-pointer hover:bg-gray-900"
+    }`}
+          disabled={isLoading}
         >
-          Send{" "}
-          <span>
-            <Send size={20} />
-          </span>
+          {isLoading ? (
+            "Sending..."
+          ) : (
+            <>
+              Send
+              <span>
+                <Send size={20} />
+              </span>
+            </>
+          )}
         </button>
       </form>
     </div>

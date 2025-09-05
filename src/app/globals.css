@@ -44,8 +44,8 @@
 }
 
 /* =======================
-   BASE THEME 
-   ======================= */
+BASE THEME 
+======================= */
 :root {
   --font-primary: "Poppins", sans-serif;
   --font-secondary: "Ubuntu", sans-serif;
@@ -86,8 +86,8 @@
 }
 
 /* =======================
-   CUSTOMER THEME
-   ======================= */
+CUSTOMER THEME
+======================= */
 .customer-theme {
   --primary: oklch(0.45 0.25 260); /* bluish */
   --primary-foreground: oklch(0.985 0 0);
@@ -100,8 +100,8 @@
 }
 
 /* =======================
-   PROFESSIONAL THEME
-   ======================= */
+PROFESSIONAL THEME
+======================= */
 .professional-theme {
   --primary: oklch(0.55 0.25 70); /* orange */
   --primary-foreground: oklch(0.985 0 0);
@@ -131,5 +131,55 @@
   .font-secondary {
     font-family: var(--font-secondary), -apple-system, BlinkMacSystemFont,
       sans-serif;
+  }
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Editor content styles  */
+
+@layer base {
+  .editor-content {
+    @apply max-w-none;
+  }
+
+  .editor-content h1 {
+    @apply text-3xl font-semibold mb-4;
+  }
+
+  .editor-content h2 {
+    @apply text-[#262626] my-5 text-center font-semibold text-3xl;
+  }
+
+  .editor-content h3 {
+    @apply font-semibold text-[#262626] text-center my-2 text-2xl;
+  }
+
+  .editor-content p {
+    @apply my-1 text-[#666565];
+  }
+
+  .editor-content ul {
+    @apply list-disc ml-4  my-1;
+  }
+
+  .editor-content ol {
+    @apply list-decimal ml-4 list-inside my-1;
+  }
+
+  .editor-content a {
+    @apply text-blue-400 hover:text-blue-800;
+  }
+
+  .editor-content blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic text-gray-600;
   }
 }

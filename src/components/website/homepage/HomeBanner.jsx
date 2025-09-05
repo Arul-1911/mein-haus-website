@@ -5,15 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 
-const images = [
-  "/website/home/engineerslide.png",
-  "/website/home/kitchslide.png",
-  "/website/home/painting.png",
-  "/website/home/roofslide.png",
-  "/website/home/flooringslide.png",
-];
-
-const HomeBanner = () => {
+const HomeBanner = ({ images }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 6500, stopOnInteraction: false }),
   ]);
@@ -41,10 +33,10 @@ const HomeBanner = () => {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {images?.map((src, i) => (
-            <div key={i} className="flex-[0_0_100%] relative">
+            <div key={src.id} className="flex-[0_0_100%] relative">
               <Image
-                src={src}
-                alt={`Slide ${i}`}
+                src={`https://dev-carenest.s3.ap-south-1.amazonaws.com${src.imagePath}`}
+                alt={src.title}
                 height={200}
                 width={300}
                 className="w-full h-[30dvh] md:h-[45dvh] lg:h-[60dvh]"
@@ -69,7 +61,7 @@ const HomeBanner = () => {
           <button
             key={i}
             onClick={() => scrollTo(i)}
-            className={`h-3 w-3 rounded-full border border-white ${
+            className={`h-3 w-3 cursor-pointer rounded-full border border-white ${
               selectedIndex === i ? "bg-white" : "bg-transparent"
             }`}
           />

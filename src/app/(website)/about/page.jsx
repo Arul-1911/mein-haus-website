@@ -1,14 +1,17 @@
 import AboutFeedBack from "@/components/website/aboutpage/FeedBack";
+import { fetchAboutSection, fetchFeedbacks } from "@/serverCalls/website";
 import { Quote } from "lucide-react";
 import Image from "next/image";
 
-export default function Page() {
+export default async function Page() {
+  const feedbacks = await fetchFeedbacks();
+  const aboutContent = await fetchAboutSection();
   return (
     <main className="mx-1 mt-4 lg:mt-8">
       {/* Our Story Section */}
       <section className="flex flex-col px-5 lg:px-20 lg:flex-row items-center gap-6 mb-12">
         <div className="lg:w-7/12">
-          <h2 className="text-3xl font-semibold mb-3">Our Story</h2>
+          {/* <h2 className="text-3xl font-semibold mb-3">Our Story</h2>
           <p className="text-muted-foreground mb-4">
             Welcome to MEINHAUS, where innovation meets trust in the world of
             home renovations.
@@ -26,7 +29,15 @@ export default function Page() {
             uncertainty. At the same time, we understand the challenges faced by
             skilled tradespeople in building trust, managing workloads, and
             showcasing their craftsmanship.
-          </p>
+          </p> */}
+          <div>
+            <div
+              className="editor-content"
+              dangerouslySetInnerHTML={{
+                __html: aboutContent?.content || "",
+              }}
+            />
+          </div>
         </div>
 
         <div className="lg:w-5/12 text-center lg:text-right relative">
@@ -58,13 +69,13 @@ export default function Page() {
 
         <div className="lg:w-7/12">
           <p className="text-muted-foreground mb-4">
-            We don’t just pair clients with great local subcontractors, we
+            We don't just pair clients with great local subcontractors, we
             oversee and guarantee all our projects and effectively arbitrate,
             negotiate and manage the work flow from start to finish in a manner
             that is efficient, transparent and fair for all parties.
           </p>
           <p className="text-muted-foreground mb-4">
-            That’s why we built MEINHAUS—to be the trusted partner for both
+            That's why we built MEINHAUS—to be the trusted partner for both
             homeowners and professionals, creating a platform where everyone can
             thrive:
           </p>
@@ -117,7 +128,7 @@ export default function Page() {
         </div>
         <p className="text-center font-normal text-md text-[#5B5B5B] max-w-3xl">
           This mantra embodies our commitment to flexibility and excellence.
-          Whether you’re planning a small update or a large-scale remodel,
+          Whether you're planning a small update or a large-scale remodel,
           MEINHAUS ensures your renovation experience is smooth, transparent,
           and tailored to your needs.
         </p>
@@ -188,7 +199,7 @@ export default function Page() {
       </section>
 
       {/* Client Feedbacks  */}
-      <AboutFeedBack />
+      <AboutFeedBack feedbacks={feedbacks} />
     </main>
   );
 }

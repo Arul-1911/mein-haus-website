@@ -4,8 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "meinhaus.ca",
-        pathname: "/images/service_gallery/**",
+        hostname: "*",
       },
     ],
   },

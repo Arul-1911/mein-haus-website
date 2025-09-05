@@ -67,7 +67,7 @@ const ExploreArticleCarousel = ({ slides = [], options = {} }) => {
               className="flex-[0_0_100%] md:flex-[0_0_31%] md:max-w-[100%] bg-white rounded"
             >
               <Image
-                src={item.image}
+                src={`https://dev-carenest.s3.ap-south-1.amazonaws.com${item?.picPath}`}
                 alt={item.title}
                 height={200}
                 width={300}
@@ -81,9 +81,7 @@ const ExploreArticleCarousel = ({ slides = [], options = {} }) => {
                   {item.description.slice(0, 90)}...{" "}
                   <span>
                     <Link
-                      href={`/articles/${slugify(item.title, {
-                        lower: true,
-                      })}`}
+                      href={`/articles/${item.id}`}
                       className="text-black font-bold"
                     >
                       Read More

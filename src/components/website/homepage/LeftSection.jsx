@@ -7,71 +7,43 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Complimentary from "./Complimentary";
 import Footer from "../layout/Footer";
+import {
+  fetchArticles,
+  fetchBanners,
+  fetchFeedbacks,
+  fetchServices,
+} from "@/serverCalls/website";
 
-const Leftsection = () => {
-  const articleSlides = [
-    {
-      id: 1,
-      image: "/website/home/engineerslide.png",
-      title: "Tech Trends in 2025",
-      description: "Explore what’s shaping the future of software.",
-    },
-    {
-      id: 2,
-      image: "/website/home/engineerslide.png",
-      title: "AI & Developer Tools",
-      description:
-        "Whether it’s a small room makeover or a full-scale renovation, creating a space that reflects your vision is...Read more",
-    },
-    {
-      id: 3,
-      image: "/website/home/engineerslide.png",
-      title: "Tailwind Best Practices",
-      description:
-        "Whether it’s a small room makeover or a full-scale renovation, creating a space that reflects your vision is...Read more",
-    },
-    {
-      id: 4,
-      image: "/website/home/engineerslide.png",
-      title: "Next.js Routing Deep Dive",
-      description: "Master nested layouts and parallel routes.",
-    },
-    {
-      id: 5,
-      image: "/website/home/engineerslide.png",
-      title: "Next.js Routing Deep Dive",
-      description:
-        "Learn how to keep your styles clean and scalable.Learn how to keep your styles clean and scalable.Learn how to keep your styles clean and scalable.Learn how to keep your styles clean and scalable.",
-    },
-  ];
+const Leftsection = async () => {
+  const [banners, articleSlides, feedbacks, services] =
+    await Promise.allSettled([
+      fetchBanners(),
+      fetchArticles(),
+      fetchFeedbacks(),
+      fetchServices(),
+    ]);
 
-  const carouselItems = [
-    { id: 1, img: "/website/home/education.png", title: "education-services" },
-    {
-      id: 2,
-      img: "/website/home/lending-service.png",
-      title: "lending-services",
-    },
-    {
-      id: 3,
-      img: "/website/home/paralelgal-service.png",
-      title: "paralelgal-services",
-    },
-    { id: 4, img: "/website/home/realty-network.png", title: "realty-network" },
-  ];
+  // API responses
+  const bannerImages = banners.status === "fulfilled" ? banners.value : [];
+  const articles =
+    articleSlides.status === "fulfilled" ? articleSlides.value : [];
+  const reviews = feedbacks.status === "fulfilled" ? feedbacks.value : [];
+  const complimentaryServices =
+    services.status === "fulfilled" ? services.value : [];
+
   return (
     <main className="z-2">
       <div>
-        <HomeBanner />
+        <HomeBanner images={bannerImages} />
       </div>
       <div>
         <h2 className="text-center mt-8 font-secondary font-medium text-2xl md:text-4xl">
           Top Articles for You
         </h2>
-        <ArticleCarousel slides={articleSlides} options={{ loop: false }} />
+        <ArticleCarousel slides={articles} options={{ loop: false }} />
       </div>
       <div>
-        <Feedback />
+        <Feedback feedbacks={reviews} />
       </div>
       <div className="mx-6 my-10 rounded-xl p-5 bg-[#36C1B51A]">
         {/* INSURANCE CONTAINER  */}
@@ -144,7 +116,7 @@ const Leftsection = () => {
         <h2 className="my-6 text-center font-secondary text-2xl md:text-4xl font-medium">
           Complimentary Services
         </h2>
-        <Complimentary carouselItems={carouselItems} />
+        <Complimentary carouselItems={complimentaryServices} />
       </div>
       <Footer />
       {/* MOBILE VIEW OF GET QUTOE AND PRO REG  */}

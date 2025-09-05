@@ -3,27 +3,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import Image from "next/image";
+import { Star, StarHalf } from "lucide-react";
+import clsx from "clsx";
+import { renderStars } from "@/utils/website/renderStars";
 
-const feedbacks = [
-  {
-    id: 1,
-    description:
-      "This platform has completely changed how I manage my projects.",
-    user: "jane",
-    location: "Canada",
-    starImage: "/website/home/star-rating.png",
-  },
-  {
-    id: 2,
-    description: "Excellent service, responsive team, and user-friendly UI.",
-    user: "Jane Doe",
-    location: "Canada",
-    starImage: "/website/home/star-rating.png",
-  },
-];
-
-const Feedback = () => {
+const Feedback = ({ feedbacks = [] }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 3000, stopOnInteraction: false }),
   ]);
@@ -50,22 +34,18 @@ const Feedback = () => {
       <div className="max-w-xl mx-auto py-10">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
-            {feedbacks.map((item) => (
+            {feedbacks?.map((item) => (
               <div
-                key={item.id}
+                key={item?.id}
                 className="min-w-full flex flex-col items-center p-6 text-center"
               >
-                <Image
-                  src={item.starImage}
-                  alt="Star"
-                  width={132}
-                  height={132}
-                  className="mb-4"
-                />
-                <p className="text-lg text-gray-800 my-2">{item.description}</p>
-                <p className="font-semibold text-gray-600">{item.user}</p>
+                {/*Dynamic Stars */}
+                {renderStars(item?.rating)}
+
+                <p className="text-lg text-gray-800 my-2">"{item?.review}"</p>
+                <p className="font-semibold text-gray-600">{item?.name}</p>
                 <p className="text-[#9D9D9D] text-sm font-thin">
-                  {item.location}
+                  {item?.country}
                 </p>
               </div>
             ))}
@@ -74,11 +54,11 @@ const Feedback = () => {
 
         {/* Dots */}
         <div className="flex justify-center gap-2 mt-4">
-          {feedbacks.map((_, index) => (
+          {feedbacks?.map((_, index) => (
             <button
               key={index}
               onClick={() => emblaApi?.scrollTo(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${
+              className={`w-3 h-3 rounded-full cursor-pointer transition-colors ${
                 index === selectedIndex
                   ? "bg-[var(--color-orange)]"
                   : "bg-gray-300"
