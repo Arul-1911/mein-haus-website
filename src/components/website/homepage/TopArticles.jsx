@@ -79,8 +79,8 @@ const ArticleCarousel = ({ slides, options = {} }) => {
                 <h3 className="text-lg font-semibold mb-1">
                   {item.title.slice(0, 30)}
                 </h3>
-                <p className="text-sm text-[#545454] font-medium">
-                  {item.description.slice(0, 90)}...{" "}
+                <p className="text-md text-[#545454] font-medium">
+                  {item.description.slice(0, 50)}...{" "}
                   <span>
                     <Link
                       href={`/articles/${item.id}`}

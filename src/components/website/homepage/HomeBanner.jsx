@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
+import Link from "next/link";
 
 const HomeBanner = ({ images }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
@@ -43,13 +44,14 @@ const HomeBanner = ({ images }) => {
               />
 
               {/* Centered CTA on slide 3 (index 3) */}
-              {i === 3 && (
-                <div className="absolute bg-black/30 inset-0 flex items-center justify-center">
-                  <button className="bg-white text-black px-6 py-3 text-lg rounded-lg shadow hover:bg-black hover:text-white transition">
-                    Book Now
-                  </button>
-                </div>
-              )}
+              {i === 3 ||
+                (i === 0 && (
+                  <div className="absolute bg-black/30 inset-0 flex items-center justify-center">
+                    <button className="bg-white text-black px-6 py-3 text-lg rounded-lg shadow hover:bg-black hover:text-white transition">
+                      <Link href="/job">Book Now</Link>
+                    </button>
+                  </div>
+                ))}
             </div>
           ))}
         </div>

@@ -27,7 +27,7 @@ const Feedback = ({ feedbacks = [] }) => {
   return (
     <section className="bg-[#F6F6F6] py-7">
       <div>
-        <h2 className="font-secondary text-center text-2xl font-medium md:text-3xl">
+        <h2 className="font-secondary text-center text-2xl mt-4 font-medium md:text-4xl">
           What Clients are Saying
         </h2>
       </div>

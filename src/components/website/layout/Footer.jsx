@@ -4,7 +4,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="z-2">
+    <footer className="z-2 ">
       <div className="flex flex-col justify-center">
         {/* CONTENT SECTION  */}
         <div className="flex flex-col justify-center items-center  lg:flex-row lg:justify-between flex-wrap mx-1 p-6 lg:items-center bg-[#F6F6F6] gap-3">

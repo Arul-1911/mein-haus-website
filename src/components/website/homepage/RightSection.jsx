@@ -78,12 +78,12 @@ const RightSection = () => {
           Any Reno. Any Size. Any Time.
         </h1>
       </div>
-      <div className="my-2 md:font-medium mx-auto text-[#9D9D9D] max-w-lg text-center">
+      <div className="my-2 md:font-medium mx-auto text-[#9D9D9D] max-w-xl text-center">
         Manage all your essential tasks effortlessly with a single platform that
         brings together a wide range of services in one convenient place.
       </div>
 
-      <div className="flex flex-col justify-center items-center m-7 gap-5">
+      <div className="flex flex-col justify-center items-center my-7 gap-5">
         {cards.map((card, index) => (
           <Card key={index} {...card} />
         ))}

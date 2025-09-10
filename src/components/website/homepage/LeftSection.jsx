@@ -37,7 +37,7 @@ const Leftsection = async () => {
         <HomeBanner images={bannerImages} />
       </div>
       <div>
-        <h2 className="text-center mt-8 font-secondary font-medium text-2xl md:text-4xl">
+        <h2 className="text-center mt-10 font-secondary font-medium text-2xl md:text-4xl">
           Top Articles for You
         </h2>
         <ArticleCarousel slides={articles} options={{ loop: false }} />
@@ -73,8 +73,8 @@ const Leftsection = async () => {
               <h3 className="font-semibold text-black text-2xl">
                 Don't have insurance?
               </h3>
-              <p className="font-normal my-1 text-[#666666]">
-                Starting at $19/month
+              <p className="font-normal my-1 text-[#666666] text-md">
+                Starting at <span className="font-bold">$19/month</span>
               </p>
             </div>
             <Button className="mt-2 bg-[#3AC0B4] hover:bg-[#3AC0B4]/70 cursor-pointer text-lg py-4 px-7">
@@ -94,19 +94,19 @@ const Leftsection = async () => {
           // objectFit="contain"
           className="absolute inset-0"
         />
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
         {/* CONTENT SECTION  */}
-        <div className="relative max-w-xl mx-auto z-10 p-8 text-white text-center">
+        <div className="relative max-w-2xl mx-auto z-10 p-8 text-white text-center">
           <h3 className="font-bold text-2xl md:text-4xl text-center mb-2">
             Your one-stop destination for all the services you need.
           </h3>
-          <p className="text-sm md:text-xl my-6 font-normal text-center mb-4">
+          <p className="text-sm md:text-2xl my-6 font-normal text-center mb-4">
             Manage all your essential tasks effortlessly with a single platform
             that brings together a wide range of services in one convenient
             place. From booking to tracking, everything you need is just a click
             away.
           </p>
-          <Button className="bg-white text-black hover:bg-black hover:text-white text-lg py-5 px-8 mt-1">
+          <Button className="bg-white text-black hover:bg-black hover:text-white text-xl py-5 px-8 mt-1">
             <Link href="/job">Get a Quote</Link>
           </Button>
         </div>
@@ -120,19 +120,19 @@ const Leftsection = async () => {
       </div>
       <Footer />
       {/* MOBILE VIEW OF GET QUTOE AND PRO REG  */}
-      <div className="grid grid-cols-2 w-full fixed  bottom-0  z-11 lg:hidden">
-        <div className="bg-[#1E9BD0] w-full text-white mx-auto">
-          <Link href="/job">
-            <p className="text-center py-2 font-medium text-sm">Get a Quote</p>
-          </Link>
-        </div>
-        <div className="bg-[#F88B36] w-full text-white m-auto">
-          <Link href="https://meinhaus.ca/professional/register">
-            <p className="text-center py-2 font-medium text-sm">
+      <div className="grid grid-cols-2 w-full fixed  bottom-0   z-11 lg:hidden">
+        <Link href="/job">
+          <div className="bg-[#1E9BD0] w-full text-white mx-auto">
+            <p className="text-center py-2 font-medium text-md">Get a Quote</p>
+          </div>
+        </Link>
+        <Link href="https://meinhaus.ca/professional/register">
+          <div className="bg-[#F88B36] w-full text-white m-auto">
+            <p className="text-center py-2 font-medium text-md">
               Pro Registration
             </p>
-          </Link>
-        </div>
+          </div>
+        </Link>
       </div>
     </main>
   );

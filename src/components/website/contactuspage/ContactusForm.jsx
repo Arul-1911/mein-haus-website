@@ -56,7 +56,7 @@ const ContactusForm = () => {
     <section className="flex flex-col">
       <div>
         <h2 className="font-semibold text-3xl my-2 text-center">Contact Us</h2>
-        <p className="text-[#9D9D9D] font-normal text-lg text-center">
+        <p className="text-[#9D9D9D] font-normal px-1 text-lg text-center">
           Get in touch with us for support or inquiries.
         </p>
       </div>

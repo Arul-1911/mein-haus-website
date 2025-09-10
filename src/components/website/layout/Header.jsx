@@ -60,14 +60,14 @@ export default function Header() {
                         isActive(link.href)
                           ? "text-[#F88B36]"
                           : "text-[color:var(--color-gray)] hover:text-black"
-                      }`}
+                      } text-lg`}
                     >
                       {link.label}
                     </Link>
                   </SheetTitle>
                 ))}
               </SheetHeader>
-              <div className="absolute bottom-30">
+              <div className="absolute bottom-30 text-lg">
                 <a href="tel:+18447774287" className="flex gap-2 ml-3">
                   <Phone />
                   Call us at +1 (844) 777-4287
@@ -119,8 +119,8 @@ export default function Header() {
             <Image
               src="/mein-haus-logo.png"
               alt="Mein Haus Logo"
-              height={100}
-              width={200}
+              height={150}
+              width={250}
               className="my-3 lg:ml-5"
             />
           </Link>
@@ -136,7 +136,7 @@ export default function Header() {
                   isActive(link.href)
                     ? "text-[#F88B36]"
                     : "text-[color:var(--color-gray)] hover:text-black"
-                }`}
+                } text-xl`}
               >
                 {link.label}
               </Link>
@@ -146,12 +146,15 @@ export default function Header() {
           <nav>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="my-3 text-sm lg:text-md lg:px-4 cursor-pointer py-2 bg-black text-white rounded-4xl">
+                <Button className="my-3 text-md lg:text-xl lg:px-4 cursor-pointer py-2 bg-black text-white rounded-4xl">
                   Login
                   <ChevronDown />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-50 mr-3 mt-2" align="start">
+              <DropdownMenuContent
+                className="w-50 mr-3 mt-2 text-lg"
+                align="start"
+              >
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <Link href="https://meinhaus.ca/customer/login">

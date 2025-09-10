@@ -19,12 +19,12 @@ const page = () => {
       <div className="grid lg:grid-cols-2">
         {/* Left Section  */}
         <div className="flex flex-col max-lg:items-center gap-7 p-3 lg:px-20 lg:py-10">
-          <h2 className="font-semibold text-2xl lg:text-3xl">
+          <h2 className="font-semibold text-2xl max-sm:text-center lg:text-3xl">
             Feel free to contact us we&apos;re always ready to assist you.
           </h2>
           <div>
             {/* Top div  */}
-            <div className="grid lg:grid-cols-2  my-6">
+            <div className="grid lg:grid-cols-2  mt-6">
               <div className="flex flex-col">
                 <span className="font-semibold flex items-center gap-2 text-xl">
                   <Phone />
@@ -48,7 +48,7 @@ const page = () => {
               </div>
             </div>
             {/* Bottom div  */}
-            <div className="grid lg:grid-cols-2  my-6">
+            <div className="grid lg:grid-cols-2  mb-6">
               <div className="flex flex-col my-2">
                 <span className="font-semibold flex my-1 gap-2 items-center text-xl">
                   <Mail />
