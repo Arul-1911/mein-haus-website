@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { set, useForm } from "react-hook-form";
 import {
   User,
   Mail,
@@ -8,20 +9,100 @@ import {
   FileText,
   MessageSquare,
   Clock,
-  MapPin,
   Upload,
   Lock,
   Eye,
   EyeOff,
   X,
+  Globe,
+  MapPinHouse,
+  Building,
+  Pin,
+  BookUser,
 } from "lucide-react";
 import Link from "next/link";
+// import { useCreateJobRegisterMutation } from "@/features/website/apiWebsite";
+import toast from "react-hot-toast";
 
 const JobRegisterForm = () => {
   const [selectedTime, setSelectedTime] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [previewImages, setPreviewImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [address, setAddress] = useState("");
+  const [coords, setCoords] = useState({
+    latitude: null,
+    longitude: null,
+  });
+
+  // const [createJobRegister, { isLoading, isError, isSuccess }] =
+  //   useCreateJobRegisterMutation();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    setValue,
+    reset,
+  } = useForm({
+    mode: "onBlur",
+    defaultValues: {
+      fullname: "",
+      phone: "",
+      email: "",
+      title: "",
+      description: "",
+      time: "",
+      address: "",
+      line1: "",
+      line2: "",
+      city: "",
+      state: "",
+      country: "",
+      zip: "",
+      password: "",
+      password_confirmation: "",
+      images: null,
+    },
+  });
+
+  const password = watch("password", "");
+
+  // Sync line1/line2 whenever address changes
+  useEffect(() => {
+    setValue("line1", address);
+    setValue("line2", address);
+  }, [address, setValue]);
+
+  // Sync hidden password_confirmation to password
+  useEffect(() => {
+    setValue("password_confirmation", password);
+  }, [password, setValue]);
+
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          setCoords({
+            latitude: pos.coords.latitude,
+            longitude: pos.coords.longitude,
+          });
+        },
+        () => {
+          alert("Location permsission is required");
+        }
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    if (coords.latitude && coords.longitude) {
+      setValue("latitude", coords.latitude);
+      setValue("longitude", coords.longitude);
+    }
+  }, [coords, setValue]);
 
   const timeOptions = [
     {
@@ -36,18 +117,24 @@ const JobRegisterForm = () => {
 
   const handleTimeSelect = (value) => {
     setSelectedTime(value);
+    setValue("time", value, { shouldValidate: true });
     setIsDropdownOpen(false);
   };
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
-
     const newImages = files.map((file) => ({
       file,
       url: URL.createObjectURL(file),
     }));
 
-    setPreviewImages((prev) => [...previewImages, ...newImages]);
+    const allImages = [...previewImages, ...newImages];
+    setPreviewImages(allImages);
+    setValue(
+      "images",
+      allImages.map((img) => img.file),
+      { shouldValidate: true }
+    );
   };
 
   const handleRemoveImages = (index) => {
@@ -55,26 +142,95 @@ const JobRegisterForm = () => {
       const updated = [...prev];
       URL.revokeObjectURL(updated[index]?.url);
       updated.splice(index, 1);
+      setValue(
+        "images",
+        updated.map((img) => img.file)
+      );
       return updated;
     });
   };
 
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+
+    // Append all text fields
+    Object.entries({
+      fullname: data.fullname,
+      phone: data.phone,
+      email: data.email,
+      title: data.title,
+      description: data.description,
+      time: data.time,
+      address: data.address || address,
+      line1: data.address || address,
+      line2: data.address || address,
+      city: data.city,
+      state: data.state,
+      country: data.country,
+      zip: data.zip,
+      password: data.password,
+      password_confirmation: data.password_confirmation,
+      latitude: coords.latitude ?? "",
+      longitude: coords.longitude ?? "",
+    }).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== "") {
+        formData.append(key, value);
+      }
+    });
+
+    // Append files as images[]
+    previewImages.forEach((img) => {
+      formData.append("images[]", img.file);
+    });
+
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("https://test.meinhaus.ca/api/v2/admin/job", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      if (res.status == 204) {
+        toast.success("Job request sent!");
+        reset();
+        setPreviewImages([]);
+      } else {
+        let errorMsg = "Failed to send job request!";
+        try {
+          const errData = await res.json();
+
+          if (errData.errors) {
+            // Flatten all error messages
+            errorMsg = Object.values(errData.errors).flat().join("\n");
+          } else if (errData.message) {
+            errorMsg = errData.message;
+          }
+        } catch {
+          // If backend sent non-JSON
+        }
+
+        toast.error(errorMsg);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      toast.error("Network error, please try again!");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <div className="max-w-lg mx-auto p-6">
+    <div className="max-w-xl mx-auto p-6">
       <form
+        onSubmit={handleSubmit(onSubmit)}
         className="w-full space-y-4"
         id="job-register-form"
-        method="POST"
-        action="https://meinhaus.ca/customer-landing-post"
         encType="multipart/form-data"
-        noValidate
       >
-        <input
-          type="hidden"
-          name="_token"
-          value="SmYJ8UFuQH8ytsKpH135RzJhLjQ5ujmgygRQLvaP"
-        />
-
         {/* Full Name */}
         <div className="relative">
           <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
@@ -82,15 +238,18 @@ const JobRegisterForm = () => {
             <input
               type="text"
               id="fullname"
-              name="fullname"
+              {...register("fullname", {
+                required: "Full name is required",
+              })}
               className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
               placeholder="Full Name"
             />
           </div>
-          <span
-            id="fullname-error"
-            className="text-red-500 text-xs mt-1"
-          ></span>
+          {errors.fullname && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.fullname.message}
+            </span>
+          )}
         </div>
 
         {/* Email */}
@@ -100,12 +259,22 @@ const JobRegisterForm = () => {
             <input
               type="email"
               id="email"
-              name="email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email address",
+                },
+              })}
               className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
               placeholder="Mail ID"
             />
           </div>
-          <span id="email-error" className="text-red-500 text-xs mt-1"></span>
+          {errors.email && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.email.message}
+            </span>
+          )}
         </div>
 
         {/* Phone Number */}
@@ -115,13 +284,23 @@ const JobRegisterForm = () => {
             <input
               type="tel"
               id="phone"
-              name="phone"
+              {...register("phone", {
+                required: "Phone number is required",
+                pattern: {
+                  value: /^\+?[\d\s-]{8,}$/,
+                  message: "Invalid phone number",
+                },
+              })}
               className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
               placeholder="Phone Number"
               autoComplete="tel"
             />
           </div>
-          <span id="phone-error" className="text-red-500 text-xs mt-1"></span>
+          {errors.phone && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.phone.message}
+            </span>
+          )}
         </div>
 
         {/* Project Title */}
@@ -131,15 +310,18 @@ const JobRegisterForm = () => {
             <input
               type="text"
               id="project_title"
-              name="title"
+              {...register("title", {
+                required: "Project title is required",
+              })}
               className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
               placeholder="Title (e.g. Bathroom Renovation)"
             />
           </div>
-          <span
-            id="project_title-error"
-            className="text-red-500 text-xs mt-1"
-          ></span>
+          {errors.title && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.title.message}
+            </span>
+          )}
         </div>
 
         {/* Project Description */}
@@ -148,22 +330,25 @@ const JobRegisterForm = () => {
             <MessageSquare className="w-5 h-5 text-gray-500 ml-3 mt-2" />
             <textarea
               id="project_description"
-              name="description"
+              {...register("description", {
+                required: "Project description is required",
+              })}
               className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
               placeholder="Description"
               rows="4"
             ></textarea>
           </div>
-          <span
-            id="project_description-error"
-            className="text-red-500 text-xs mt-1"
-          ></span>
+          {errors.description && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.description.message}
+            </span>
+          )}
         </div>
 
         {/* Time Dropdown */}
         <div className="relative">
           <div
-            className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md cursor-pointer "
+            className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md cursor-pointer"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             <Clock className="w-5 h-5 text-gray-500 ml-3" />
@@ -209,47 +394,134 @@ const JobRegisterForm = () => {
           <input
             type="hidden"
             id="selected-value"
-            name="time"
+            {...register("time", {
+              required: "Please select a time option",
+            })}
             value={selectedTime}
           />
-          <span
-            id="selected-value-error"
-            className="text-red-500 text-xs mt-1"
-          ></span>
+          {errors.time && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.time.message}
+            </span>
+          )}
         </div>
 
         {/* Address */}
         <div className="relative">
           <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
-            <MapPin className="w-5 h-5 text-gray-500 ml-3" />
+            <BookUser className="w-5 h-5 text-gray-500 ml-3" />
             <input
               type="text"
               id="new_address"
-              name="address"
+              {...register("address", {
+                required: "Address is required",
+              })}
               className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
-              placeholder="Enter location"
+              placeholder="Address"
+              autoComplete="off"
+              onChange={(e) => {
+                setAddress(e.target.value);
+                setValue("address", e.target.value, { shouldValidate: true });
+              }}
+            />
+          </div>
+          {errors.address && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.address.message}
+            </span>
+          )}
+        </div>
+
+        {/* City */}
+        <div className="relative">
+          <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
+            <Building className="w-5 h-5 text-gray-500 ml-3" />
+            <input
+              type="text"
+              id="city"
+              {...register("city", {
+                required: "City is required",
+              })}
+              className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
+              placeholder="City"
               autoComplete="off"
             />
           </div>
-          <input type="hidden" id="line1" name="line1" />
-          <input type="hidden" id="line2" name="line2" />
-          <input type="hidden" id="city" name="city" />
-          <input type="hidden" id="state" name="state" />
-          <input type="hidden" id="country" name="country" />
-          <input type="hidden" id="zip" name="zip" />
-          <input type="hidden" id="latitude" name="latitude" />
-          <input type="hidden" id="longitude" name="longitude" />
-          <span
-            id="new_address-error"
-            className="text-red-500 text-xs mt-1"
-          ></span>
+          {errors.city && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.city.message}
+            </span>
+          )}
+        </div>
+
+        {/* State */}
+        <div className="relative">
+          <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
+            <MapPinHouse className="w-5 h-5 text-gray-500 ml-3" />
+            <input
+              type="text"
+              id="state"
+              {...register("state", {
+                required: "State is required",
+              })}
+              className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
+              placeholder="State"
+              autoComplete="off"
+            />
+          </div>
+          {errors.state && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.state.message}
+            </span>
+          )}
+        </div>
+
+        {/* Country */}
+        <div className="relative">
+          <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
+            <Globe className="w-5 h-5 text-gray-500 ml-3" />
+            <input
+              type="text"
+              id="country"
+              {...register("country", {
+                required: "Country is required",
+              })}
+              className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
+              placeholder="Country"
+              autoComplete="off"
+            />
+          </div>
+          {errors.country && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.country.message}
+            </span>
+          )}
+        </div>
+
+        {/* Zip code */}
+        <div className="relative">
+          <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
+            <Pin className="w-5 h-5 text-gray-500 ml-3" />
+            <input
+              type="text"
+              id="zip"
+              {...register("zip", {
+                required: "Zip code is required",
+              })}
+              className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
+              placeholder="Zip code"
+              autoComplete="off"
+            />
+          </div>
+          {errors.zip && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.zip.message}
+            </span>
+          )}
         </div>
 
         {/* File Upload */}
-        <div
-          className="border-dashed
- bg-[#F6F6F6] rounded-md p-4 text-center"
-        >
+        <div className="border-dashed border-4 bg-[#F6F6F6] rounded-md p-4 text-center">
           <label htmlFor="file-input" className="cursor-pointer">
             <Upload className="w-8 h-8 text-gray-500 mx-auto mb-2" />
           </label>
@@ -261,7 +533,7 @@ const JobRegisterForm = () => {
           </p>
           <label
             htmlFor="file-input"
-            className="inline-block bg-[#262626]  text-white px-4 py-2 rounded-md cursor-pointer"
+            className="inline-block bg-[#262626] text-white px-4 py-2 rounded-md cursor-pointer"
           >
             <Upload className="w-4 h-4 inline-block mr-2" />
             Upload
@@ -275,25 +547,20 @@ const JobRegisterForm = () => {
             className="hidden"
             onChange={handleFileChange}
           />
-          <div id="image-preview" className="mt-2"></div>
-          <span
-            id="file-input-error"
-            className="text-red-500 text-xs mt-1"
-          ></span>
         </div>
 
-        {/* {Image preview section } */}
+        {/* Image preview section */}
         <div id="image-preview" className="mt-4 grid grid-cols-3 gap-3">
-          {previewImages?.map((img, indx) => (
-            <div key={indx} className="relative group">
+          {previewImages?.map((img, idx) => (
+            <div key={idx} className="relative group">
               <img
                 src={img.url}
-                alt={`Image preview-${indx}`}
+                alt={`Image preview-${idx}`}
                 className="w-full h-24 object-cover rounded-md border"
               />
               <button
                 type="button"
-                onClick={() => handleRemoveImages(indx)}
+                onClick={() => handleRemoveImages(idx)}
                 className="absolute top-1 right-1 bg-black/80 text-red-500 rounded-full p-1 hover:bg-black/30 cursor-pointer"
               >
                 <X size={10} />
@@ -304,13 +571,19 @@ const JobRegisterForm = () => {
 
         {/* Password */}
         <div className="relative">
-          <div className="flex items-center  rounded-md hover:border-black focus-within:border-black">
-            <Lock className="w-5 h-5 text-gray-500 ml-3" />
+          <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
+            <Lock className="w-5 h-5 text-gray-500 ml-3 cursor-pointer" />
             <input
               type={showPassword ? "text" : "password"}
               id="password"
-              name="password"
-              className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none "
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
+              })}
+              className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
               placeholder="Password"
               autoComplete="new-password"
             />
@@ -326,10 +599,11 @@ const JobRegisterForm = () => {
               )}
             </button>
           </div>
-          <span
-            id="password-error"
-            className="text-red-500 text-xs mt-1"
-          ></span>
+          {errors.password && (
+            <span className="text-red-500 text-xs mt-1">
+              {errors.password.message}
+            </span>
+          )}
         </div>
 
         {/* Google reCAPTCHA */}
@@ -343,12 +617,15 @@ const JobRegisterForm = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-[#262626] cursor-pointer text-white py-2 rounded-md font-semibold hover:bg-gray-900 transition"
+          className={`w-full bg-[#262626] ${
+            isLoading ? "cursor-not-allowed opacity-45" : "cursor-pointer"
+          } text-white py-2 rounded-md font-semibold hover:bg-gray-900 transition`}
+          disabled={isLoading}
         >
-          Register
+          {isLoading ? "Submitting..." : "Register"}
         </button>
 
-        {/* {Already a customer here} */}
+        {/* Already a customer */}
         <div>
           <p className="text-[#545454] font-normal text-center">
             Already a customer?{" "}
@@ -357,16 +634,15 @@ const JobRegisterForm = () => {
             </Link>
           </p>
         </div>
-
         {/* {OR}  */}
-        <div className="flex items-center justify-center gap-3">
+        {/* <div className="flex items-center justify-center gap-3">
           <hr className="text-[#E6E6E6]  w-[30%]" />
           <span className="text-[#ABABAB]">or</span>
           <hr className="text-[#E6E6E6] w-[30%]" />
-        </div>
+        </div> */}
 
         {/* {Continue with google} */}
-        <div className="flex justify-center bg-[#F6F6F6] p-2 rounded-md">
+        {/* <div className="flex justify-center bg-[#F6F6F6] p-2 rounded-md">
           <button className="flex justify-around gap-4 cursor-pointer">
             <span>
               <img
@@ -377,7 +653,7 @@ const JobRegisterForm = () => {
             </span>
             <p className="text-[#545454] font-normal">Continue with Google</p>
           </button>
-        </div>
+        </div> */}
       </form>
     </div>
   );

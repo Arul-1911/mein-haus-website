@@ -139,3 +139,24 @@ export async function fetchEducationSection() {
   let content = await data.json();
   return content?.data || [];
 }
+
+export async function fetchGallerySection() {
+  const data = await fetch(
+    `https://meinhaus.ca/gallery/fetch?per_page=50&service_id=all`,
+    {
+      next: { revalidate: 0 },
+    }
+  );
+
+  const content = await data.json();
+  const services = content?.data || [];
+
+  // Filtered Images
+  const filtered = services
+    .map((service) =>
+      service?.before?.length > 0 && service?.after?.length > 0 ? service : null
+    )
+    .filter((service) => service !== null);
+
+  return filtered;
+}

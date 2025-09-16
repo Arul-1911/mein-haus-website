@@ -105,8 +105,10 @@ const ProjectPhotos = ({ data = [], options = {} }) => {
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Before</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {activeItem.before.map((url, i) => (
-                      <img
+                    {activeItem.before.slice(0, 2).map((url, i) => (
+                      <Image
+                        height={100}
+                        width={100}
                         key={i}
                         src={url}
                         alt="Before"
@@ -119,12 +121,14 @@ const ProjectPhotos = ({ data = [], options = {} }) => {
                 <div>
                   <h3 className="text-lg font-semibold mb-2">After</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {activeItem.after.map((url, i) => (
-                      <img
+                    {activeItem.after.slice(0, 2).map((url, i) => (
+                      <Image
+                        height={100}
+                        width={100}
                         key={i}
                         src={url}
                         alt="After"
-                        className="rounded-md"
+                        className="rounded-lg w-full max-w-[400px] h-48 object-cover"
                       />
                     ))}
                   </div>

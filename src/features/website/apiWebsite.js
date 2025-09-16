@@ -26,8 +26,18 @@ export const websiteApi = createApi({
         body: data,
       }),
     }),
+    createJobRegister: builder.mutation({
+      query: (data) => ({
+        url: "https://test.meinhaus.ca/api/v2/admin/job",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useCreateServiceRequestMutation, useCreateContactUsMutation } =
-  websiteApi;
+export const {
+  useCreateServiceRequestMutation,
+  useCreateContactUsMutation,
+  useCreateJobRegisterMutation,
+} = websiteApi;
