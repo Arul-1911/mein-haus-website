@@ -7,7 +7,7 @@ const page = async () => {
   const data = await fetchEducationSection();
   return (
     <main>
-      <div className="">
+      <div className="text-lg">
         {/* First Section */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-2  lg:gap-20 text-center md:text-left">
           <div className="max-w-4xl">
@@ -197,12 +197,12 @@ const page = async () => {
             </p>
           </div>
           {/* Right  */}
-          <div className="relative h-[50dvh]">
+          <div className="relative max-lg:h-[50dvh]">
             <Image
               alt="Group of Professionals"
               src="/website/education/people.png"
               layout="fill"
-              objectFit="cover"
+              // objectFit="cover"
             />
           </div>
         </div>

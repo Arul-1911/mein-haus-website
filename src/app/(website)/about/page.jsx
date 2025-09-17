@@ -67,7 +67,7 @@ export default async function Page() {
           </div>
         </div>
 
-        <div className="lg:w-7/12">
+        <div className="lg:w-7/12 text-lg">
           <p className="text-muted-foreground mb-4">
             We don't just pair clients with great local subcontractors, we
             oversee and guarantee all our projects and effectively arbitrate,
@@ -126,7 +126,7 @@ export default async function Page() {
             </sup>
           </p>
         </div>
-        <p className="text-center font-normal text-md text-[#5B5B5B] max-w-3xl">
+        <p className="text-center font-normal text-sm text-[#5B5B5B] max-w-3xl">
           This mantra embodies our commitment to flexibility and excellence.
           Whether you're planning a small update or a large-scale remodel,
           MEINHAUS ensures your renovation experience is smooth, transparent,
@@ -151,7 +151,7 @@ export default async function Page() {
             <h4 className="text-[#363636] font-medium text-xl my-2">
               Secure Trust
             </h4>
-            <p className="text-[#9D9D9D] text-sm">
+            <p className="text-[#9D9D9D] text-md">
               By rigorously vetting and insuring all our professionals, we
               ensure that every project is handled by capable hands.
             </p>
@@ -170,7 +170,7 @@ export default async function Page() {
             <h4 className="text-[#363636] font-medium text-xl my-2">
               Simplify Renovations
             </h4>
-            <p className="text-[#9D9D9D] text-sm">
+            <p className="text-[#9D9D9D] text-md">
               From the first inquiry to the final nail, we streamline the
               renovation process for homeowners and professionals alike.
             </p>
@@ -189,7 +189,7 @@ export default async function Page() {
             <h4 className="text-[#363636] font-medium text-xl my-2">
               Elevate Standards
             </h4>
-            <p className="text-[#9D9D9D] text-sm">
+            <p className="text-[#9D9D9D] text-md">
               Through education, innovative tools, and accountability, we are
               raising the bar for quality and professionalism in the renovation
               industry.

@@ -60,7 +60,7 @@ export default function Header() {
                         isActive(link.href)
                           ? "text-[#F88B36]"
                           : "text-[color:var(--color-gray)] hover:text-black"
-                      } text-lg`}
+                      } text-md`}
                     >
                       {link.label}
                     </Link>
@@ -136,7 +136,7 @@ export default function Header() {
                   isActive(link.href)
                     ? "text-[#F88B36]"
                     : "text-[color:var(--color-gray)] hover:text-black"
-                } text-xl`}
+                } text-lg`}
               >
                 {link.label}
               </Link>
@@ -146,7 +146,7 @@ export default function Header() {
           <nav>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="my-3 text-md lg:text-xl lg:px-4 cursor-pointer py-2 bg-black text-white rounded-4xl">
+                <Button className="my-3 text-md lg:text-lg lg:px-4 cursor-pointer py-2 bg-black text-white rounded-4xl">
                   Login
                   <ChevronDown />
                 </Button>

@@ -19,7 +19,7 @@ const Footer = () => {
               />
             </Link>
           </div>
-          <div className="flex flex-wrap items-center justify-between gap-12">
+          <div className="flex flex-wrap  items-start justify-between gap-12">
             {/* LEFT SIDE  */}
             <div className="">
               <p>

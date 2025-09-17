@@ -164,7 +164,7 @@ PROFESSIONAL THEME
   }
 
   .editor-content p {
-    @apply my-1 text-[#666565];
+    @apply my-1 text-[#666565] text-lg;
   }
 
   .editor-content ul {
