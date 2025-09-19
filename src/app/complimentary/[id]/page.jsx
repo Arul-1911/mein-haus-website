@@ -30,7 +30,7 @@ const Complimentarypage = async ({ params }) => {
   return (
     <>
       <div className="grid lg:grid-cols-2">
-        <div className="bg-[#F6F6F6] h-screen">
+        <div className="bg-[#F6F6F6] h-full">
           {selectedItem && (
             <>
               <LeftSection
@@ -50,7 +50,7 @@ const Complimentarypage = async ({ params }) => {
             questions or assistance, feel free to reach out — we're always here
             to help.
           </p>
-          <RightSection />
+          <RightSection service={selectedItem?.name} />
         </div>
       </div>
     </>

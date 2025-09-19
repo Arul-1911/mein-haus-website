@@ -186,13 +186,16 @@ const JobRegisterForm = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch("https://test.meinhaus.ca/api/v2/admin/job", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-        body: formData,
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_PHP_API_URL}/admin/job`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+          },
+          body: formData,
+        }
+      );
 
       if (res.status == 204) {
         toast.success("Job request sent!");

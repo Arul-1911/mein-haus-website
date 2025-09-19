@@ -3,7 +3,7 @@
 import { useCreateContactUsMutation } from "@/features/website/apiWebsite";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Send } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as yup from "yup";
@@ -21,7 +21,8 @@ const schema = yup.object().shape({
 });
 
 const ContactusForm = () => {
-  const [createQueryReq, { isLoading, isError }] = useCreateContactUsMutation();
+  // const [createQueryReq, { isLoading, isError }] = useCreateContactUsMutation();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -33,22 +34,72 @@ const ContactusForm = () => {
     mode: "onBlur",
   });
 
+  // const onSubmit = async (data) => {
+  //   const formData = new URLSearchParams();
+
+  //   formData.append("name", data.name);
+  //   formData.append("email", data.email);
+  //   formData.append("message", data.message);
+
+  //   try {
+  //     const res = await createQueryReq(formData.toString()).unwrap();
+  //     if (res.success) {
+  //       toast.success(res.message);
+  //       reset();
+  //     }
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //     console.log(error);
+  //   }
+  // };
+
   const onSubmit = async (data) => {
-    const formData = new URLSearchParams();
+    const formData = new FormData();
 
     formData.append("name", data.name);
     formData.append("email", data.email);
     formData.append("message", data.message);
+    formData.append("type", "contact");
+
+    setLoading(true);
 
     try {
-      const res = await createQueryReq(formData.toString()).unwrap();
-      if (res.success) {
-        toast.success(res.message);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_PHP_API_URL}/admin/customer-lead`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+          },
+          body: formData,
+        }
+      );
+
+      if (res.status == 201) {
+        toast.success("Request sent!");
         reset();
+      } else {
+        let errorMsg = "Failed to send  request!";
+        try {
+          const errData = await res.json();
+
+          if (errData.errors) {
+            // Flatten all error messages
+            errorMsg = Object.values(errData.errors).flat().join("\n");
+          } else if (errData.message) {
+            errorMsg = errData.message;
+          }
+        } catch {
+          // If backend sent non-JSON
+        }
+
+        toast.error(errorMsg);
       }
     } catch (error) {
-      toast.error(error.message);
-      console.log(error);
+      console.error("Network error:", error);
+      toast.error("Network error, please try again!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,7 +119,8 @@ const ContactusForm = () => {
           <input
             type="text"
             {...register("name")}
-            disabled={isLoading}
+            // disabled={isLoading}
+            disabled={loading}
             placeholder="Full Name *"
             className="bg-[#F6F6F6] w-[90%] my-2 mt-7 p-3 rounded-md"
           />
@@ -80,7 +132,8 @@ const ContactusForm = () => {
           <input
             type="email"
             {...register("email")}
-            disabled={isLoading}
+            // disabled={isLoading}
+            disabled={loading}
             placeholder="Email *"
             className="bg-[#F6F6F6] w-[90%] my-2 p-3 rounded-md"
           />
@@ -93,7 +146,8 @@ const ContactusForm = () => {
             name="message"
             {...register("message")}
             placeholder="Message *"
-            disabled={isLoading}
+            // disabled={isLoading}
+            disabled={loading}
             id=""
             className="bg-[#F6F6F6] w-[90%] my-2 p-3 rounded-md"
           ></textarea>
@@ -104,12 +158,15 @@ const ContactusForm = () => {
           )}
           <button
             className={`bg-black text-white w-[90%] ${
-              isLoading ? "cursor-not-allowed opacity-45" : "cursor-pointer"
+              // isLoading ? "cursor-not-allowed opacity-45" : "cursor-pointer"
+              loading ? "cursor-not-allowed opacity-45" : "cursor-pointer"
             } rounded-md mt-4 p-3 text-center`}
-            disabled={isLoading}
+            // disabled={isLoading}
+            disabled={loading}
           >
             <span className="flex justify-center gap-3">
-              {isLoading ? (
+              {/* {isLoading ? ( */}
+              {loading ? (
                 "Sending..."
               ) : (
                 <>

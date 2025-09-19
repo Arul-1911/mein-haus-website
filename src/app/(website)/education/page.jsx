@@ -7,9 +7,9 @@ const page = async () => {
   const data = await fetchEducationSection();
   return (
     <main>
-      <div className="text-lg">
+      <div className="">
         {/* First Section */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-2  lg:gap-20 text-center md:text-left">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-20 text-center md:text-left">
           <div className="max-w-4xl">
             <h2 className="font-bold mt-3 text-2xl lg:text-3xl mb-4">
               {data?.title || "Welcome to Meinhaus Education"}
@@ -38,7 +38,7 @@ const page = async () => {
           <div>
             <Image
               src="/website/education/left-section.png"
-              alt="Tutrial Image"
+              alt="Tutorial Image"
               height={30}
               width={300}
             />
@@ -156,13 +156,41 @@ const page = async () => {
             </p> */}
           </div>
           {/* right  */}
-          <div className="max-md:mt-5">
+          <div
+            className="max-md:mt-5 relative
+          "
+          >
             <Image
-              src="/website/education/bottom-right.png"
+              src="/website/education/bottom-right-3.png"
               alt="People Image"
               height={100}
               width={450}
+              className=""
             />
+            <div className="absolute w-40 max-sm:text-xs bottom-15 left-12 right-12 max-sm:left-8 max-sm:w-30 max-sm:bottom-10 text-wrap">
+              {data?.services?.slice(0, 3).map((dt) => (
+                <li className="flex items-start gap-1 my-1">
+                  {/* <Ticket /> */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={20}
+                    height={20}
+                    viewBox="0 0 24 24"
+                    fill="#48B02C"
+                    stroke="white"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-circle-check-icon lucide-circle-check"
+                  >
+                    <circle cx="12" cy="12" r="10" fill="#48B02C" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+
+                  <span>{dt}</span>
+                </li>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -197,12 +225,12 @@ const page = async () => {
             </p>
           </div>
           {/* Right  */}
-          <div className="relative max-lg:h-[50dvh]">
+          <div className="relative h-[50dvh]">
             <Image
               alt="Group of Professionals"
               src="/website/education/people.png"
               layout="fill"
-              // objectFit="cover"
+              objectFit="cover"
             />
           </div>
         </div>
