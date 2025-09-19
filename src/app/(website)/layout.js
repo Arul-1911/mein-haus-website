@@ -17,10 +17,11 @@ export default function RootLayout({ children }) {
       <Header />
       <NextTopLoader
         color="#F88B36"
-        initialPosition={0.08}
-        crawlSpeed={600}
-        height={7}
-        zIndex={1600}
+        // initialPosition={0.08}
+        // crawlSpeed={600}
+        height={6}
+        showSpinner={false}
+        // zIndex={1600}
       />
       {children}
       <Footer />
