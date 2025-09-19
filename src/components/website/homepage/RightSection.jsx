@@ -72,7 +72,7 @@ const RightSection = () => {
   ];
 
   return (
-    <section className="bg-[#F0F0F0] w-[100] lg:fixed text-center lg:top-0  lg:right-0 lg:w-1/2 h-auto max-lg:pb-2 lg:h-[100dvh] lg:overflow-y-auto z-4 pt-2 scrollbar-hide">
+    <section className="bg-[#F0F0F0] w-full lg:fixed text-center lg:top-0 lg:right-0 lg:w-1/2 h-auto max-lg:pb-2 lg:h-[100dvh] lg:overflow-y-auto z-4 pt-2 scrollbar-hide">
       <div className="mx-auto md:mt-15 lg:mt-17">
         <h1 className="font-secondary font-bold text-xl text-center md:text-4xl">
           Any Reno. Any Size. Any Time.
@@ -83,7 +83,7 @@ const RightSection = () => {
         brings together a wide range of services in one convenient place.
       </div>
 
-      <div className="flex flex-col justify-start items-center my-2 gap-5">
+      <div className="flex flex-col justify-center items-center max-sm:px-3 my-7 gap-5">
         {cards?.map((card, index) => (
           <Card key={index} {...card} />
         ))}
