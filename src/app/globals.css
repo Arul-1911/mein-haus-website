@@ -183,3 +183,77 @@ PROFESSIONAL THEME
     @apply border-l-4 border-gray-300 pl-4 italic text-gray-600;
   }
 }
+
+/* Chatbot Scrollbar styles  */
+/* Custom scrollbar for chat messages */
+.custom-scrollbar {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* Webkit scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Nuclear approach to remove ALL arrow buttons */
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Target specific button states */
+.custom-scrollbar::-webkit-scrollbar-button:start:decrement,
+.custom-scrollbar::-webkit-scrollbar-button:end:increment {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Additional targeting for Windows Chrome */
+.custom-scrollbar::-webkit-scrollbar-button:vertical:start:decrement,
+.custom-scrollbar::-webkit-scrollbar-button:vertical:end:increment,
+.custom-scrollbar::-webkit-scrollbar-button:horizontal:start:decrement,
+.custom-scrollbar::-webkit-scrollbar-button:horizontal:end:increment {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Remove corner if present */
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+/* Alternative: If arrows still persist, try making the entire scrollbar track cover them */
+.custom-scrollbar::-webkit-scrollbar-track-piece {
+  background: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track-piece:start {
+  background: #f1f1f1;
+  margin-top: 0;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track-piece:end {
+  background: #f1f1f1;
+  margin-bottom: 0;
+}

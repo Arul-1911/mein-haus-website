@@ -1,3 +1,5 @@
+"use server";
+
 export async function fetchBanners() {
   try {
     const res = await fetch(

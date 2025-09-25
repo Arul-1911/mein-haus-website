@@ -1,6 +1,7 @@
 import Header from "@/components/website/layout/Header";
 import Footer from "@/components/website/layout/Footer";
 import NextTopLoader from "nextjs-toploader";
+import Chatbot from "@/components/chatBot/ChatBot";
 
 export const metadata = {
   title: "MeinHaus | Online General Contractor",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
         showSpinner={false}
         // zIndex={1600}
       />
+      <Chatbot />
       {children}
       <Footer />
     </>
