@@ -1,6 +1,9 @@
 "use client";
 
-import { useChatWithAIMutation } from "@/features/website/apiWebsite";
+import {
+  useChatWithAIMutation,
+  useLazyGetChatHistoryQuery,
+} from "@/features/website/apiWebsite";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
@@ -15,24 +18,97 @@ export default function Chatbot({ userId = null }) {
   const [query, setQuery] = useState("");
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
+  const [historyLoaded, setHistoryLoaded] = useState(false);
+  const [isLoadingHistory, setIsLoadingHistory] = useState(false);
   const fileRef = useRef(null);
   const bottomRef = useRef(null);
 
   const [chatWithAssistant, { isLoading: isChatLoading }] =
     useChatWithAIMutation();
+  const [getChatHistory, { isLoading: isHistoryQueryLoading }] =
+    useLazyGetChatHistoryQuery();
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  //Clear error messages while user enters input
+  // Clear error messages while user enters input
   useEffect(() => {
     if (error && (query.trim() || images?.length > 0)) {
       setError("");
     }
   }, [query, images, error]);
 
-  //Submit handler
+  // Load chat history
+  const loadChatHistory = async () => {
+    if (!chatId || historyLoaded || isLoadingHistory) return;
+
+    setIsLoadingHistory(true);
+    setError("");
+
+    try {
+      const result = await getChatHistory(chatId).unwrap();
+
+      if (result?.status && result?.details?.history) {
+        const historyMessages = result.details.history.map((msg, index) => {
+          const isHuman = msg.type === "human";
+
+          return {
+            id: `history_${index}_${Date.now()}`,
+            role: isHuman ? "user" : "bot",
+            content: isHuman
+              ? Array.isArray(msg.content)
+                ? msg.content.map((c) => c.text || c).join(" ")
+                : msg.content
+              : msg.content,
+            timestamp: new Date().toISOString(),
+            isHistory: true,
+            agent: !isHuman ? msg.name || "virtual_assistant" : null,
+          };
+        });
+
+        // Add history loaded indicator message
+        const historyLoadedMsg = {
+          id: `history_loaded_${Date.now()}`,
+          role: "system",
+          content: "Chat history loaded...",
+          timestamp: new Date().toISOString(),
+          isSystemMessage: true,
+        };
+
+        setMessages([...historyMessages, historyLoadedMsg]);
+        setHistoryLoaded(true);
+      } else {
+        setError("No chat history found for this conversation.");
+      }
+    } catch (error) {
+      console.error("Error loading chat history:", error);
+
+      // Handle different error scenarios
+      if (error?.status === 404) {
+        setError("Chat history not found.");
+      } else if (error?.status === 403) {
+        setError("Access denied. You don't have permission to view this chat.");
+      } else if (error?.status >= 500) {
+        setError("Server error while loading history. Please try again.");
+      } else if (!navigator.onLine) {
+        setError("No internet connection. Please check your connection.");
+      } else {
+        setError("Failed to load chat history. Please try again.");
+      }
+    } finally {
+      setIsLoadingHistory(false);
+    }
+  };
+
+  // Reset history state when chatId changes
+  useEffect(() => {
+    if (chatId) {
+      setHistoryLoaded(false);
+    }
+  }, [chatId]);
+
+  // Submit handler
   const validateAndSend = async () => {
     setError("");
 
@@ -66,12 +142,12 @@ export default function Chatbot({ userId = null }) {
     };
 
     try {
-      //updating the user message state
+      // Updating the user message state
       if (query.trim() || images.length > 0) {
         setMessages((prev) => [...prev, userMessage]);
       }
 
-      //Loading state details
+      // Loading state details
       const loadingMessage = {
         id: Date.now() + 1,
         role: "bot",
@@ -86,7 +162,7 @@ export default function Chatbot({ userId = null }) {
       setQuery("");
       setImages([]);
 
-      //Resetting the file input
+      // Resetting the file input
       if (fileRef.current) {
         fileRef.current.value = "";
       }
@@ -123,7 +199,8 @@ export default function Chatbot({ userId = null }) {
     } catch (error) {
       console.error("chat error", error);
       setMessages((prev) => prev.filter((msg) => !msg.isLoading));
-      // appropriate error messages
+
+      // Appropriate error messages
       if (error?.status === 429) {
         setError("Too many requests. Please wait a moment and try again.");
       } else if (error?.status >= 500) {
@@ -138,7 +215,7 @@ export default function Chatbot({ userId = null }) {
     }
   };
 
-  //Enter key handler
+  // Enter key handler
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -207,19 +284,29 @@ export default function Chatbot({ userId = null }) {
               </div>
             </div>
           </div>
-          <div className="flex items-center ">
+          <div className="flex items-center">
             <Button
               size="icon"
               variant="ghost"
-              className="text-white hover:bg-primary/20 mr-1 cursor-pointer"
-              aria-label="Chat history"
+              className={cn(
+                "text-white hover:bg-primary/20 hover:text-white mr-1 cursor-pointer",
+                (historyLoaded || !chatId || isLoadingHistory) &&
+                  "opacity-100 cursor-not-allowed"
+              )}
+              onClick={loadChatHistory}
+              disabled={historyLoaded || !chatId || isLoadingHistory}
+              aria-label="Load chat history"
             >
-              <History size={20} />
+              {isLoadingHistory ? (
+                <Loader2 size={20} className="animate-spin" />
+              ) : (
+                <History size={22} />
+              )}
             </Button>
             <Button
               size="icon"
               variant="ghost"
-              className="text-white hover:bg-primary/30 text-md font-bold cursor-pointer"
+              className="text-white hover:bg-primary/30 hover:text-white text-md font-bold cursor-pointer"
               onClick={() => setOpen(false)}
               aria-label="Close chat"
             >
@@ -247,11 +334,16 @@ export default function Chatbot({ userId = null }) {
         )}
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-3 space-y-3 bg-gray-50 min-h-[200px] custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3 bg-gray-50 min-h-[200px] scrollbar-hide">
           {messages?.length === 0 && (
             <div className="text-center text-gray-500 text-sm mt-8">
               <div className="text-3xl mb-2">👋</div>
               <p>Hello! How can I assist you today?</p>
+              {chatId && !historyLoaded && (
+                <p className="text-xs mt-2 text-blue-600">
+                  Click the history button to load previous messages
+                </p>
+              )}
             </div>
           )}
 
@@ -260,7 +352,11 @@ export default function Chatbot({ userId = null }) {
               key={msg.id}
               className={cn(
                 "flex",
-                msg.role === "user" ? "justify-end" : "justify-start"
+                msg.role === "user"
+                  ? "justify-end"
+                  : msg.role === "system"
+                  ? "justify-center"
+                  : "justify-start"
               )}
             >
               <div
@@ -268,18 +364,25 @@ export default function Chatbot({ userId = null }) {
                   "max-w-[85%] p-3 rounded-2xl shadow-sm whitespace-pre-wrap break-words",
                   msg.role === "user"
                     ? "bg-blue-600 text-white rounded-br-md"
+                    : msg.role === "system"
+                    ? "bg-gray-100 text-gray-600 text-sm border border-gray-300 rounded-full px-4 py-2 max-w-none"
                     : msg.isLoading
                     ? "bg-gray-200 text-gray-600 rounded-bl-md animate-pulse"
-                    : "bg-white text-gray-800 border border-gray-200 rounded-bl-md"
+                    : cn(
+                        "bg-white text-gray-800 border border-gray-200 rounded-bl-md",
+                        msg.isHistory && "bg-gray-50 border-gray-300"
+                      )
                 )}
               >
                 <div className="flex items-center gap-2">
-                  {/* {msg.isLoading && (
-                    <Loader2 className="w-4 h-4 animate-spin flex-shrink-0" />
-                  )} */}
                   <span className={cn(msg.isLoading && "italic")}>
                     {msg.content}
                   </span>
+                  {msg.isHistory && !msg.isSystemMessage && (
+                    <span className="text-xs text-black opacity-65">
+                      <History size={16} />
+                    </span>
+                  )}
                 </div>
 
                 {msg.images && msg.images.length > 0 && (
@@ -295,7 +398,7 @@ export default function Chatbot({ userId = null }) {
                   </div>
                 )}
 
-                {!msg.isLoading && (
+                {!msg.isLoading && !msg.isSystemMessage && (
                   <div className="text-xs opacity-70 mt-1">
                     {new Date(msg.timestamp).toLocaleTimeString([], {
                       hour: "2-digit",

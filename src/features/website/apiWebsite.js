@@ -57,7 +57,7 @@ export const websiteApi = createApi({
     }),
     getChatHistory: builder.query({
       query: (chatId) => ({
-        url: `${process.env.NEXT_PUBLIC_AI_API_KEY}/get-chat-history?chat_id=${chatId}`,
+        url: `${process.env.NEXT_PUBLIC_MEINHAUS_AI_HOST}/get-chat-history?chat_id=${chatId}`,
         method: "GET",
         headers: {
           "x-api-key": process.env.NEXT_PUBLIC_AI_API_KEY,
@@ -72,5 +72,5 @@ export const {
   useCreateContactUsMutation,
   useCreateJobRegisterMutation,
   useChatWithAIMutation,
-  useGetChatHistoryQuery,
+  useLazyGetChatHistoryQuery,
 } = websiteApi;

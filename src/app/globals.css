@@ -243,7 +243,6 @@ PROFESSIONAL THEME
   background: transparent !important;
 }
 
-/* Alternative: If arrows still persist, try making the entire scrollbar track cover them */
 .custom-scrollbar::-webkit-scrollbar-track-piece {
   background: #f1f1f1;
 }
