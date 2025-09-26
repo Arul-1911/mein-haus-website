@@ -202,6 +202,9 @@ export default function Chatbot({ userId = null }) {
   const validateAndSend = async () => {
     setError("");
 
+    let currentQuery = "";
+    let currentImages = [];
+
     if (!query.trim() && images.length === 0) {
       setError("Please type a message or upload a jpg image.");
       return;
@@ -247,8 +250,8 @@ export default function Chatbot({ userId = null }) {
       };
       setMessages((prev) => [...prev, loadingMessage]);
 
-      const currentQuery = query;
-      const currentImages = [...images];
+      currentQuery = query;
+      currentImages = [...images];
       setQuery("");
       setImages([]);
 
@@ -300,8 +303,8 @@ export default function Chatbot({ userId = null }) {
       } else {
         setError("Something went wrong. Please try again.");
       }
-      setQuery(currentQuery);
-      setImages(currentImages);
+      if (!query) setQuery(currentQuery);
+      if (images.length === 0) setImages(currentImages);
     }
   };
 
