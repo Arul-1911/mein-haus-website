@@ -225,12 +225,13 @@ const page = async () => {
             </p>
           </div>
           {/* Right  */}
-          <div className="relative h-[50dvh]">
+          <div className="relative max-lg:h-[50vh] ">
             <Image
               alt="Group of Professionals"
               src="/website/education/people.png"
               layout="fill"
               objectFit="cover"
+              className="group"
             />
           </div>
         </div>

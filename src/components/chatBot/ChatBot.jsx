@@ -297,7 +297,7 @@ export default function Chatbot({ userId = null }) {
       if (error?.status === 429) {
         setError("Too many requests. Please wait a moment and try again.");
       } else if (error?.status >= 500) {
-        setError("Server error. Please try again later.");
+        setError("I'm having trouble connecting. Please try again shortly.");
       } else if (!navigator.onLine) {
         setError("No internet connection. Please check your connection.");
       } else {
