@@ -9,7 +9,8 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import Link from "next/link";
-import { History, Loader2 } from "lucide-react";
+import { History, Loader2, ExternalLink } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export default function Chatbot({ userId = null }) {
   const [open, setOpen] = useState(false);
@@ -53,14 +54,59 @@ export default function Chatbot({ userId = null }) {
         const historyMessages = result.details.history.map((msg, index) => {
           const isHuman = msg.type === "human";
 
-          return {
-            id: `history_${index}_${Date.now()}`,
-            role: isHuman ? "user" : "bot",
-            content: isHuman
+          // Process content and extract images for human messages
+          let processedContent = "";
+          let images = null;
+
+          if (isHuman && Array.isArray(msg.content)) {
+            // Handle array content format
+            const textParts = [];
+            const imageParts = [];
+
+            msg.content.forEach((item) => {
+              if (item.type === "text") {
+                textParts.push(item.text);
+              } else if (item.type === "image") {
+                // Convert base64 image data to blob for display
+                try {
+                  const base64Data =
+                    item.source_type === "base64"
+                      ? item.data
+                      : item.source?.data;
+                  if (base64Data) {
+                    const mimeType = item.mime_type || "image/jpeg";
+                    const blob = new Blob(
+                      [
+                        Uint8Array.from(atob(base64Data), (c) =>
+                          c.charCodeAt(0)
+                        ),
+                      ],
+                      { type: mimeType }
+                    );
+                    imageParts.push(blob);
+                  }
+                } catch (e) {
+                  console.warn("Failed to process history image:", e);
+                }
+              }
+            });
+
+            processedContent = textParts.join(" ").trim();
+            images = imageParts.length > 0 ? imageParts : null;
+          } else {
+            // Handle string content or AI messages
+            processedContent = isHuman
               ? Array.isArray(msg.content)
                 ? msg.content.map((c) => c.text || c).join(" ")
                 : msg.content
-              : msg.content,
+              : msg.content;
+          }
+
+          return {
+            id: `history_${index}_${Date.now()}`,
+            role: isHuman ? "user" : "bot",
+            content: processedContent,
+            images: images,
             timestamp: new Date().toISOString(),
             isHistory: true,
             agent: !isHuman ? msg.name || "virtual_assistant" : null,
@@ -107,6 +153,50 @@ export default function Chatbot({ userId = null }) {
       setHistoryLoaded(false);
     }
   }, [chatId]);
+
+  // Parse markdown links and convert to JSX
+  const parseMessageContent = (content) => {
+    if (!content || typeof content !== "string") return content;
+
+    // Regex to match markdown links
+    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    const parts = [];
+    let lastIndex = 0;
+    let match;
+
+    while ((match = linkRegex.exec(content)) !== null) {
+      const [fullMatch, linkText, url] = match;
+
+      // Add text before the link
+      if (match.index > lastIndex) {
+        parts.push(content.slice(lastIndex, match.index));
+      }
+
+      // Add the parsed link
+      parts.push(
+        <a
+          key={`link-${match.index}`}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 underline font-medium"
+        >
+          {linkText}
+          <ExternalLink size={12} />
+        </a>
+      );
+
+      lastIndex = match.index + fullMatch.length;
+    }
+
+    // Add remaining text after the last link
+    if (lastIndex < content.length) {
+      parts.push(content.slice(lastIndex));
+    }
+
+    // If no links found, return original content
+    return parts.length > 0 ? parts : content;
+  };
 
   // Submit handler
   const validateAndSend = async () => {
@@ -257,7 +347,7 @@ export default function Chatbot({ userId = null }) {
       {/* Floating trigger button */}
       <button
         onClick={() => setOpen((p) => !p)}
-        className="fixed bottom-5 right-6 z-50 flex items-center justify-center w-15 h-15 rounded-full bg-primary text-white shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer text-2xl"
+        className="fixed bottom-5 right-6 z-50 flex items-center justify-center w-15 h-15 rounded-full bg-primary text-white shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer text-3xl"
         aria-label="Open chat"
       >
         🤖
@@ -273,7 +363,7 @@ export default function Chatbot({ userId = null }) {
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between bg-gradient-to-r from-primary to-primary/70 text-white p-3">
+        <div className="flex items-center justify-between bg-gradient-to-r from-primary to-primary/75 text-white p-3">
           <div className="flex items-center gap-2">
             <div className="text-2xl">🤖</div>
             <div>
@@ -291,16 +381,27 @@ export default function Chatbot({ userId = null }) {
               className={cn(
                 "text-white hover:bg-primary/20 hover:text-white mr-1 cursor-pointer",
                 (historyLoaded || !chatId || isLoadingHistory) &&
-                  "opacity-100 cursor-not-allowed"
+                  "opacity-50 cursor-not-allowed"
               )}
               onClick={loadChatHistory}
               disabled={historyLoaded || !chatId || isLoadingHistory}
               aria-label="Load chat history"
             >
               {isLoadingHistory ? (
-                <Loader2 size={20} className="animate-spin" />
+                <Loader2 size={22} className="animate-spin" />
               ) : (
-                <History size={22} />
+                <>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button>
+                        <History size={22} />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent className="mb-3">
+                      <p>Load Chat History</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </>
               )}
             </Button>
             <Button
@@ -322,7 +423,7 @@ export default function Chatbot({ userId = null }) {
           </div>
         )}
         {!userId && (
-          <div className="bg-[#fef3c7] text-yellow-700 text-center text-xs p-2">
+          <div className="bg-[#fef3c7] text-yellow-700 text-center text-xs p-3">
             <strong>Guest Mode: </strong> Your chats won't be saved.{" "}
             <Link
               href="https://meinhaus.ca/customer/login"
@@ -376,17 +477,14 @@ export default function Chatbot({ userId = null }) {
               >
                 <div className="flex items-center gap-2">
                   <span className={cn(msg.isLoading && "italic")}>
-                    {msg.content}
+                    {msg.isLoading
+                      ? msg.content
+                      : parseMessageContent(msg.content)}
                   </span>
-                  {msg.isHistory && !msg.isSystemMessage && (
-                    <span className="text-xs text-black opacity-65">
-                      <History size={16} />
-                    </span>
-                  )}
                 </div>
 
                 {msg.images && msg.images.length > 0 && (
-                  <div className="flex gap-2 mt-2 flex-wrap">
+                  <div className="flex gap-2 mt-2 mb-1 flex-wrap">
                     {msg.images.map((img, i) => (
                       <img
                         key={i}
@@ -399,11 +497,16 @@ export default function Chatbot({ userId = null }) {
                 )}
 
                 {!msg.isLoading && !msg.isSystemMessage && (
-                  <div className="text-xs opacity-70 mt-1">
+                  <div className="flex gap-1 items-center text-xs opacity-70 mt-2">
                     {new Date(msg.timestamp).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
                     })}
+                    {msg.isHistory && !msg.isSystemMessage && (
+                      <span className="text-xs text-black opacity-75">
+                        <History size={17} />
+                      </span>
+                    )}
                   </div>
                 )}
               </div>
