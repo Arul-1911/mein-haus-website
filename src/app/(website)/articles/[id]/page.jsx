@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const SingleArticle = async ({ params }) => {
-  const articleId = await params.id;
+  const { id: articleId } = await params;
 
   //Single Article API
   const article = await fetchSingleArticle(articleId);

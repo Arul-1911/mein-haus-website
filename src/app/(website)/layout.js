@@ -15,18 +15,22 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <>
-      <Header />
-      <NextTopLoader
-        color="#F88B36"
-        // initialPosition={0.08}
-        // crawlSpeed={600}
-        height={6}
-        showSpinner={false}
-        // zIndex={1600}
-      />
-      <Chatbot />
-      {children}
-      <Footer />
+      <html>
+        <body>
+          <Header />
+          <NextTopLoader
+            color="#F88B36"
+            // initialPosition={0.08}
+            // crawlSpeed={600}
+            height={6}
+            showSpinner={false}
+            // zIndex={1600}
+          />
+          <Chatbot />
+          {children}
+          <Footer />
+        </body>
+      </html>
     </>
   );
 }
