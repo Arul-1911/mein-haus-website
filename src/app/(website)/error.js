@@ -12,11 +12,11 @@ export default function Error() {
       </div>
       <div className="flex flex-col my-4 px-1">
         <h2 className="text-center font-semibold text-3xl">
-          Uh-oh! Something Went Wrong
+          {`Uh-oh! Something Went Wrong`}
         </h2>
         <p className="text-center text-[#9D9D9D] my-2">
-          We're experiencing a technical issue on our end. Please try again in a
-          few moments.
+          {`We're experiencing a technical issue on our end. Please try again in a
+          few moments.`}
         </p>
       </div>
       <Button style={{ marginTop: "1rem" }}>
