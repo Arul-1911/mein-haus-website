@@ -119,8 +119,8 @@ export default function Header() {
             <Image
               src="/mein-haus-logo.png"
               alt="Mein Haus Logo"
-              height={150}
-              width={250}
+              height={100}
+              width={280}
               className="my-3 lg:ml-5"
             />
           </Link>

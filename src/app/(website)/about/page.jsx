@@ -41,7 +41,7 @@ export default async function Page() {
         </div>
 
         <div className="lg:w-5/12 text-center lg:text-right relative">
-          <div className="inline-block relative">
+          <div className="inline-block relative" data-aos="flip-left">
             <Image
               src="/website/about/pic-right.png"
               alt="Construction Worker"
@@ -56,7 +56,7 @@ export default async function Page() {
       {/* Second Section */}
       <section className="flex flex-col-reverse px-5 lg:px-20 lg:flex-row items-center gap-6 mb-12">
         <div className="lg:w-5/12 text-center lg:text-left relative">
-          <div className="inline-block relative">
+          <div className="inline-block relative" data-aos="flip-left">
             <Image
               src="/website/about/pic-left.png"
               alt="Construction Worker"

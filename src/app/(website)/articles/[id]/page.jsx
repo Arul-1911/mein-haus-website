@@ -58,6 +58,23 @@ const SingleArticle = async ({ params }) => {
           </div>
         </div>
       </section>
+      {/* Explore More Articles with Get Started */}
+      <section className="bg-[#F6F6F6] mt-4 py-10">
+        <div className="max-w-4xl mx-auto px-5 text-center">
+          <h2 className="text-2xl font-semibold mb-4">
+            Ready to start your project?
+          </h2>
+          <p className="mb-6 text-gray-700">
+            Get a quote now and bring your idea to life.
+          </p>
+          <Link
+            href="/job"
+            className="inline-block bg-black text-white px-6 py-3 rounded-md hover:bg-black/80 transition"
+          >
+            Get Started
+          </Link>
+        </div>
+      </section>
       <section className="bg-[#F6F6F6] mt-4">
         <ExploreArticleCarousel slides={exploreArticles} />
       </section>

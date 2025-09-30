@@ -2,6 +2,7 @@ import Header from "@/components/website/layout/Header";
 import Footer from "@/components/website/layout/Footer";
 import NextTopLoader from "nextjs-toploader";
 import Chatbot from "@/components/chatBot/ChatBot";
+import AOSProvider from "@/providers/aosProvider";
 
 export const metadata = {
   title: "MeinHaus | Online General Contractor",
@@ -18,16 +19,9 @@ export default function RootLayout({ children }) {
       <html>
         <body>
           <Header />
-          <NextTopLoader
-            color="#F88B36"
-            // initialPosition={0.08}
-            // crawlSpeed={600}
-            height={6}
-            showSpinner={false}
-            // zIndex={1600}
-          />
+          <NextTopLoader color="#F88B36" height={5} showSpinner={false} />
           <Chatbot />
-          {children}
+          <AOSProvider>{children}</AOSProvider>
           <Footer />
         </body>
       </html>

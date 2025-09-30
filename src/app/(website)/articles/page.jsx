@@ -62,7 +62,10 @@ const Articles = async () => {
       <div>
         {/* Carousel Viewport */}
         <div className="overflow-hidden  my-8">
-          <div className="flex flex-wrap justify-center  gap-4 px-4">
+          <div
+            className="flex flex-wrap justify-center  gap-4 px-4"
+            data-aos="zoom-in-up"
+          >
             {articleSlides?.map((item, index) => (
               <div
                 key={index}

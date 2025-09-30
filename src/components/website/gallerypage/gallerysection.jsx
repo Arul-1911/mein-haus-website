@@ -46,7 +46,7 @@ const Gallery = ({ mockData }) => {
     <div className="p-6 space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left Section → Only Selected Item */}
-        <div className="space-y-6">
+        <div className="space-y-6" data-aos="zoom-in-up">
           {selectedItem && <GalleryCard item={selectedItem} />}
         </div>
 
@@ -91,7 +91,11 @@ const Gallery = ({ mockData }) => {
             </div>
 
             {/* Carousel */}
-            <div className="overflow-hidden" ref={emblaRef}>
+            <div
+              className="overflow-hidden"
+              data-aos="zoom-in-up"
+              ref={emblaRef}
+            >
               <div className="flex">
                 {items?.map((item, index) => (
                   <div

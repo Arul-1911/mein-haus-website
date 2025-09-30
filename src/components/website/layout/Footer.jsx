@@ -14,7 +14,7 @@ const Footer = () => {
                 src="/mein-haus-logo.png"
                 alt="Mein Haus Logo"
                 height={100}
-                width={300}
+                width={320}
                 className="my-3 max-sm:w-[30dvh] lg:ml-5"
               />
             </Link>

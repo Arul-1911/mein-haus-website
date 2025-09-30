@@ -23,7 +23,7 @@ const page = async () => {
               education and growth of our trades community.`}
             </p>
           </div>
-          <div className="">
+          <div className="" data-aos="flip-up">
             <Image
               src="/website/education/right-section.png"
               alt="Education Image"
@@ -35,7 +35,7 @@ const page = async () => {
 
         {/* {second Section}  */}
         <div className="flex flex-col-reverse mt-6 md:flex-row items-center justify-center  gap-20 text-center md:text-left">
-          <div>
+          <div data-aos="flip-up">
             <Image
               src="/website/education/left-section.png"
               alt="Tutorial Image"
@@ -159,6 +159,7 @@ const page = async () => {
           <div
             className="max-md:mt-5 relative
           "
+            data-aos="flip-up"
           >
             <Image
               src="/website/education/bottom-right-3.png"

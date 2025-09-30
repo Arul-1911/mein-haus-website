@@ -346,11 +346,11 @@ export default function Chatbot({ userId = null }) {
   };
 
   return (
-    <>
+    <main>
       {/* Floating trigger button */}
       <button
         onClick={() => setOpen((p) => !p)}
-        className="fixed bottom-5 right-6 z-50 flex items-center justify-center w-15 h-15 rounded-full bg-primary text-white shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer text-3xl"
+        className="fixed bottom-5 right-6  z-50 flex items-center justify-center w-17 h-17 rounded-full bg-primary text-white shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer text-3xl"
         aria-label="Open chat"
       >
         🤖
@@ -367,6 +367,9 @@ export default function Chatbot({ userId = null }) {
       >
         {/* Header */}
         <div className="flex items-center justify-between bg-gradient-to-r from-primary to-primary/75 text-white p-3">
+          {/* <div className="flex items-center justify-between bg-[linear-gradient(90deg,rgba(18,168,227,1)_0%,rgba(87,199,133,1)_50%,rgba(237,209,83,1)_100%)] text-white p-3"> */}
+          {/* <div className="flex items-center justify-between bg-[linear-gradient(90deg,rgba(30,155,208,1)_0%,rgba(61,219,167,1)_36%,rgba(237,205,59,1)_63%,rgba(253,118,13,1)_100%)] text-white p-3"> */}
+          {/* <div className="flex items-center justify-between bg-[linear-gradient(90deg,rgba(47,171,224,1)_0%,rgba(147,60,230,1)_100%)] text-white p-3"> */}
           <div className="flex items-center gap-2">
             <div className="text-2xl">🤖</div>
             <div>
@@ -596,6 +599,6 @@ export default function Chatbot({ userId = null }) {
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }
