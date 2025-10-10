@@ -90,8 +90,7 @@ const Leftsection = async () => {
         <Image
           src="/website/home/one-stop-service.jpg"
           alt="Service background Image"
-          layout="fill"
-          // objectFit="contain"
+          fill
           className="absolute inset-0"
         />
         <div className="absolute inset-0 bg-black/60"></div>

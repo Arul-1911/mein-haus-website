@@ -135,7 +135,7 @@ const RegisterForm = () => {
       </div>
 
       <div className="cursor-pointer">
-        <Button className="w-full text-[#FFFFFF] font-semibold cursor-pointer">
+        <Button className="w-full text-[#FFFFFF] text-lg font-semibold cursor-pointer">
           Register
         </Button>
       </div>

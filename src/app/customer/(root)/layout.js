@@ -1,14 +1,13 @@
 import { CustomerProviders } from "@/providers/storeProviders";
-// import "@/globals.css";
+import NextTopLoader from "nextjs-toploader";
 
 export default function CustomerLayout({ children }) {
   return (
-    <CustomerProviders>
-      <div className="customer-theme min-h-screen bg-primary text-primary">
-        customer header
+    <>
+      <CustomerProviders>
+        <NextTopLoader color="#1E9BD0" height={4} showSpinner={false} />
         {children}
-        customer footer
-      </div>
-    </CustomerProviders>
+      </CustomerProviders>
+    </>
   );
 }

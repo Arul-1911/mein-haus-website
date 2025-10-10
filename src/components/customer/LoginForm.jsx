@@ -91,8 +91,8 @@ const LoginForm = () => {
         </div>
       </div>
       <div className="cursor-pointer">
-        <Button className="w-full text-[#FFFFFF] font-semibold cursor-pointer">
-          Login
+        <Button className="w-full text-[#FFFFFF] text-lg font-semibold cursor-pointer">
+          <Link href="/customer/skip">Login</Link>
         </Button>
       </div>
     </section>

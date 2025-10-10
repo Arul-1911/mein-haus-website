@@ -48,7 +48,7 @@ const ResetMail = () => {
 
       <div className="cursor-pointer">
         <Link href="/customer/reset-password">
-          <Button className="w-full text-[#FFFFFF] font-semibold cursor-pointer">
+          <Button className="w-full text-[#FFFFFF] text-lg font-semibold cursor-pointer">
             Send Password Reset Link
           </Button>
         </Link>
