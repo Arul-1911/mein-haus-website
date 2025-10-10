@@ -1,32 +1,10 @@
 import LeftSection from "@/components/website/complimentarypage/LeftSection";
 import RightSection from "@/components/website/complimentarypage/RightSection";
+import { WebsiteProviders } from "@/providers/storeProviders";
+import { fetchSingleServices } from "@/serverCalls/website";
 import React from "react";
 
-const Complimentarypage = async ({ params }) => {
-  const { id } = await params;
-  let selectedItem = null;
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/comp-services/${id}`,
-      {
-        next: { revalidate: 600 }, // Cache for 10 minutes
-      }
-    );
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch service data");
-    }
-
-    const data = await res.json();
-    selectedItem = data?.data?.service;
-
-    if (!selectedItem) {
-      throw new Error("Service not found");
-    }
-  } catch (err) {
-    console.error(err);
-  }
-
+const ComplimentarypageContent = ({ selectedItem }) => {
   return (
     <>
       <div className="grid lg:grid-cols-2">
@@ -54,6 +32,16 @@ const Complimentarypage = async ({ params }) => {
         </div>
       </div>
     </>
+  );
+};
+
+const Complimentarypage = async ({ params }) => {
+  const { id } = await params;
+  let selectedItem = await fetchSingleServices(id);
+  return (
+    <WebsiteProviders>
+      <ComplimentarypageContent selectedItem={selectedItem} />
+    </WebsiteProviders>
   );
 };
 

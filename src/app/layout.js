@@ -1,19 +1,6 @@
-import { Poppins, Ubuntu } from "next/font/google";
+import AOSProvider from "@/providers/aosProvider";
 import "./globals.css";
-import { WebsiteProviders } from "@/providers/storeProviders";
 import { Toaster } from "react-hot-toast";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["200", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-primary",
-});
-
-const ubuntu = Ubuntu({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  variable: "--font-secondary",
-});
 
 export const metadata = {
   title: "MeinHaus | Online General Contractor",
@@ -26,12 +13,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${poppins.variable} ${ubuntu.variable} antialiased`}
-    >
+    <html lang="en">
       <body className="font-primary">
-        <WebsiteProviders>{children}</WebsiteProviders>
+        <AOSProvider>{children}</AOSProvider>
         <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
       </body>
     </html>

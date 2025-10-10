@@ -1,14 +1,16 @@
-import Chatbot from "@/components/chatBot/ChatBot";
+import Chatbot from "@/components/website/chatBot/ChatBot";
 import HomePage from "@/components/website/homepage/HomePage";
-import Footer from "@/components/website/layout/Footer";
 import Header from "@/components/website/layout/Header";
+import { WebsiteProviders } from "@/providers/storeProviders";
 
 export default function Home() {
   return (
     <main>
-      <Header />
-      <HomePage />
-      <Chatbot />
+      <WebsiteProviders>
+        <Header />
+        <HomePage />
+        <Chatbot />
+      </WebsiteProviders>
     </main>
   );
 }

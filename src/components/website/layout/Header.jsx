@@ -157,9 +157,7 @@ export default function Header() {
               >
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
-                    <Link href="https://meinhaus.ca/customer/login">
-                      Login as Home Owner
-                    </Link>
+                    <Link href="/customer/login">Login as Home Owner</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>

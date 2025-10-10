@@ -1,38 +1,21 @@
 "use client";
 
-import { Eye, EyeOff, Lock, Mail, Phone, User } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
 
 const schema = yup.object().shape({
   email: yup
     .string()
     .email("Enter a valid email")
     .required("Email is required !"),
-  phone: yup
-    .string()
-    .required("Phone number is required")
-    .matches(/^\+?[\d\s-]{8,}$/, "Invalid phone number"),
-  fullname: yup
-    .string()
-    .required("Name is required !")
-    .min(2, "name must be at least 2 characters long"),
-  password: yup
-    .string()
-    .required("Password is required")
-    .min(8, "Password must be at least 8 characters")
-    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-    .matches(/\d/, "Password must contain at least one number")
-    .matches(
-      /[@$!%*?&]/,
-      "Password must contain at least one special character"
-    ),
 });
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -45,45 +28,6 @@ const RegisterForm = () => {
   return (
     <section className="flex flex-col gap-4">
       <div className="space-y-6">
-        {/* Full Name */}
-        <div className="relative">
-          <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
-            <User className="w-5 h-5 text-black ml-3" />
-            <input
-              type="text"
-              id="fullname"
-              {...register("fullname")}
-              className="w-full p-2 pl-5 text-sm rounded-md focus:outline-none"
-              placeholder="Full Name *"
-            />
-          </div>
-          {errors.fullname && (
-            <span className="text-red-500 text-xs mt-1">
-              {errors.fullname.message}
-            </span>
-          )}
-        </div>
-        {/* Phone Number */}
-        <div className="relative">
-          <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
-            <Phone className="w-5 h-5 text-black ml-3" />
-            <span className="ml-3 text-gray-500 select-none">+1</span>
-            {/* <span className="text-gray-500 ml-3 ">|</span> */}
-            <input
-              type="tel"
-              id="phone"
-              {...register("phone")}
-              className="w-full p-2  text-sm rounded-md focus:outline-none"
-              placeholder="Phone Number *"
-              autoComplete="tel"
-            />
-          </div>
-          {errors.phone && (
-            <span className="text-red-500 text-xs mt-1">
-              {errors.phone.message}
-            </span>
-          )}
-        </div>
         {/* Email */}
         <div className="relative">
           <div className="flex items-center p-1 hover:border bg-[#F6F6F6] rounded-md hover:border-black focus-within:border-black">
@@ -133,14 +77,26 @@ const RegisterForm = () => {
           )}
         </div>
       </div>
-
+      <div className="flex items-center px-1 flex-wrap justify-between">
+        <div className="flex gap-1 items-center">
+          <div className="mt-1 ">
+            <Checkbox className="cursor-pointer" />
+          </div>
+          <div className="text-[#545454]">Remember me</div>
+        </div>
+        <div>
+          <Link href="/customer/reset-mail" className="text-[#545454]">
+            Forgot Password?
+          </Link>
+        </div>
+      </div>
       <div className="cursor-pointer">
         <Button className="w-full text-[#FFFFFF] font-semibold cursor-pointer">
-          Register
+          Login
         </Button>
       </div>
     </section>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

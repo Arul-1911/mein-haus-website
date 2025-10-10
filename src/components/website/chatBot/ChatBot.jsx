@@ -6,11 +6,11 @@ import {
 } from "@/features/website/apiWebsite";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
 import Link from "next/link";
 import { History, Loader2, ExternalLink } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
 
 export default function Chatbot({ userId = null }) {
   const [open, setOpen] = useState(false);

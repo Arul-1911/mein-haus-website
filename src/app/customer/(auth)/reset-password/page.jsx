@@ -1,57 +1,24 @@
-import RegisterForm from "@/components/customer/RegisterForm";
+import NewPassword from "@/components/customer/NewPassword";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
-const CustomerRegisterPage = () => {
+const ResetPasswordPage = () => {
   return (
     <main>
       <section className="grid md:grid-cols-2 h-screen">
         {/* {Left section } */}
         <div className="h-full order-2 md:order-1 flex  items-center justify-center">
           <div className="w-full flex flex-col gap-7 px-4 mb-3 max-w-xl">
-            <div className="">
+            <div className="flex flex-col justify-center items-center gap-4">
               <h2 className="font-semibold text-center text-2xl mt-3 md:mt-1 md:text-4xl">
-                Create a New Account
+                Set a new Password
               </h2>
+              <p className="text-[var(--gray)] max-w-sm text-center">
+                Please enter your new password.
+              </p>
             </div>
             <div className="">
-              <RegisterForm />
-            </div>
-            <div className="space-y-3">
-              {/* Already a customer */}
-              <div>
-                <p className="text-[#545454] font-normal text-center">
-                  Already have an account?{" "}
-                  <Link href="/customer/login">
-                    <span className="text-[var(--secondary)] font-medium">
-                      Login
-                    </span>
-                  </Link>
-                </p>
-              </div>
-              {/* {OR}  */}
-              <div className="flex items-center justify-center gap-3">
-                <hr className="text-[#E6E6E6]  w-[30%]" />
-                <span className="text-[#ABABAB]">or</span>
-                <hr className="text-[#E6E6E6] w-[30%]" />
-              </div>
-
-              {/* {Continue with google} */}
-              <div className="flex justify-center bg-[#F6F6F6] p-2 rounded-md">
-                <button className="flex justify-around gap-4 cursor-pointer">
-                  <span>
-                    <img
-                      src="/website/job/icons_google.png"
-                      alt="Google icon"
-                      className="w-6 h-6"
-                    />
-                  </span>
-                  <p className="text-[#545454] font-normal">
-                    Continue with Google
-                  </p>
-                </button>
-              </div>
+              <NewPassword />
             </div>
           </div>
         </div>
@@ -66,6 +33,7 @@ const CustomerRegisterPage = () => {
                 // width={370}
                 fill
                 className="my-1 object-contain"
+                priority
                 sizes="(max-width: 768px) 160px, 360px"
               />
             </div>
@@ -76,11 +44,11 @@ const CustomerRegisterPage = () => {
             </div>
             <div className="mt-2 relative group h-[25dvh] w-[35dvh] md:w-[70%] md:h-[50%]">
               <Image
-                alt="Register people image"
+                alt="Reset password people image"
                 // height={200}
                 // width={450}
                 fill
-                src="/customer/auth/register-img.png"
+                src="/customer/auth/new-password.png"
                 className="object-cover"
                 priority
                 sizes="(max-width: 768px) 160px, 360px"
@@ -93,4 +61,4 @@ const CustomerRegisterPage = () => {
   );
 };
 
-export default CustomerRegisterPage;
+export default ResetPasswordPage;
