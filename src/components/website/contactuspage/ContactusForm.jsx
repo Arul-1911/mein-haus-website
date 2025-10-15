@@ -31,7 +31,7 @@ const ContactusForm = () => {
     reset,
   } = useForm({
     resolver: yupResolver(schema),
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   // const onSubmit = async (data) => {

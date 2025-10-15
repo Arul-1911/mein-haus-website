@@ -93,6 +93,7 @@ CUSTOMER THEME
   --primary-light: #1e9bd01f;
   --secondary: #f88b36;
   --gray: #ababab;
+  --gray-1: #f9f9f9;
 }
 
 /* =======================
@@ -128,6 +129,10 @@ PROFESSIONAL THEME
     font-family: var(--font-secondary), -apple-system, BlinkMacSystemFont,
       sans-serif;
   }
+}
+
+button {
+  cursor: pointer;
 }
 
 /* Hide scrollbar but keep scroll functionality */

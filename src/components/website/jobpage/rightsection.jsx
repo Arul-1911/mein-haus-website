@@ -47,7 +47,7 @@ const JobRegisterForm = () => {
     setValue,
     reset,
   } = useForm({
-    mode: "onBlur",
+    mode: "onChange",
     defaultValues: {
       fullname: "",
       phone: "",
