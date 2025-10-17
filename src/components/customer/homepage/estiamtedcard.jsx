@@ -13,7 +13,7 @@ function EstiamtedCard({ estimate }) {
             <p className="text-[#9D9D9D] font-normal text-sm">
               {estimate.projectid}
             </p>
-            <h2>{estimate.title.slice(0, 30)}...</h2>
+            <h2>{estimate.title.slice(0, 20)}...</h2>
           </div>
           <div
             className={cn(

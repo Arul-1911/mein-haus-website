@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
-function OngoingCard({ estimate }) {
+function CompletedWorkCard({ estimate }) {
   return (
     <section className="px-4">
       <Card className="bg-[#F8F8F8] rounded-3xl border-none shadow">
@@ -30,7 +30,7 @@ function OngoingCard({ estimate }) {
             <div>
               <div>
                 <p className="text-[#9D9D9D] font-normal text-md">
-                  Pro Assigned Date
+                  Completed Date
                 </p>
                 <p>{estimate.createdAt}</p>
               </div>
@@ -67,4 +67,4 @@ function OngoingCard({ estimate }) {
   );
 }
 
-export default OngoingCard;
+export default CompletedWorkCard;

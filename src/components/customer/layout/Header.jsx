@@ -13,11 +13,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const mobileNavLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "Estimated Work" },
-  { href: "/education", label: "Ongoing Work" },
-  { href: "/gallery", label: "Completed Work" },
-  { href: "/profile", label: "Profile" },
+  { href: "/customer", label: "Home" },
+  { href: "/customer/estimated-work", label: "Estimated Work" },
+  { href: "/customer/ongoing-work", label: "Ongoing Work" },
+  { href: "/customer/completed-work", label: "Completed Work" },
+  { href: "/customer/profile", label: "Profile" },
 ];
 
 function Header() {
@@ -92,30 +92,32 @@ function Header() {
         </div>
         {/* {Logo section } */}
         <div className="relative w-40 h-12 sm:w-48 sm:h-20 md:w-46 md:h-14 lg:w-54 lg:h-18 xl:w-52 xl:h-15">
-          <Image
-            src="/mein-haus-logo.png"
-            alt="Mein Haus logo"
-            fill
-            priority
-            sizes="(max-width: 640px) 160px,
-                 (max-width: 768px) 200px,
-                 (max-width: 1024px) 250px,
-                 300px"
-            className="object-contain"
-          />
+          <Link href="/customer">
+            <Image
+              src="/mein-haus-logo.png"
+              alt="Mein Haus logo"
+              fill
+              priority
+              sizes="(max-width: 640px) 160px,
+            (max-width: 768px) 200px,
+            (max-width: 1024px) 250px,
+            300px"
+              className="object-contain"
+            />
+          </Link>
         </div>
         {/* Mid Section  */}
         <div className="hidden  lg:flex justify-around w-full md:max-w-sm lg:max-w-lg items-center">
-          <Link href="/">
+          <Link href="/customer">
             <p>Home</p>
           </Link>
-          <Link href="/">
+          <Link href="/customer/estimated-work">
             <p>Estimated work</p>
           </Link>
-          <Link href="/">
+          <Link href="/customer/ongoing-work">
             <p>Ongoing work</p>
           </Link>
-          <Link href="/">
+          <Link href="/customer/completed-work">
             <p>Completed work</p>
           </Link>
         </div>
@@ -139,10 +141,12 @@ function Header() {
 
           {/* Avatar */}
           <div className="max-lg:hidden">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+            <Link href="/customer/profile">
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </Link>
           </div>
         </div>
       </nav>

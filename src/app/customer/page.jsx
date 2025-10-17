@@ -5,6 +5,7 @@ import OurServicesCarousel from "@/components/customer/homepage/servicescarousel
 import Footer from "@/components/customer/layout/Footer";
 import Header from "@/components/customer/layout/Header";
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 const Page = () => {
@@ -99,24 +100,28 @@ const Page = () => {
           <h2 className="font-bold text-center text-3xl md:text-4xl">
             Estimated work
           </h2>
-          <p className="hidden md:flex justify-between gap-1 items-center font-medium text-lg">
-            View all{" "}
-            <span>
-              <ChevronRight />
-            </span>
-          </p>
+          <Link href="/customer/estimated-work">
+            <p className="hidden md:flex justify-between gap-1 items-center font-medium text-lg">
+              View all{" "}
+              <span>
+                <ChevronRight />
+              </span>
+            </p>
+          </Link>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 mt-8 gap-7">
           {estiamtedWorkData?.map((data) => (
             <EstiamtedCard key={data.id} estimate={data} />
           ))}
         </div>
-        <p className="text-center md:hidden my-5 flex justify-center gap-1 items-center font-medium text-lg">
-          View all{" "}
-          <span>
-            <ChevronRight />
-          </span>
-        </p>
+        <Link href="/customer/estimated-work">
+          <p className="text-center md:hidden my-5 flex justify-center gap-1 items-center font-medium text-lg">
+            View all{" "}
+            <span>
+              <ChevronRight />
+            </span>
+          </p>
+        </Link>
       </div>
 
       {/* ongoing work  */}
@@ -125,24 +130,28 @@ const Page = () => {
           <h2 className="font-bold text-center text-3xl md:text-4xl">
             Ongoing work
           </h2>
-          <p className="hidden md:flex justify-between gap-1 items-center font-medium text-lg">
-            View all{" "}
-            <span>
-              <ChevronRight />
-            </span>
-          </p>
+          <Link href="/customer/ongoing-work">
+            <p className="hidden md:flex justify-between gap-1 items-center font-medium text-lg">
+              View all{" "}
+              <span>
+                <ChevronRight />
+              </span>
+            </p>
+          </Link>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 mt-8 gap-7">
           {ongoingworkWorkData?.map((data) => (
             <OngoingCard key={data.id} estimate={data} />
           ))}
         </div>
-        <p className="text-center md:hidden my-5 flex justify-center gap-1 items-center font-medium text-lg">
-          View all{" "}
-          <span>
-            <ChevronRight />
-          </span>
-        </p>
+        <Link href="/customer/ongoing-work">
+          <p className="text-center md:hidden my-5 flex justify-center gap-1 items-center font-medium text-lg">
+            View all{" "}
+            <span>
+              <ChevronRight />
+            </span>
+          </p>
+        </Link>
       </div>
 
       {/* {Services}  */}
