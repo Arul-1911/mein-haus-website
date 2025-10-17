@@ -1,5 +1,6 @@
 import EstiamtedCard from "@/components/customer/homepage/estiamtedcard";
 import HeroSection from "@/components/customer/homepage/hero";
+import NoBookingsFallback from "@/components/customer/homepage/no-bookings";
 import OngoingCard from "@/components/customer/homepage/ongoingcard";
 import OurServicesCarousel from "@/components/customer/homepage/servicescarousel";
 import Footer from "@/components/customer/layout/Footer";
@@ -94,14 +95,36 @@ const Page = () => {
       <div>
         <HeroSection />
       </div>
+
       {/* Estimated work  */}
-      <div className="mx-auto max-w-7xl mt-8">
-        <div className="flex mx-4 justify-center md:justify-between items-center px-2 flex-wrap">
-          <h2 className="font-bold text-center text-3xl md:text-4xl">
-            Estimated work
-          </h2>
+      {estiamtedWorkData?.length === 0 ? (
+        <NoBookingsFallback
+          title="Estimated work"
+          desc="Create Your First Estimate"
+          content="It looks like there are no estimates available. Start by creating one below to manage your project pricing easily."
+        />
+      ) : (
+        <div className="mx-auto max-w-7xl mt-8">
+          <div className="flex mx-4 justify-center md:justify-between items-center px-2 flex-wrap">
+            <h2 className="font-bold text-center text-3xl md:text-4xl">
+              Estimated work
+            </h2>
+            <Link href="/customer/estimated-work">
+              <p className="hidden md:flex justify-between gap-1 items-center font-medium text-lg">
+                View all{" "}
+                <span>
+                  <ChevronRight />
+                </span>
+              </p>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 mt-8 gap-7">
+            {estiamtedWorkData?.map((data) => (
+              <EstiamtedCard key={data.id} estimate={data} />
+            ))}
+          </div>
           <Link href="/customer/estimated-work">
-            <p className="hidden md:flex justify-between gap-1 items-center font-medium text-lg">
+            <p className="text-center md:hidden my-5 flex justify-center gap-1 items-center font-medium text-lg">
               View all{" "}
               <span>
                 <ChevronRight />
@@ -109,29 +132,37 @@ const Page = () => {
             </p>
           </Link>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 mt-8 gap-7">
-          {estiamtedWorkData?.map((data) => (
-            <EstiamtedCard key={data.id} estimate={data} />
-          ))}
-        </div>
-        <Link href="/customer/estimated-work">
-          <p className="text-center md:hidden my-5 flex justify-center gap-1 items-center font-medium text-lg">
-            View all{" "}
-            <span>
-              <ChevronRight />
-            </span>
-          </p>
-        </Link>
-      </div>
+      )}
 
       {/* ongoing work  */}
-      <div className="mx-auto max-w-7xl mt-8">
-        <div className="flex mx-4 justify-center md:justify-between items-center px-2 flex-wrap">
-          <h2 className="font-bold text-center text-3xl md:text-4xl">
-            Ongoing work
-          </h2>
+      {ongoingworkWorkData?.length === 0 ? (
+        <NoBookingsFallback
+          title="Ongoing work"
+          desc="No Ongoing Projects"
+          content="You don’t have any ongoing projects at the moment. Click below to create a new estimate and start your next project."
+        />
+      ) : (
+        <div className="mx-auto max-w-7xl mt-8">
+          <div className="flex mx-4 justify-center md:justify-between items-center px-2 flex-wrap">
+            <h2 className="font-bold text-center text-3xl md:text-4xl">
+              Ongoing work
+            </h2>
+            <Link href="/customer/ongoing-work">
+              <p className="hidden md:flex justify-between gap-1 items-center font-medium text-lg">
+                View all{" "}
+                <span>
+                  <ChevronRight />
+                </span>
+              </p>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 mt-8 gap-7">
+            {ongoingworkWorkData?.map((data) => (
+              <OngoingCard key={data.id} estimate={data} />
+            ))}
+          </div>
           <Link href="/customer/ongoing-work">
-            <p className="hidden md:flex justify-between gap-1 items-center font-medium text-lg">
+            <p className="text-center md:hidden my-5 flex justify-center gap-1 items-center font-medium text-lg">
               View all{" "}
               <span>
                 <ChevronRight />
@@ -139,20 +170,7 @@ const Page = () => {
             </p>
           </Link>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 mt-8 gap-7">
-          {ongoingworkWorkData?.map((data) => (
-            <OngoingCard key={data.id} estimate={data} />
-          ))}
-        </div>
-        <Link href="/customer/ongoing-work">
-          <p className="text-center md:hidden my-5 flex justify-center gap-1 items-center font-medium text-lg">
-            View all{" "}
-            <span>
-              <ChevronRight />
-            </span>
-          </p>
-        </Link>
-      </div>
+      )}
 
       {/* {Services}  */}
       <div className="bg-[#FAFAFA] py-8 my-7">

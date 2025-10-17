@@ -1,4 +1,5 @@
 import EstiamtedCard from "@/components/customer/homepage/estiamtedcard";
+import NoBookingsFallback from "@/components/customer/homepage/no-bookings";
 
 function EstimatedWorkPage() {
   const estiamtedWorkData = [
@@ -62,20 +63,30 @@ function EstimatedWorkPage() {
   ];
   return (
     <main>
-      <section className="my-8">
-        <div>
-          <h1 className="font-bold text-3xl md:text-4xl text-center">
-            Estimated work
-          </h1>
+      {estiamtedWorkData?.length === 0 ? (
+        <div className="my-20">
+          <NoBookingsFallback
+            title="Estimated work"
+            desc="Create Your First Estimate"
+            content="It looks like there are no estimates available. Start by creating one below to manage your project pricing easily."
+          />
         </div>
-        <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 gap-7">
-            {estiamtedWorkData?.map((data) => (
-              <EstiamtedCard key={data.id} estimate={data} />
-            ))}
+      ) : (
+        <section className="my-8">
+          <div>
+            <h1 className="font-bold text-3xl md:text-4xl text-center">
+              Estimated work
+            </h1>
           </div>
-        </div>
-      </section>
+          <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 gap-7">
+              {estiamtedWorkData?.map((data) => (
+                <EstiamtedCard key={data.id} estimate={data} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </main>
   );
 }

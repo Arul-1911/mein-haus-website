@@ -47,8 +47,8 @@ function Header() {
                       href={link.href}
                       className={` ${
                         isActive(link.href)
-                          ? "text-[var(--primary)]"
-                          : "text-[color:var(--color-gray)] hover:text-black"
+                          ? "text-[#1E9BD0]"
+                          : "text-black hover:text-[#1E9BD0]"
                       } text-md`}
                     >
                       {link.label}
@@ -108,16 +108,44 @@ function Header() {
         </div>
         {/* Mid Section  */}
         <div className="hidden  lg:flex justify-around w-full md:max-w-sm lg:max-w-lg items-center">
-          <Link href="/customer">
+          <Link
+            href="/customer"
+            className={` ${
+              isActive("/customer")
+                ? "text-[var(--primary)]"
+                : "text-black hover:text-[var(--primary)]"
+            } text-md`}
+          >
             <p>Home</p>
           </Link>
-          <Link href="/customer/estimated-work">
+          <Link
+            href="/customer/estimated-work"
+            className={` ${
+              isActive("/customer/estimated-work")
+                ? "text-[var(--primary)]"
+                : "text-black hover:text-[var(--primary)]"
+            } text-md`}
+          >
             <p>Estimated work</p>
           </Link>
-          <Link href="/customer/ongoing-work">
+          <Link
+            href="/customer/ongoing-work"
+            className={` ${
+              isActive("/customer/ongoing-work")
+                ? "text-[var(--primary)]"
+                : "text-black hover:text-[var(--primary)]"
+            } text-md`}
+          >
             <p>Ongoing work</p>
           </Link>
-          <Link href="/customer/completed-work">
+          <Link
+            href="/customer/completed-work"
+            className={` ${
+              isActive("/customer/completed-work")
+                ? "text-[var(--primary)]"
+                : "text-black hover:text-[var(--primary)]"
+            } text-md`}
+          >
             <p>Completed work</p>
           </Link>
         </div>
