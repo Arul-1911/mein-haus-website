@@ -34,17 +34,19 @@ const Leftsection = async () => {
   return (
     <main className="z-2">
       <div>
-        <HomeBanner images={bannerImages} />
+        {bannerImages?.length > 0 && <HomeBanner images={bannerImages} />}
       </div>
       <div>
-        <h2 className="text-center mt-10 font-secondary font-medium text-2xl md:text-4xl">
-          Top Articles for You
-        </h2>
-        <ArticleCarousel slides={articles} options={{ loop: false }} />
+        {articles?.length > 0 && (
+          <>
+            <h2 className="text-center mt-10 font-secondary font-medium text-2xl md:text-4xl">
+              Top Articles for You
+            </h2>
+            <ArticleCarousel slides={articles} options={{ loop: false }} />
+          </>
+        )}
       </div>
-      <div>
-        <Feedback feedbacks={reviews} />
-      </div>
+      <div>{reviews?.length > 0 && <Feedback feedbacks={reviews} />}</div>
       <div className="mx-6 my-10 rounded-xl p-5 bg-[#36C1B51A]">
         {/* INSURANCE CONTAINER  */}
         <div className="grid gap:2 mx-auto max-sm:text-center justify-center items-center md:grid-cols-2">
@@ -111,12 +113,14 @@ const Leftsection = async () => {
         </div>
       </div>
       {/* COMPLIMENTARY SERVICES SECTION  */}
-      <div>
-        <h2 className="my-6 text-center font-secondary text-2xl md:text-4xl font-medium">
-          Complimentary Services
-        </h2>
-        <Complimentary carouselItems={complimentaryServices} />
-      </div>
+      {complimentaryServices?.length > 0 && (
+        <div>
+          <h2 className="my-6 text-center font-secondary text-2xl md:text-4xl font-medium">
+            Complimentary Services
+          </h2>
+          <Complimentary carouselItems={complimentaryServices} />
+        </div>
+      )}
       <Footer />
       {/* MOBILE VIEW OF GET QUTOE AND PRO REG  */}
       <div className="grid grid-cols-2 w-full fixed  bottom-0   z-11 lg:hidden">

@@ -47,10 +47,12 @@ const JobPageContent = ({ data }) => {
               makeover or a luxurious bathroom refresh
             </p>
           </section>
-          <section className="mx-auto max-w-xl">
-            <h3 className="font-semibold text-xl">Project photos</h3>
-            <Projectphotos data={data} />
-          </section>
+          {data?.length > 0 && (
+            <section className="mx-auto max-w-xl">
+              <h3 className="font-semibold text-xl">Project photos</h3>
+              <Projectphotos data={data} />
+            </section>
+          )}
         </div>
         <div>
           <div>

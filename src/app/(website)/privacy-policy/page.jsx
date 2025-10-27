@@ -1,8 +1,17 @@
+import NoContent from "@/components/website/no-content";
 import { fetchPrivacyPolicy } from "@/serverCalls/website";
 import React from "react";
 
 const PrivacyPolicy = async () => {
   let privacyContent = await fetchPrivacyPolicy();
+
+  if (!privacyContent) {
+    return (
+      <>
+        <NoContent />
+      </>
+    );
+  }
 
   return (
     <>

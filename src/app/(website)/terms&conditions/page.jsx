@@ -1,7 +1,16 @@
+import NoContent from "@/components/website/no-content";
 import { fetchTermsAndConditions } from "@/serverCalls/website";
 
 const TermsAndConditions = async () => {
   let TermsContent = await fetchTermsAndConditions();
+
+  if (!TermsContent) {
+    return (
+      <>
+        <NoContent />
+      </>
+    );
+  }
   return (
     <main>
       <h2 className="text-[#262626] my-5 text-center font-semibold text-3xl">

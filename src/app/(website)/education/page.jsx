@@ -207,18 +207,21 @@ const page = async () => {
               We&apos;d love to collaborate and create something remarkable for
               the trades community.
             </p>
-            <div>
-              <span className="flex gap-2 items-center mt-8">
-                <Phone />
-                <a
-                  href={`tel:${data?.mobile}`}
-                >{`Call us at ${data?.mobile}`}</a>
-              </span>
-              <span className="flex gap-2 items-center my-1">
-                <Mail />
-                <a href={`mailto:${data?.email}`}>{data?.email}</a>
-              </span>
-            </div>
+            {data?.mobile && data?.email && (
+              <div>
+                <span className="flex gap-2 items-center mt-8">
+                  <Phone />
+                  <a
+                    href={`tel:${data?.mobile}`}
+                  >{`Call us at ${data?.mobile}`}</a>
+                </span>
+                <span className="flex gap-2 items-center my-1">
+                  <Mail />
+                  <a href={`mailto:${data?.email}`}>{data?.email}</a>
+                </span>
+              </div>
+            )}
+
             <p className="mt-8 font-semibold text-md">
               Stay tuned for the launch of Meinhaus Education! Together,
               we&apos;ll set new standards for quality, safety, and expertise in

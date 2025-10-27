@@ -7,10 +7,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Bell, Mail, MessageSquareText, Phone } from "lucide-react";
+import { Bell, MessageSquareText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import NotificationDropdown from "../NotificationModel";
 
 const mobileNavLinks = [
   { href: "/customer", label: "Home" },
@@ -22,6 +24,7 @@ const mobileNavLinks = [
 
 function Header() {
   const pathname = usePathname()?.toLowerCase();
+  const [notificationOpen, setNotificationOpen] = useState(false);
 
   const isActive = (href) =>
     pathname === href || (href !== "/customer" && pathname.startsWith(href));
@@ -152,12 +155,16 @@ function Header() {
         {/* profile section */}
         <div className="max-md:mr-1 flex items-center justify-center gap-5 md:gap-6 relative">
           {/* Notification Icon */}
-          <div className="relative">
+          {/* <div className="relative">
             <Bell className="w-6 h-6" />
             <span className="absolute -top-2 -right-3 flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-[var(--primary)] rounded-full">
               9
             </span>
-          </div>
+          </div> */}
+          <NotificationDropdown
+            open={notificationOpen}
+            setOpen={setNotificationOpen}
+          />
 
           {/* Message Icon */}
           <div className="relative">

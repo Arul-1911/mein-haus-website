@@ -199,7 +199,7 @@ export default async function Page() {
       </section>
 
       {/* Client Feedbacks  */}
-      <AboutFeedBack feedbacks={feedbacks} />
+      {feedbacks?.length > 0 && <AboutFeedBack feedbacks={feedbacks} />}
     </main>
   );
 }
