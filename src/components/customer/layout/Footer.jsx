@@ -47,9 +47,15 @@ function Footer() {
         </div>
         <div className="flex flex-col justify-between gap-8">
           <div className="flex font-normal text-md flex-col md:flex-row items-center justify-center lg:justify-end gap-1 md:gap-4">
-            <p>Home</p>
-            <p>Privacy Policy</p>
-            <p>Terms and Conditions</p>
+            <Link href="/customer">
+              <p>Home</p>
+            </Link>
+            <Link href="/customer/privacy-policy">
+              <p>Privacy Policy</p>
+            </Link>
+            <Link href="/customer/terms&conditions">
+              <p>Terms and Conditions</p>
+            </Link>
           </div>
           <div>
             <h2 className="text-[#E6E6E6] font-bold text-4xl md:text-8xl tracking-widest">

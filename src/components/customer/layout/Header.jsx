@@ -13,6 +13,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import NotificationDropdown from "../NotificationModel";
+import MessageDropdown from "../MessageModal";
 
 const mobileNavLinks = [
   { href: "/customer", label: "Home" },
@@ -25,6 +26,7 @@ const mobileNavLinks = [
 function Header() {
   const pathname = usePathname()?.toLowerCase();
   const [notificationOpen, setNotificationOpen] = useState(false);
+  const [messageOpen, setMessageOpen] = useState(false);
 
   const isActive = (href) =>
     pathname === href || (href !== "/customer" && pathname.startsWith(href));
@@ -167,12 +169,13 @@ function Header() {
           />
 
           {/* Message Icon */}
-          <div className="relative">
+          {/* <div className="relative">
             <MessageSquareText className="w-6 h-6" />
             <span className="absolute -top-2 -right-3 flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-[var(--primary)] rounded-full">
               5
             </span>
-          </div>
+          </div> */}
+          <MessageDropdown open={messageOpen} setOpen={setMessageOpen} />
 
           {/* Avatar */}
           <div className="max-lg:hidden">

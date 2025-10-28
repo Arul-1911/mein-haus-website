@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
-function NoContent() {
+function NoContent({ url }) {
   return (
     <main>
       <section className="h-[70dvh] flex justify-center items-center">
@@ -18,8 +18,8 @@ function NoContent() {
           <h1 className="text-center my-5 font-semibold text-2xl">
             No Content Available
           </h1>
-          <Link href="/">
-            <Button>Go back to the home page</Button>
+          <Link href={url || "/"}>
+            <Button>Go to home page</Button>
           </Link>
         </div>
       </section>
