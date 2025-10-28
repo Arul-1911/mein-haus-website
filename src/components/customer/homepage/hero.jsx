@@ -9,10 +9,10 @@ import CreateEstimate from "../create-estimatemodal";
 function HeroSection() {
   const [modalOpen, setModalOpen] = useState(false);
   return (
-    <section className="bg-[#F9F9F9] justify-items-center px-3 md:px-10 md:py-1">
+    <section className="bg-[#F9F9F9]  justify-items-center px-3 md:px-10 md:py-1">
       <div className="grid grid-cols-1 justify-center lg:grid-cols-2 mx-1">
         {/* left section  */}
-        <div className="flex flex-col max-sm:text-center gap-6 justify-start pt-2 md:pt-4 items-center md:items-start w-full md:max-w-xl my-4 md:mx-6">
+        <div className="flex flex-col  max-sm:text-center gap-6 justify-start pt-2 md:pt-4 items-center md:items-start w-full md:max-w-xl my-8 md:mx-6">
           <h1 className="font-bold leading-10 md:leading-14 lg:leading-18 text-3xl md:text-5xl lg:text-6xl">
             Get an <span className="text-[var(--primary)]"> Instant Quote</span>{" "}
             for Any Project—Anytime.
@@ -33,7 +33,7 @@ function HeroSection() {
           </div>
         </div>
         {/* right section  */}
-        <div className="relative  min-h-[50dvh] md:min-h-[70dvh] lg:min-h-[60dvh] max-sm:mt-5 max-w-xl">
+        <div className="relative my-8 min-h-[50dvh] md:min-h-[70dvh] lg:min-h-[60dvh] max-sm:mt-5 max-w-xl">
           <div className="absolute -right-6 top-20 z-3">
             <div className="relative w-40 h-12 sm:w-48 sm:h-20 md:w-46 md:h-26 lg:w-54 lg:h-28 xl:w-72 xl:h-20">
               <Image

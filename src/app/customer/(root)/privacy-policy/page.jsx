@@ -19,7 +19,7 @@ const CustomerPrivacyPolicy = async () => {
           {/* {privacyContent?.title || ""} */}
           {"Privacy Policy"}
         </h2>
-        <h3 className="font-semibold text-[#262626] text-center my-2 text-2xl">
+        <h3 className="font-semibold text-[#262626] text-center my-2 px-1 text-2xl">
           Online Privacy Notice
         </h3>
         {/* <div className="max-w-7xl mt-10 mb-5 px-3 mx-auto">

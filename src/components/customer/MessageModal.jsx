@@ -217,11 +217,11 @@ export default function MessageDropdown({ open, setOpen }) {
               // Grid div
               <div
                 key={n.id}
-                className="grid grid-cols-6 place-items-center gap-3 w-full p-3 last:pb-0 hover:bg-[#1E9BD01F] cursor-pointer  last:border-none rounded-2xl "
+                className="grid grid-cols-6 gap-6  md:gap-3 w-full p-3 last:pb-0 hover:bg-[#1E9BD01F] cursor-pointer  last:border-none rounded-2xl "
               >
                 {/* profile div  */}
-                <div className="col-span-1">
-                  <Avatar className="h-full w-full rounded-full">
+                <div className="col-span-1 place-items-center">
+                  <Avatar className="place-items-center h-12 w-12 rounded-full">
                     <AvatarImage src={n.profilePic} className="object-cover" />
                     <AvatarFallback>
                       <CircleUserRound size={30} className="text-gray-600" />
@@ -229,7 +229,7 @@ export default function MessageDropdown({ open, setOpen }) {
                   </Avatar>
                 </div>
                 {/* Message div  */}
-                <div className="col-span-3">
+                <div className="col-span-3 place-items-center">
                   <div className="flex">
                     {/* left side  */}
                     <div className="flex flex-col justify-baseline gap-1 w-full">
@@ -259,7 +259,7 @@ export default function MessageDropdown({ open, setOpen }) {
                   </div>
                 </div>
                 {/* right side  */}
-                <div className="col-span-2 space-y-1 place-items-end">
+                <div className="col-span-2 flex flex-col justify-between space-y-1 place-items-end">
                   <div>
                     {new Date(n.timestamp).toLocaleTimeString("en-US", {
                       hour: "2-digit",

@@ -13,12 +13,12 @@ const CustomerTermsAndConditions = async () => {
   //   }
   return (
     <main>
-      <h2 className="text-[#262626] my-5 text-center font-semibold text-3xl">
+      <h2 className="text-[#262626] my-5 text-center font-semibold px-1 text-2xl md:text-3xl">
         {/* {TermsContent?.title || "Terms and Conditions"} */}
         {"Terms and Conditions"}
       </h2>
       <div>
-        <h3 className="font-semibold text-[#262626] text-center my-2 text-2xl">
+        <h3 className="font-semibold text-[#262626] text-center px-1 my-2 text-xl md:text-2xl">
           Legal Terms and Conditions
         </h3>
         {/* <div className="max-w-7xl mt-15 mb-5  mx-auto px-4">
