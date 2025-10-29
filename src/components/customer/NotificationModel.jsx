@@ -189,9 +189,11 @@ export default function NotificationDropdown({ open, setOpen }) {
           className="relative focus:outline-none hover:opacity-80 transition"
         >
           <Bell className="w-6 h-6 text-gray-700" />
-          <span className="absolute -top-2 -right-3 flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-[var(--primary)] rounded-full">
-            {notifications.length}
-          </span>
+          {notifications.length > 0 && (
+            <span className="absolute -top-2 -right-3 flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-[var(--primary)] rounded-full">
+              {notifications.length}
+            </span>
+          )}
         </button>
       </PopoverTrigger>
 

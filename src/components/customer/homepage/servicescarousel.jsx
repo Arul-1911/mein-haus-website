@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const OurServicesCarousel = ({ slides = [], options = {} }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
@@ -61,9 +62,11 @@ const OurServicesCarousel = ({ slides = [], options = {} }) => {
                 />
               </div>
               <div className="absolute bottom-7 right-6">
-                <Button variant="black" className="rounded-full">
-                  <ArrowUpRight size={18} />
-                </Button>
+                <Link href={`/customer/service-details/${item.id}`}>
+                  <Button variant="black" className="rounded-full">
+                    <ArrowUpRight size={18} />
+                  </Button>
+                </Link>
               </div>
             </div>
           ))}

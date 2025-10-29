@@ -1,7 +1,6 @@
 import { fetchArticles } from "@/serverCalls/website";
 import Image from "next/image";
 import Link from "next/link";
-import slugify from "slugify";
 
 const Articles = async () => {
   // const articleSlides = [

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="shadow bg-[#F6F6F6] py-1 md:py-3">
+    <footer className="shadow bg-[#F6F6F6] py-1 md:py-2">
       <section className="flex max-lg:justify-center gap-5 my-7 justify-between mx-auto flex-wrap  items-start md:max-w-4xl lg:max-w-5xl xl:max-w-7xl">
         {/* top  */}
         <div className="flex flex-col gap-4">
@@ -67,7 +67,7 @@ function Footer() {
       {/* bottom  */}
       <div>
         {/* SOCIAL SECTION  */}
-        <div className="bg-[#1E9BD00F] p-4 flex flex-col justify-center items-center">
+        <div className="bg-[#1E9BD00F] pt-4 flex flex-col justify-center items-center">
           {/* TOP SECTION  */}
           <div className="flex justify-around gap-3">
             <span className="">
