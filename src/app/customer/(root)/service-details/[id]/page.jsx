@@ -1,7 +1,7 @@
 import Album from "@/components/customer/service-details-page/album";
 import BookEstimate from "@/components/customer/service-details-page/book-estimate";
-import Description from "@/components/customer/service-details-page/description";
-import Photos from "@/components/customer/service-details-page/photos";
+import Description from "@/components/customer/description";
+import Photos from "@/components/customer/photos";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -757,16 +757,18 @@ async function ServiceDetailsPage({ params }) {
         )}
         {/* Photos section  */}
         {service?.photos?.length > 0 && (
-          <>
-            <div className="p-5 bg-white rounded-2xl">
-              <h2 className="font-semibold text-xl">Photos</h2>
-              <div className="my-6">
-                <Photos photos={service.photos} />
-              </div>
+          <div className="p-5 bg-white rounded-2xl">
+            <h2 className="font-semibold text-xl">Photos</h2>
+            <div className="my-6">
+              <Photos photos={service.photos} />
             </div>
-          </>
+          </div>
         )}
       </section>
+      {/* mobile view create estimate  */}
+      <div className="flex justify-center items-center bg-white -mt-8 mb-8 md:hidden">
+        <BookEstimate />
+      </div>
     </main>
   );
 }

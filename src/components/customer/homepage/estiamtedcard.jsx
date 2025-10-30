@@ -3,8 +3,13 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 function EstiamtedCard({ estimate }) {
+  const navLink =
+    estimate.status === "pending"
+      ? `pending/${estimate.id}`
+      : `estimated/${estimate.id}`;
   return (
     <section className="px-4">
       <Card className="bg-[#F8F8F8] rounded-3xl border-none shadow">
@@ -78,12 +83,14 @@ function EstiamtedCard({ estimate }) {
               )}
             </div>
             <div>
-              <Button variant="black">
-                <span>View Details</span>{" "}
-                <span>
-                  <ArrowRight />
-                </span>
-              </Button>
+              <Link href={`/customer/estimated-work/${navLink}`}>
+                <Button variant="black">
+                  <span>View Details</span>{" "}
+                  <span>
+                    <ArrowRight />
+                  </span>
+                </Button>
+              </Link>
             </div>
           </div>
         </CardContent>
