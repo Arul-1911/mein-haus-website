@@ -1,5 +1,6 @@
 import DownloadInvoice from "@/components/customer/estimate-details-page/download-invoice";
 import InvoiceTable from "@/components/customer/estimate-details-page/invoice-table";
+import NearByProjectsAlbum from "@/components/customer/estimate-details-page/nearby-projects";
 import PaymentMethodSelection from "@/components/customer/estimate-details-page/payment-selection";
 import Reviews from "@/components/customer/estimate-details-page/reviews";
 import Photos from "@/components/customer/photos";
@@ -333,6 +334,134 @@ const feedbackList = [
   },
 ];
 
+const albums = [
+  {
+    id: 1,
+    albumName: "Home Rewiring Project",
+    serviceName: "Electrical Work",
+    customerRating: 4.8,
+    price: "123 - 258",
+    customerReview:
+      "Safe and professional electrical work. Our home is now up to code and much safer for our family.",
+    beforeImages: [
+      "https://www.bhg.com/thmb/U3sY3Up-M6It4eE7wyu6_zKBZN0=/1920x0/filters:no_upscale():strip_icc()/stylemaker-secret-white-den-b21ab396-d2636ff8d24449a99561054dc983475b.jpg",
+      "https://5.imimg.com/data5/SELLER/Default/2021/6/CA/KV/AP/52300782/renovation-services.jpg",
+      "https://sweeten.com/wp-content/uploads/2017/04/01_300-Riverside_1.jpg",
+      "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
+      "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogcZBZ5QKBAX_7_QQK4JczKv8OEWB1hFyzg&s",
+    ],
+    afterImages: [
+      "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "https://5.imimg.com/data5/SELLER/Default/2021/6/CA/KV/AP/52300782/renovation-services.jpg",
+      "https://www.bhg.com/thmb/U3sY3Up-M6It4eE7wyu6_zKBZN0=/1920x0/filters:no_upscale():strip_icc()/stylemaker-secret-white-den-b21ab396-d2636ff8d24449a99561054dc983475b.jpg",
+      "https://sweeten.com/wp-content/uploads/2017/04/01_300-Riverside_1.jpg",
+      "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogcZBZ5QKBAX_7_QQK4JczKv8OEWB1hFyzg&s",
+    ],
+  },
+  {
+    id: 2,
+    albumName: "Smart Home Installation",
+    serviceName: "Electrical Work",
+    customerRating: 4.7,
+    price: "123 - 258",
+    customerReview:
+      "Expert installation of our smart home system. Everything works perfectly and looks clean!",
+    beforeImages: [
+      "https://www.bhg.com/thmb/U3sY3Up-M6It4eE7wyu6_zKBZN0=/1920x0/filters:no_upscale():strip_icc()/stylemaker-secret-white-den-b21ab396-d2636ff8d24449a99561054dc983475b.jpg",
+      "https://5.imimg.com/data5/SELLER/Default/2021/6/CA/KV/AP/52300782/renovation-services.jpg",
+      "https://sweeten.com/wp-content/uploads/2017/04/01_300-Riverside_1.jpg",
+      "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
+      "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogcZBZ5QKBAX_7_QQK4JczKv8OEWB1hFyzg&s",
+    ],
+    afterImages: [
+      "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "https://5.imimg.com/data5/SELLER/Default/2021/6/CA/KV/AP/52300782/renovation-services.jpg",
+      "https://www.bhg.com/thmb/U3sY3Up-M6It4eE7wyu6_zKBZN0=/1920x0/filters:no_upscale():strip_icc()/stylemaker-secret-white-den-b21ab396-d2636ff8d24449a99561054dc983475b.jpg",
+      "https://sweeten.com/wp-content/uploads/2017/04/01_300-Riverside_1.jpg",
+      "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogcZBZ5QKBAX_7_QQK4JczKv8OEWB1hFyzg&s",
+    ],
+  },
+  {
+    id: 3,
+    albumName: "Lighting System Upgrade",
+    serviceName: "Electrical Work",
+    customerRating: 4.9,
+    price: "123 - 258",
+    customerReview:
+      "Transformed our home with new lighting. The dimmer switches and LED installation are fantastic!",
+    beforeImages: [
+      "https://www.bhg.com/thmb/U3sY3Up-M6It4eE7wyu6_zKBZN0=/1920x0/filters:no_upscale():strip_icc()/stylemaker-secret-white-den-b21ab396-d2636ff8d24449a99561054dc983475b.jpg",
+      "https://5.imimg.com/data5/SELLER/Default/2021/6/CA/KV/AP/52300782/renovation-services.jpg",
+      "https://sweeten.com/wp-content/uploads/2017/04/01_300-Riverside_1.jpg",
+      "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
+      "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogcZBZ5QKBAX_7_QQK4JczKv8OEWB1hFyzg&s",
+    ],
+    afterImages: [
+      "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "https://5.imimg.com/data5/SELLER/Default/2021/6/CA/KV/AP/52300782/renovation-services.jpg",
+      "https://www.bhg.com/thmb/U3sY3Up-M6It4eE7wyu6_zKBZN0=/1920x0/filters:no_upscale():strip_icc()/stylemaker-secret-white-den-b21ab396-d2636ff8d24449a99561054dc983475b.jpg",
+      "https://sweeten.com/wp-content/uploads/2017/04/01_300-Riverside_1.jpg",
+      "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogcZBZ5QKBAX_7_QQK4JczKv8OEWB1hFyzg&s",
+    ],
+  },
+  {
+    id: 4,
+    albumName: "Electrical Panel Replacement",
+    serviceName: "Electrical Work",
+    customerRating: 4.6,
+    price: "123 - 258",
+    customerReview:
+      "Replaced our outdated electrical panel. Much more reliable and safer for our appliances.",
+    beforeImages: [
+      "https://www.bhg.com/thmb/U3sY3Up-M6It4eE7wyu6_zKBZN0=/1920x0/filters:no_upscale():strip_icc()/stylemaker-secret-white-den-b21ab396-d2636ff8d24449a99561054dc983475b.jpg",
+      "https://5.imimg.com/data5/SELLER/Default/2021/6/CA/KV/AP/52300782/renovation-services.jpg",
+      "https://sweeten.com/wp-content/uploads/2017/04/01_300-Riverside_1.jpg",
+      "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
+      "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogcZBZ5QKBAX_7_QQK4JczKv8OEWB1hFyzg&s",
+    ],
+    afterImages: [
+      "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "https://5.imimg.com/data5/SELLER/Default/2021/6/CA/KV/AP/52300782/renovation-services.jpg",
+      "https://www.bhg.com/thmb/U3sY3Up-M6It4eE7wyu6_zKBZN0=/1920x0/filters:no_upscale():strip_icc()/stylemaker-secret-white-den-b21ab396-d2636ff8d24449a99561054dc983475b.jpg",
+      "https://sweeten.com/wp-content/uploads/2017/04/01_300-Riverside_1.jpg",
+      "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogcZBZ5QKBAX_7_QQK4JczKv8OEWB1hFyzg&s",
+    ],
+  },
+  {
+    id: 5,
+    albumName: "Outdoor Lighting & Outlets",
+    serviceName: "Electrical Work",
+    customerRating: 4.7,
+    price: "123 - 258",
+    customerReview:
+      "Perfect outdoor electrical setup for our garden and patio. Weatherproof and well-installed.",
+    beforeImages: [
+      "https://www.bhg.com/thmb/U3sY3Up-M6It4eE7wyu6_zKBZN0=/1920x0/filters:no_upscale():strip_icc()/stylemaker-secret-white-den-b21ab396-d2636ff8d24449a99561054dc983475b.jpg",
+      "https://5.imimg.com/data5/SELLER/Default/2021/6/CA/KV/AP/52300782/renovation-services.jpg",
+      "https://sweeten.com/wp-content/uploads/2017/04/01_300-Riverside_1.jpg",
+      "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
+      "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogcZBZ5QKBAX_7_QQK4JczKv8OEWB1hFyzg&s",
+    ],
+    afterImages: [
+      "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "https://5.imimg.com/data5/SELLER/Default/2021/6/CA/KV/AP/52300782/renovation-services.jpg",
+      "https://www.bhg.com/thmb/U3sY3Up-M6It4eE7wyu6_zKBZN0=/1920x0/filters:no_upscale():strip_icc()/stylemaker-secret-white-den-b21ab396-d2636ff8d24449a99561054dc983475b.jpg",
+      "https://sweeten.com/wp-content/uploads/2017/04/01_300-Riverside_1.jpg",
+      "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSogcZBZ5QKBAX_7_QQK4JczKv8OEWB1hFyzg&s",
+    ],
+  },
+];
+
 async function EstimatedDetailspage({ params }) {
   const { id } = await params;
 
@@ -513,7 +642,7 @@ async function EstimatedDetailspage({ params }) {
           </div>
         </div>
         {/* sub - contents  */}
-        <div className="bg-white rounded-2xl p-4 my-5">
+        <div className="bg-white rounded-2xl p-4 my-10">
           <div className="grid grid-cols-1 gap-7 md:gap-4 sm:grid-cols-3 place-items-center">
             <div className="flex gap-1 flex-col text-center items-center">
               <span>
@@ -543,11 +672,20 @@ async function EstimatedDetailspage({ params }) {
           </div>
         </div>
         {/* Featured projects near you  */}
-        <div></div>
+        {albums?.length > 0 && (
+          <div className="my-10">
+            <h2 className="font-semibold text-center text-2xl my-3">
+              Featured Projects Near You
+            </h2>
+            <NearByProjectsAlbum slides={albums} />
+          </div>
+        )}
         {/* client feedbacks  */}
-        <div className="my-8">
-          <Reviews feedbacks={feedbackList} />
-        </div>
+        {feedbackList?.length > 0 && (
+          <div className="my-8">
+            <Reviews feedbacks={feedbackList} />
+          </div>
+        )}
       </section>
     </main>
   );
