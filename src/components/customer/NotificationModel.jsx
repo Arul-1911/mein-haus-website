@@ -223,10 +223,10 @@ export default function NotificationDropdown({ open, setOpen }) {
             {notifications?.map((n) => (
               <div
                 key={n.id}
-                className="grid grid-cols-8 place-items-center gap-7 w-full p-2 last:pb-0 hover:bg-[#1E9BD01F] cursor-pointer  last:border-none rounded-2xl"
+                className="grid grid-cols-8 place-items-center gap-8 w-full p-2 last:pb-0 hover:bg-[#1E9BD01F] cursor-pointer  last:border-none rounded-2xl"
               >
                 {/* Blue dot indicator */}
-                <div className="flex justify-center col-span-1 items-center">
+                <div className="flex justify-center items-center">
                   {!n.read && (
                     <span className="w-2 h-2 bg-[#1E9BD0] rounded-full inline-block"></span>
                   )}

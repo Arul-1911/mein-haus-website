@@ -187,7 +187,7 @@ export default function CreateEstimate({ mode = false, onClose }) {
                       <SelectItem
                         key={addr.id}
                         value={addr.label}
-                        className="whitespace-normal break-words"
+                        className="whitespace-normal wrap-break-word"
                       >
                         {addr.label.length > 35
                           ? addr.label.slice(0, 35) + "..."

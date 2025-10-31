@@ -24,7 +24,7 @@ const Page = () => {
       id: 2,
       estimatedDate: "20 Sep 2025",
       projectid: "#DS-466",
-      status: "estiamted",
+      status: "estimated",
       title: " Bathroom renovation for my house",
       deadline: "Less than a week",
       estiamtedAmount: "2500",

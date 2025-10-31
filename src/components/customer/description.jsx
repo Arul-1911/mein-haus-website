@@ -17,7 +17,7 @@ function Description({ description, limit = 200 }) {
         {isLong && (
           <button
             onClick={() => setIsExpanded((prev) => !prev)}
-            className="text-[var(--primary)] hover:underline font-medium mx-1"
+            className="text-primary hover:underline font-medium mx-1"
           >
             {expanded ? "Read Less" : "Read More..."}
           </button>

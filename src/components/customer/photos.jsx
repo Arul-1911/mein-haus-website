@@ -41,7 +41,7 @@ export default function Photos({ photos }) {
               key={i}
               data-lg-size="1406-1390"
               data-allow-lightgallery={isLastVisible ? "false" : "true"}
-              className="relative block h-42 w-full md:w-50"
+              className="relative block h-32 w-full md:w-50"
               onClick={(e) => {
                 if (isLastVisible) {
                   e.preventDefault();
@@ -51,7 +51,7 @@ export default function Photos({ photos }) {
             >
               <Image
                 src={url}
-                alt="Photo"
+                alt="Project Photo"
                 fill
                 className="rounded-2xl object-cover"
               />

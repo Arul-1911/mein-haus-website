@@ -3,13 +3,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { Star, StarHalf } from "lucide-react";
-import clsx from "clsx";
 import { renderStars } from "@/utils/website/renderStars";
 
-const Feedback = ({ feedbacks = [] }) => {
+const Reviews = ({ feedbacks = [] }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 3000, stopOnInteraction: false }),
+    Autoplay({ delay: 5000, stopOnInteraction: false }),
   ]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -25,15 +23,15 @@ const Feedback = ({ feedbacks = [] }) => {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="bg-[#F6F6F6] py-7">
+    <section className="bg-white py-7 rounded-2xl">
       <div>
-        <h2 className="font-secondary text-center text-2xl mt-4 font-medium md:text-4xl">
-          What Clients are Saying
+        <h2 className="font-semibold text-center text-2xl mt-4">
+          What Our Customers Are Saying
         </h2>
       </div>
-      <div className="max-w-xl mx-auto py-10">
+      <div className="max-w-2xl mx-auto py-10">
         <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex">
+          <div className="flex w-full md:w-[50%]">
             {feedbacks?.map((item) => (
               <div
                 key={item?.id}
@@ -42,11 +40,11 @@ const Feedback = ({ feedbacks = [] }) => {
                 {/*Dynamic Stars */}
                 {renderStars(item?.rating)}
 
-                <p className="text-lg text-gray-800 my-2">"{item?.review}"</p>
                 <p className="font-semibold text-gray-600">{item?.name}</p>
                 <p className="text-[#9D9D9D] text-sm font-thin">
                   {item?.country}
                 </p>
+                <p className="text-lg text-gray-800 my-2">"{item?.review}"</p>
               </div>
             ))}
           </div>
@@ -70,4 +68,4 @@ const Feedback = ({ feedbacks = [] }) => {
   );
 };
 
-export default Feedback;
+export default Reviews;
