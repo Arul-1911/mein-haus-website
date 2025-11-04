@@ -74,7 +74,20 @@ function StripeCheckoutForm({ id }) {
       )}
 
       <div className="border p-3 rounded-md">
-        <CardElement options={{ style: { base: { fontSize: "1rem" } } }} />
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#32325d",
+                fontFamily: "system-ui, sans-serif",
+                "::placeholder": { color: "#a0aec0" },
+                padding: "12px 0",
+              },
+              invalid: { color: "#e53e3e" },
+            },
+          }}
+        />
       </div>
       <Button
         type="submit"
