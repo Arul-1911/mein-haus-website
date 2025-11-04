@@ -13,14 +13,14 @@ const paymentOptions = [
     name: "Credit Card Payment",
     desc: "Pay each project as we complete it.",
     img: "/customer/root/estimate/stripe.png",
-    url: "/customer/payment/stripe",
+    url: "/customer/estimated-work/estimated/2/payment/stripe",
   },
   {
     id: "klarna",
     name: "Klarna: Buy Now, Pay Later",
     desc: "Pay in installments with Klarna.",
     img: "/customer/root/estimate/klarnaa.png",
-    url: "/customer/payment/klarna",
+    url: "/customer/estimated-work/estimated/2/payment/klarna",
   },
 ];
 

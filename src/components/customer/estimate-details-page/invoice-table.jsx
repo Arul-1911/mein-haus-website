@@ -12,7 +12,7 @@ import {
 import { Trash2 } from "lucide-react";
 import Description from "../description";
 
-function InvoiceTable({ items }) {
+function InvoiceTable({ items, showDelete = true }) {
   const router = useRouter();
 
   const handleDelete = async (id) => {
@@ -27,7 +27,7 @@ function InvoiceTable({ items }) {
             <TableHead>Service Name</TableHead>
             <TableHead>Deposit Amount</TableHead>
             <TableHead>Project Cost</TableHead>
-            <TableHead>Action</TableHead>
+            {showDelete && <TableHead>Action</TableHead>}
           </TableRow>
         </TableHeader>
         <TableBody className="text-start">
@@ -47,15 +47,17 @@ function InvoiceTable({ items }) {
               <TableCell className="font-semibold text-[#9D9D9D]">
                 ${item.projectCost.toFixed(2)}
               </TableCell>
-              <TableCell>
-                <div>
-                  <Trash2
-                    className="text-red-500"
-                    onClick={() => handleDelete(item.id)}
-                    size={16}
-                  />
-                </div>
-              </TableCell>
+              {showDelete && (
+                <TableCell>
+                  <div>
+                    <Trash2
+                      className="text-red-500"
+                      onClick={() => handleDelete(item.id)}
+                      size={16}
+                    />
+                  </div>
+                </TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>
