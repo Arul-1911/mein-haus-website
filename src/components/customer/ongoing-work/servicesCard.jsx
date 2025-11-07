@@ -15,7 +15,7 @@ function OngoingWorkServicesCard({ estimate }) {
         <CardHeader className="-my-2">
           <div className="border-b-3 border-dashed" />
         </CardHeader>
-        <CardContent className="flex justify-between">
+        <CardContent className="flex justify-between gap-3">
           {/* left  */}
           <div className="flex flex-col gap-3">
             <div>

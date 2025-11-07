@@ -7,7 +7,7 @@ function CompletedWorkCard({ estimate }) {
   return (
     <section className="px-4">
       <Card className="bg-[#F8F8F8] rounded-3xl border-none shadow">
-        <CardHeader className="flex justify-between flex-wrap">
+        <CardHeader className="flex justify-between gap-1 flex-wrap">
           <div>
             <p className="text-[#9D9D9D] font-normal text-md">
               {estimate.projectid}
@@ -24,7 +24,7 @@ function CompletedWorkCard({ estimate }) {
         <CardHeader>
           <div className="border-b-3 border-dashed" />
         </CardHeader>
-        <CardContent className="flex justify-between">
+        <CardContent className="flex justify-between gap-3">
           {/* left  */}
           <div className="flex flex-col gap-3">
             <div>

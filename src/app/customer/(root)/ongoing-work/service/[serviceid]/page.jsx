@@ -952,7 +952,7 @@ async function OngoingServiceDetailsPage({ params }) {
                       alt="Completed-projects image"
                       fill
                       sizes="(max-width: 768px) 160px, 360px"
-                      className="z-2"
+                      className="z-2 rounded"
                     />
                     <div className="absolute top-2 left-3 z-3">
                       <p className="font-semibold text-xl">
@@ -995,7 +995,7 @@ async function OngoingServiceDetailsPage({ params }) {
             {/* Recent projects  */}
             <div className="bg-white p-4 my-5 rounded-2xl">
               <h2 className="font-semibold text-xl">Recent Projects</h2>
-              <div className="max-w-sm">
+              <div className="w-full">
                 <Album slides={data.recentProjects} isRecent={true} />
               </div>
             </div>

@@ -421,18 +421,18 @@ async function OngoingWorkDetailsPage({ params }) {
             {data?.projectid || "N/A"}
           </div>
           <div className="flex items-center gap-3">
-            <div>
+            {/* <div>
               <Button variant="black">
                 <span>
                   <Wallet />
                 </span>
                 <p>Invoice</p>
               </Button>
-            </div>
+            </div> */}
             {/* three dots  */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="my-3 text-md lg:text-lg lg:px-4 cursor-pointer py-2 bg-black text-white rounded-4xl">
+                <Button className="my-3 text-md lg:text-lg lg:px-4 cursor-pointer py-2 bg-black hover:bg-black/80 text-white rounded-4xl">
                   <EllipsisVertical />
                 </Button>
               </DropdownMenuTrigger>
@@ -441,7 +441,7 @@ async function OngoingWorkDetailsPage({ params }) {
                 align="center"
               >
                 <DropdownMenuGroup className="text-center text-[#545454]">
-                  <DropdownMenuItem>
+                  {/* <DropdownMenuItem>
                     <Link
                       href="/customer/invoice"
                       className="flex items-center gap-2 font-medium"
@@ -452,7 +452,7 @@ async function OngoingWorkDetailsPage({ params }) {
                       <p>Invoice</p>
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuSeparator />
+                  <DropdownMenuSeparator /> */}
                   <DropdownMenuItem>
                     <Link
                       href="/customer/notes"
@@ -551,7 +551,10 @@ async function OngoingWorkDetailsPage({ params }) {
                 <div className="p-5 bg-white rounded-2xl">
                   <p className="font-semibold text-xl">Description</p>
                   <div>
-                    <Description description={data?.description} />
+                    <Description
+                      description={data?.description}
+                      textsize="text-md"
+                    />
                   </div>
                 </div>
               )}

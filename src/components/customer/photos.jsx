@@ -9,7 +9,7 @@ import "lightgallery/css/lg-zoom.css";
 import "lightgallery/css/lg-thumbnail.css";
 
 export default function Photos({ photos }) {
-  const [limit, setLimit] = useState(8);
+  const [limit, setLimit] = useState(4);
   const galleryRef = useRef(null);
 
   useEffect(() => {
@@ -30,10 +30,10 @@ export default function Photos({ photos }) {
     <section>
       <div
         ref={galleryRef}
-        className="grid gap-6 items-center grid-cols-1 md:grid-cols-3 lg:grid-cols-4"
+        className="grid gap-6 items-center grid-cols-1 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4"
       >
         {photos.slice(0, limit).map((url, i) => {
-          const isLastVisible = i === 7 && limit !== photos.length;
+          const isLastVisible = i === 3 && limit !== photos.length;
 
           return (
             <a
@@ -41,7 +41,7 @@ export default function Photos({ photos }) {
               key={i}
               data-lg-size="1406-1390"
               data-allow-lightgallery={isLastVisible ? "false" : "true"}
-              className="relative block h-32 w-full md:w-50"
+              className="relative block h-32 w-full md:w-40 lg:w-45"
               onClick={(e) => {
                 if (isLastVisible) {
                   e.preventDefault();
