@@ -13,7 +13,7 @@ const ResetPasswordPage = () => {
               <h2 className="font-semibold text-center text-2xl mt-3 md:mt-1 md:text-4xl">
                 Set a new Password
               </h2>
-              <p className="text-[var(--gray)] max-w-sm text-center">
+              <p className="text-(--gray) max-w-sm text-center">
                 Please enter your new password.
               </p>
             </div>
@@ -23,7 +23,7 @@ const ResetPasswordPage = () => {
           </div>
         </div>
         {/* {Right section } */}
-        <div className="bg-[var(--primary-light)] order-1 md:order-2 h-full">
+        <div className="bg-(--primary-light) order-1 md:order-2 h-full">
           <div className="mx-auto max-w-2xl flex flex-col items-center py-3 h-full w-full justify-center gap-1 md:gap-3">
             <div className="relative group w-40 h-10 md:w-90 md:h-17">
               <Image
@@ -38,7 +38,7 @@ const ResetPasswordPage = () => {
               />
             </div>
             <div className="my-2">
-              <h1 className="font-primary text-[var(--primary)] px-1 my-3 font-bold text-xl text-center md:text-2xl">
+              <h1 className="font-primary text-primary px-1 my-3 font-bold text-xl text-center md:text-2xl">
                 Any Reno. Any Size. Any Time.
               </h1>
             </div>

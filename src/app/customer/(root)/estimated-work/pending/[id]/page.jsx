@@ -25,7 +25,7 @@ async function EstimatePendingDetailsPage({ params }) {
           <h2 className="font-semibold text-2xl items-center  md:max-w-[60%]">
             {data?.title || "N/A"}
           </h2>
-          <div className="border-1 border-dashed  w-full" />
+          <div className="border border-dashed  w-full" />
           <div className="grid grid-cols-2 md:grid-cols-4 font-medium gap-5 items-center w-full">
             {data.EstimateNo && (
               <div>
@@ -50,7 +50,7 @@ async function EstimatePendingDetailsPage({ params }) {
             {data.status && (
               <div className="">
                 <p className="text-[#ABABAB] font-medium ml-3">Status</p>
-                <p className="bg-[#FD760D1F] text-center text-[var(--secondary)] px-2 py-1 w-fit rounded-2xl">
+                <p className="bg-[#FD760D1F] text-center text-secondary px-2 py-1 w-fit rounded-2xl">
                   {data.status}
                 </p>
               </div>

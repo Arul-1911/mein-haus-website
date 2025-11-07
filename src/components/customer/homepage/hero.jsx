@@ -14,10 +14,10 @@ function HeroSection() {
         {/* left section  */}
         <div className="flex flex-col  max-sm:text-center gap-6 justify-start pt-2 md:pt-4 items-center md:items-start w-full md:max-w-xl my-8 md:mx-6">
           <h1 className="font-bold leading-10 md:leading-14 lg:leading-18 text-3xl md:text-5xl lg:text-6xl">
-            Get an <span className="text-[var(--primary)]"> Instant Quote</span>{" "}
-            for Any Project—Anytime.
+            Get an <span className="text-primary"> Instant Quote</span> for Any
+            Project—Anytime.
           </h1>
-          <p className="text-[var(--gray)] font-medium text-lg">
+          <p className="text-(--gray) font-medium text-lg">
             From renovations to repairs, we make it easy to plan your next home
             upgrade with confidence.
           </p>

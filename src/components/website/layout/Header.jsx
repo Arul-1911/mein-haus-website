@@ -135,7 +135,7 @@ export default function Header() {
                 className={`${
                   isActive(link.href)
                     ? "text-[#F88B36]"
-                    : "text-[color:var(--color-gray)] hover:text-black"
+                    : "text-(--color-gray) hover:text-black"
                 } text-lg`}
               >
                 {link.label}

@@ -13,7 +13,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
-function Album({ slides, options = {} }) {
+function Album({ slides, options = {}, isRecent = false }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [nextDisabled, setNextDisabled] = useState(true);
@@ -47,7 +47,9 @@ function Album({ slides, options = {} }) {
           {slides?.map((item, index) => (
             <div
               key={index}
-              className="flex-[0_0_98%] md:flex-[0_0_41%] lg:flex-[0_0_21%] md:max-w-full bg-white rounded"
+              className={`flex-[0_0_98%] md:flex-[0_0_41%] ${
+                isRecent ? "lg:flex-[0_0_46%]" : "lg:flex-[0_0_21%]"
+              } md:max-w-full bg-white rounded`}
             >
               <Image
                 src={`${item?.afterImages[0]}`}
@@ -102,7 +104,7 @@ function Album({ slides, options = {} }) {
         </button>
       </div>
 
-      {console.log(album)}
+      {/* {console.log(album)} */}
 
       {/* Modal */}
       <Dialog
@@ -129,7 +131,11 @@ function Album({ slides, options = {} }) {
                     </h2>
                     <div className="text-sm flex flex-col items-end">
                       <div className="flex items-center gap-1">
-                        <Star className="text-[#1E9BD0]" size={17} />
+                        <Star
+                          className="text-[#1E9BD0]"
+                          style={{ fill: "#1E9BD0" }}
+                          size={17}
+                        />
                         {album?.customerRating} / 5
                       </div>
                       <div className="text-muted-foreground text-right text-xs">

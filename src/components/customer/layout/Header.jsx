@@ -7,7 +7,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Bell, MessageSquareText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -54,7 +53,7 @@ function Header() {
                         isActive(link.href)
                           ? "text-[#1E9BD0]"
                           : "text-black hover:text-[#1E9BD0]"
-                      } text-md`}
+                      } text-md font-medium`}
                     >
                       {link.label}
                     </Link>
@@ -117,8 +116,8 @@ function Header() {
             href="/customer"
             className={` ${
               isActive("/customer")
-                ? "text-[var(--primary)]"
-                : "text-black hover:text-[var(--primary)]"
+                ? "text-primary"
+                : "text-black hover:text-primary"
             } text-md`}
           >
             <p>Home</p>
@@ -127,8 +126,8 @@ function Header() {
             href="/customer/estimated-work"
             className={` ${
               isActive("/customer/estimated-work")
-                ? "text-[var(--primary)]"
-                : "text-black hover:text-[var(--primary)]"
+                ? "text-primary"
+                : "text-black hover:text-primary"
             } text-md`}
           >
             <p>Estimated work</p>
@@ -137,8 +136,8 @@ function Header() {
             href="/customer/ongoing-work"
             className={` ${
               isActive("/customer/ongoing-work")
-                ? "text-[var(--primary)]"
-                : "text-black hover:text-[var(--primary)]"
+                ? "text-primary"
+                : "text-black hover:text-primary"
             } text-md`}
           >
             <p>Ongoing work</p>
@@ -147,8 +146,8 @@ function Header() {
             href="/customer/completed-work"
             className={` ${
               isActive("/customer/completed-work")
-                ? "text-[var(--primary)]"
-                : "text-black hover:text-[var(--primary)]"
+                ? "text-primary"
+                : "text-black hover:text-primary"
             } text-md`}
           >
             <p>Completed work</p>

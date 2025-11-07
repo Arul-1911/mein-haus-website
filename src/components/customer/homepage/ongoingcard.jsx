@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 function OngoingCard({ estimate }) {
   return (
@@ -53,12 +54,14 @@ function OngoingCard({ estimate }) {
               {estimate.services}
             </div>
             <div>
-              <Button variant="black">
-                <span>View Details</span>{" "}
-                <span>
-                  <ArrowRight />
-                </span>
-              </Button>
+              <Link href={`/customer/ongoing-work/${estimate.id}`}>
+                <Button variant="black">
+                  <span>View Details</span>{" "}
+                  <span>
+                    <ArrowRight />
+                  </span>
+                </Button>
+              </Link>
             </div>
           </div>
         </CardContent>

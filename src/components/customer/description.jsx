@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-function Description({ description, limit = 200 }) {
+function Description({ description, limit = 200, textsize = "text-xl" }) {
   if (!description) return null;
   const [expanded, setIsExpanded] = useState(false);
 
@@ -11,7 +11,7 @@ function Description({ description, limit = 200 }) {
 
   return (
     <section className="my-2">
-      <div className="font-normal text-[#ABABAB]">
+      <div className={`font-normal text-[#ABABAB] ${textsize}`}>
         {displayText}
 
         {isLong && (
