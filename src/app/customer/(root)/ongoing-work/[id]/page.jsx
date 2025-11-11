@@ -441,9 +441,9 @@ async function OngoingWorkDetailsPage({ params }) {
                 align="center"
               >
                 <DropdownMenuGroup className="text-center text-[#545454]">
-                  {/* <DropdownMenuItem>
+                  <DropdownMenuItem>
                     <Link
-                      href="/customer/invoice"
+                      href="/customer/ongoing-work/invoice/reg-due/2"
                       className="flex items-center gap-2 font-medium"
                     >
                       <div>
@@ -452,7 +452,7 @@ async function OngoingWorkDetailsPage({ params }) {
                       <p>Invoice</p>
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuSeparator /> */}
+                  <DropdownMenuSeparator />
                   <DropdownMenuItem>
                     <Link
                       href="/customer/notes"

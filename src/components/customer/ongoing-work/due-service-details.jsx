@@ -1,6 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -12,7 +11,7 @@ import {
 import { Trash2 } from "lucide-react";
 import Description from "../description";
 
-function InvoiceTable({ items, showDelete = true }) {
+function DueServiceInvoiceTable({ items, showDelete = true }) {
   const router = useRouter();
 
   const handleDelete = async (id) => {
@@ -27,7 +26,7 @@ function InvoiceTable({ items, showDelete = true }) {
             <TableHead>Service Name</TableHead>
             <TableHead>Deposit Amount</TableHead>
             <TableHead>Project Cost</TableHead>
-            {showDelete && <TableHead>Action</TableHead>}
+            <TableHead>Due</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody className="text-start">
@@ -51,17 +50,10 @@ function InvoiceTable({ items, showDelete = true }) {
               <TableCell className="font-semibold text-[#9D9D9D]">
                 ${item.projectCost.toFixed(2)}
               </TableCell>
-              {showDelete && (
-                <TableCell>
-                  <div>
-                    <Trash2
-                      className="text-red-500 ml-3.5"
-                      onClick={() => handleDelete(item.id)}
-                      size={16}
-                    />
-                  </div>
-                </TableCell>
-              )}
+
+              <TableCell className="font-semibold text-[#9D9D9D]">
+                ${item.due.toFixed(2)}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -70,4 +62,4 @@ function InvoiceTable({ items, showDelete = true }) {
   );
 }
 
-export default InvoiceTable;
+export default DueServiceInvoiceTable;

@@ -695,14 +695,14 @@ async function OngoingServiceDetailsPage({ params }) {
             {data?.projectid || "N/A"} / {data?.serviceName}
           </div>
           <div className="flex items-center gap-3">
-            <div>
+            <Link href="/customer/ongoing-work/invoice/service-due/2">
               <Button variant="black">
                 <span>
                   <Wallet />
                 </span>
                 <p>Invoice</p>
               </Button>
-            </div>
+            </Link>
             {/* three dots  */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
