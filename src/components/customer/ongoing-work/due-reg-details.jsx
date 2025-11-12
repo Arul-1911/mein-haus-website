@@ -11,7 +11,6 @@ import {
 import { Plus, Trash2 } from "lucide-react";
 import Description from "../description";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 
 function DueRegsInvoiceTable({ items, showDelete = true }) {
   const router = useRouter();

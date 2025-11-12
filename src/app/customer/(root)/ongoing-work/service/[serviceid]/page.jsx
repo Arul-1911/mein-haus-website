@@ -900,12 +900,15 @@ async function OngoingServiceDetailsPage({ params }) {
             <div className="mt-6 bg-[#1E9BD01F] flex justify-between items-center p-4 rounded-2xl">
               <div>
                 <p className="font-medium ">You have new notes</p>
-                <p className="text-primary  flex items-center gap-3">
+                <Link
+                  href={`/customer/ongoing-work/service/${serviceid}/notes`}
+                  className="text-primary  flex items-center gap-3"
+                >
                   Click here to view them{" "}
                   <span>
                     <MoveRight className="text-primary" />
                   </span>
-                </p>
+                </Link>
               </div>
               <div className="relative h-15 w-15">
                 <Image
@@ -952,7 +955,7 @@ async function OngoingServiceDetailsPage({ params }) {
                       alt="Completed-projects image"
                       fill
                       sizes="(max-width: 768px) 160px, 360px"
-                      className="z-2 rounded"
+                      className="z-2 rounded-2xl"
                     />
                     <div className="absolute top-2 left-3 z-3">
                       <p className="font-semibold text-xl">

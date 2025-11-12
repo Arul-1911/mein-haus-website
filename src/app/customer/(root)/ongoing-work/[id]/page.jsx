@@ -452,7 +452,7 @@ async function OngoingWorkDetailsPage({ params }) {
                       <p>Invoice</p>
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuSeparator />
+                  {/* <DropdownMenuSeparator />
                   <DropdownMenuItem>
                     <Link
                       href="/customer/notes"
@@ -474,7 +474,7 @@ async function OngoingWorkDetailsPage({ params }) {
                         <p>Support</p>
                       </div>
                     </Link>
-                  </DropdownMenuItem>
+                  </DropdownMenuItem> */}
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
