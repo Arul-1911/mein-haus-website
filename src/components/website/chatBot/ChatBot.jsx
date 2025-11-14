@@ -399,9 +399,9 @@ export default function Chatbot({ userId = null }) {
                 <>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button>
+                      <div>
                         <History size={22} />
-                      </button>
+                      </div>
                     </TooltipTrigger>
                     <TooltipContent className="mb-3">
                       <p>Load Chat History</p>
@@ -568,7 +568,7 @@ export default function Chatbot({ userId = null }) {
               size="icon"
               onClick={() => fileRef.current?.click()}
               disabled={isChatLoading}
-              className="flex-shrink-0 cursor-pointer"
+              className="shrink-0 cursor-pointer"
             >
               📎
             </Button>
@@ -592,7 +592,7 @@ export default function Chatbot({ userId = null }) {
             <Button
               onClick={validateAndSend}
               disabled={isChatLoading}
-              className="flex-shrink-0 cursor-pointer"
+              className="shrink-0 cursor-pointer"
             >
               Send
             </Button>

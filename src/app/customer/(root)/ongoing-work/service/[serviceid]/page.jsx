@@ -717,7 +717,7 @@ async function OngoingServiceDetailsPage({ params }) {
                 <DropdownMenuGroup className="text-center text-[#545454]">
                   <DropdownMenuItem>
                     <Link
-                      href="/customer/notes"
+                      href={`/customer/ongoing-work/service/${serviceid}/notes`}
                       className="flex items-center gap-2 font-medium"
                     >
                       <div>
@@ -968,12 +968,16 @@ async function OngoingServiceDetailsPage({ params }) {
                   </div>
                 </div>
                 <div className="w-full">
-                  <Button className="w-full mt-4">
-                    <span>
-                      <MessageCircleMoreIcon />
-                    </span>
-                    <span>Message Pro</span>
-                  </Button>
+                  <Link
+                    href={`/customer/ongoing-work/service/${serviceid}/message`}
+                  >
+                    <Button className="w-full mt-4">
+                      <span>
+                        <MessageCircleMoreIcon />
+                      </span>
+                      <span>Message Pro</span>
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
