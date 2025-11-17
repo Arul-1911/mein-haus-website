@@ -9,6 +9,7 @@ import { CircleUserRound, MessageSquareText, X } from "lucide-react";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const messages = [
   {
@@ -186,7 +187,7 @@ export default function MessageDropdown({ open, setOpen }) {
         >
           <MessageSquareText className="w-6 h-6 text-gray-700" />
           {messages.length > 0 && (
-            <span className="absolute -top-2 -right-3 flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-[var(--primary)] rounded-full">
+            <span className="absolute -top-2 -right-3 flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-primary rounded-full">
               {messages.length}
             </span>
           )}
@@ -216,7 +217,8 @@ export default function MessageDropdown({ open, setOpen }) {
           >
             {messages?.map((n) => (
               // Grid div
-              <div
+              <Link
+                href={`/customer/all-messages/${n.id}`}
                 key={n.id}
                 className="grid grid-cols-6 gap-6  md:gap-3 w-full p-3 last:pb-0 hover:bg-[#1E9BD01F] cursor-pointer  last:border-none rounded-2xl "
               >
@@ -274,7 +276,7 @@ export default function MessageDropdown({ open, setOpen }) {
                     </p>
                   )}
                 </div>
-              </div>
+              </Link>
             ))}
           </ul>
         ) : (

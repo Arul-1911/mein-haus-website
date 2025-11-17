@@ -1,4 +1,4 @@
-import MessageWithPro from "@/components/customer/ongoing-work/message-pro";
+import MessageWithPro from "@/components/customer/message-pro";
 
 const chat = {
   projectId: "PRJ-10239",
@@ -76,7 +76,7 @@ const chat = {
 function Page() {
   return (
     <main className="bg-[#F9F9F9]">
-      <div className="max-w-8xl mx-auto px-4 py-6">
+      <div className="max-w-7xl mx-auto px-4 py-6">
         <MessageWithPro chat={chat} />
       </div>
     </main>
