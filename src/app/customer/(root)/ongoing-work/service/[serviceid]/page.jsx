@@ -728,7 +728,9 @@ async function OngoingServiceDetailsPage({ params }) {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
-                    <Link href="/customer/support">
+                    <Link
+                      href={`/customer/ongoing-work/service/${serviceid}/support`}
+                    >
                       <div className="flex items-center gap-2 font-medium">
                         <div>
                           <Headset />
