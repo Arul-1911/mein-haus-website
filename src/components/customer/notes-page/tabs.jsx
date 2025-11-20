@@ -12,7 +12,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import { useState } from "react";
-function NotesTabs({ notes }) {
+function NotesTabs({ notes, addNotes }) {
   const forCustomers = notes.filter((item) => item.isForPro === true);
   const forProsAndCustomers = notes.filter((item) => item.isForPro === false);
   return (
@@ -47,7 +47,7 @@ function NotesTabs({ notes }) {
                 ))}
               </>
             ) : (
-              <NoNotes />
+              <NoNotes addNotes={addNotes} />
             )}
           </TabsContent>
           <TabsContent value="professional">
@@ -58,7 +58,7 @@ function NotesTabs({ notes }) {
                 ))}
               </>
             ) : (
-              <NoNotes />
+              <NoNotes addNotes={addNotes} />
             )}
           </TabsContent>
         </div>

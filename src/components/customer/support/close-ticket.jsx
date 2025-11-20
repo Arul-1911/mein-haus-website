@@ -23,8 +23,6 @@ const schema = yup.object({
 
 // Query Modal
 function KeepOpenModal({ mode = false, onClose }) {
-  const [images, setImages] = useState([]);
-
   const {
     register,
     handleSubmit,
@@ -35,23 +33,9 @@ function KeepOpenModal({ mode = false, onClose }) {
     defaultValues: { description: "" },
   });
 
-  const handleImageUpload = (e) => {
-    const files = Array.from(e.target.files || []);
-    if (images.length + files.length > 5) {
-      alert("You can upload up to 5 images only.");
-      return;
-    }
-    setImages((prev) => [...prev, ...files]);
-  };
-
-  const removeImage = (index) => {
-    setImages((prev) => prev.filter((_, i) => i !== index));
-  };
-
   const onSubmit = (data) => {
     console.log({
       ...data,
-      images,
     });
 
     onClose?.();

@@ -3,13 +3,13 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
-function OngoingWorkServicesCard({ estimate }) {
+function CompletedWorkServicesCard({ estimate }) {
   return (
     <section className="px-4">
       <Card className="bg-white rounded-3xl border-none shadow-none">
         <CardHeader className="flex justify-between flex-wrap">
           <div>
-            <h2>{estimate.serviceName.slice(0, 30)}</h2>
+            <h2>{estimate?.serviceName?.slice(0, 30)}</h2>
           </div>
         </CardHeader>
         <CardHeader className="-my-2">
@@ -23,14 +23,14 @@ function OngoingWorkServicesCard({ estimate }) {
                 <p className="text-[#9D9D9D] font-normal text-md">
                   Assigned Date
                 </p>
-                <p>{estimate.assignedDate}</p>
+                <p>{estimate?.assignedDate}</p>
               </div>
             </div>
             <div>
               <p className="text-[#9D9D9D] font-normal text-md">Assigned pro</p>
               <p>
-                {estimate.assignedProName ? (
-                  estimate.assignedProName
+                {estimate?.assignedProName ? (
+                  estimate?.assignedProName
                 ) : (
                   <p className="text-[#FD760D] font-medium">Not assigned yet</p>
                 )}
@@ -41,11 +41,11 @@ function OngoingWorkServicesCard({ estimate }) {
           <div className="space-y-4">
             <div className="">
               <p className="text-[#9D9D9D] font-normal text-md">Service cost</p>
-              ${estimate.projectCost}
+              ${estimate?.projectCost}
             </div>
-            {estimate.assignedProName && (
+            {estimate?.assignedProName && (
               <div>
-                <Link href={`/customer/ongoing-work/service/${estimate?.id}`}>
+                <Link href={`/customer/completed-work/service/${estimate?.id}`}>
                   <Button variant="" className="py-5 text-md">
                     <span>View More</span>{" "}
                     <span>
@@ -62,4 +62,4 @@ function OngoingWorkServicesCard({ estimate }) {
   );
 }
 
-export default OngoingWorkServicesCard;
+export default CompletedWorkServicesCard;

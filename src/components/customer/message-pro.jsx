@@ -27,7 +27,7 @@ function MessageWithPro({ chat }) {
   return (
     <main className="bg-white shadow py-3 px-6 rounded-xl">
       {/* top section  */}
-      <div className="flex justify-between gap-5 items-center">
+      <div className="flex justify-between flex-wrap gap-5 items-center">
         <div className="flex items-center gap-4">
           <Avatar>
             <AvatarImage src={chat.pro.profileImage} />

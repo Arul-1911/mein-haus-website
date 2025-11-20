@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 function CompletedWorkCard({ estimate }) {
   return (
@@ -10,15 +11,15 @@ function CompletedWorkCard({ estimate }) {
         <CardHeader className="flex justify-between gap-1 flex-wrap">
           <div>
             <p className="text-[#9D9D9D] font-normal text-md">
-              {estimate.projectid}
+              {estimate?.projectid}
             </p>
-            <h2>{estimate.title.slice(0, 20)}...</h2>
+            <h2>{estimate?.title?.slice(0, 20)}...</h2>
           </div>
           <div className="flex flex-col">
             <span className="text-[#9D9D9D] font-normal text-md">
               Total Project Cost
             </span>
-            <span>${estimate.totalCost}</span>
+            <span>${estimate?.totalCost}</span>
           </div>
         </CardHeader>
         <CardHeader>
@@ -32,7 +33,7 @@ function CompletedWorkCard({ estimate }) {
                 <p className="text-[#9D9D9D] font-normal text-md">
                   Completed Date
                 </p>
-                <p>{estimate.createdAt}</p>
+                <p>{estimate?.createdAt}</p>
               </div>
             </div>
             <div>
@@ -50,16 +51,16 @@ function CompletedWorkCard({ estimate }) {
               <p className="text-[#9D9D9D] font-normal text-md">
                 No.of Services
               </p>
-              {estimate.services}
+              {estimate?.services}
             </div>
-            <div>
+            <Link href={`/customer/completed-work/${estimate?.id}`}>
               <Button variant="black">
                 <span>View Details</span>{" "}
                 <span>
                   <ArrowRight />
                 </span>
               </Button>
-            </div>
+            </Link>
           </div>
         </CardContent>
       </Card>

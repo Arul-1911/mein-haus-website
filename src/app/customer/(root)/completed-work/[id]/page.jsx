@@ -1,5 +1,5 @@
+import CompletedWorkServicesCard from "@/components/customer/completed-work/servicesCard";
 import Description from "@/components/customer/description";
-import OngoingWorkServicesCard from "@/components/customer/ongoing-work/servicesCard";
 import Photos from "@/components/customer/photos";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +12,7 @@ import {
 import { ChevronLeft, EllipsisVertical, Wallet } from "lucide-react";
 import Link from "next/link";
 
-const ongoingWorkData = [
+const completedWorkData = [
   {
     id: 1,
     projectid: "#DS-654321",
@@ -120,23 +120,30 @@ const ongoingWorkData = [
       "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
       "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
     ],
-    services: 2,
+    services: 3,
     address: "456 Elm St, Anytown, USA",
     description: "Renovation work for bathroom",
     estimates: [
       {
         id: 1,
-        serviceName: "Bathroom Renovation",
+        serviceName: "Kitchen Renovation",
         projectCost: "1500",
+        assignedDate: "15 Sep 2025",
+        assignedProName: "John Doe",
+      },
+      {
+        id: 2,
+        serviceName: "Bathroom Renovation",
+        projectCost: "500",
         assignedDate: "15 Sep 2025",
         assignedProName: "Jane Smith",
       },
       {
-        id: 2,
+        id: 3,
         serviceName: "Plumbing",
-        projectCost: "1000",
+        projectCost: "500",
         assignedDate: "16 Sep 2025",
-        assignedProName: "",
+        assignedProName: "Bob Johnson",
       },
     ],
   },
@@ -202,7 +209,7 @@ const ongoingWorkData = [
         serviceName: "Plumbing",
         projectCost: "500",
         assignedDate: "16 Sep 2025",
-        assignedProName: "",
+        assignedProName: "Bob Johnson",
       },
     ],
   },
@@ -246,23 +253,30 @@ const ongoingWorkData = [
       "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
       "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
     ],
-    services: 2,
+    services: 3,
     address: "456 Elm St, Anytown, USA",
     description: "Renovation work for bathroom",
     estimates: [
       {
         id: 1,
-        serviceName: "Bathroom Renovation",
+        serviceName: "Kitchen Renovation",
         projectCost: "1500",
+        assignedDate: "15 Sep 2025",
+        assignedProName: "John Doe",
+      },
+      {
+        id: 2,
+        serviceName: "Bathroom Renovation",
+        projectCost: "500",
         assignedDate: "15 Sep 2025",
         assignedProName: "Jane Smith",
       },
       {
-        id: 2,
+        id: 3,
         serviceName: "Plumbing",
-        projectCost: "1000",
+        projectCost: "500",
         assignedDate: "16 Sep 2025",
-        assignedProName: "",
+        assignedProName: "Bob Johnson",
       },
     ],
   },
@@ -329,7 +343,7 @@ const ongoingWorkData = [
         serviceName: "Plumbing",
         projectCost: "500",
         assignedDate: "16 Sep 2025",
-        assignedProName: "",
+        assignedProName: "Bob Johnson",
       },
     ],
   },
@@ -373,31 +387,38 @@ const ongoingWorkData = [
       "https://topiko.com/prod/app/serviceimages/1766_1719205143.jpeg",
       "https://plus.unsplash.com/premium_photo-1683120658096-5f9e31276ec8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMHJlbm92YXRpb258ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
     ],
-    services: 2,
+    services: 3,
     address: "456 Elm St, Anytown, USA",
     description: "Renovation work for bathroom",
     estimates: [
       {
         id: 1,
-        serviceName: "Bathroom Renovation",
+        serviceName: "Kitchen Renovation",
         projectCost: "1500",
+        assignedDate: "15 Sep 2025",
+        assignedProName: "John Doe",
+      },
+      {
+        id: 2,
+        serviceName: "Bathroom Renovation",
+        projectCost: "500",
         assignedDate: "15 Sep 2025",
         assignedProName: "Jane Smith",
       },
       {
-        id: 2,
+        id: 3,
         serviceName: "Plumbing",
-        projectCost: "1000",
+        projectCost: "500",
         assignedDate: "16 Sep 2025",
-        assignedProName: "",
+        assignedProName: "Bob Johnson",
       },
     ],
   },
 ];
 
-async function OngoingWorkDetailsPage({ params }) {
+async function CompletedWorkDetailsPage({ params }) {
   const { id } = await params;
-  const data = ongoingWorkData.find((item) => item.id === Number(id));
+  const data = completedWorkData.find((item) => item.id === Number(id));
   //   console.log(data);
 
   return (
@@ -407,21 +428,13 @@ async function OngoingWorkDetailsPage({ params }) {
         {/* top section  */}
         <div className="flex gap-3 flex-wrap justify-between  items-center">
           <div className="flex items-center  gap-1">
-            <Link href="/customer/ongoing-work">
+            <Link href="/customer/completed-work">
               <ChevronLeft />
             </Link>
-            <Link href="/customer/ongoing-work">Ongoing Project / </Link>
+            <Link href="/customer/completed-work">Completed Project / </Link>
             {data?.projectid || "N/A"}
           </div>
           <div className="flex items-center gap-3">
-            {/* <div>
-              <Button variant="black">
-                <span>
-                  <Wallet />
-                </span>
-                <p>Invoice</p>
-              </Button>
-            </div> */}
             {/* three dots  */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -436,7 +449,7 @@ async function OngoingWorkDetailsPage({ params }) {
                 <DropdownMenuGroup className="text-center text-[#545454]">
                   <DropdownMenuItem>
                     <Link
-                      href="/customer/ongoing-work/invoice/reg-due/2"
+                      href="/customer/completed-work/invoice/reg-due/2"
                       className="flex items-center gap-2 font-medium"
                     >
                       <div>
@@ -570,7 +583,7 @@ async function OngoingWorkDetailsPage({ params }) {
               {/* List of Services section  */}
               <div className="flex flex-col gap-6 justify-items-start justify-baseline">
                 {data?.estimates?.map((service) => (
-                  <OngoingWorkServicesCard
+                  <CompletedWorkServicesCard
                     key={service.id}
                     estimate={service}
                   />
@@ -584,4 +597,4 @@ async function OngoingWorkDetailsPage({ params }) {
   );
 }
 
-export default OngoingWorkDetailsPage;
+export default CompletedWorkDetailsPage;

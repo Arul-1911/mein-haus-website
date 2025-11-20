@@ -3,7 +3,7 @@ import NotesTabs from "@/components/customer/notes-page/tabs";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
-export default function Notes() {
+export default function Notes({ addNotes = true, title }) {
   const data = [
     {
       id: 1,
@@ -300,14 +300,16 @@ export default function Notes() {
               <Link href="/customer/ongoing-work">
                 <ChevronLeft />
               </Link>
-              <Link href="/customer/ongoing-work">Ongoing Project </Link>
+              <Link href="/customer/ongoing-work">
+                {title || "Ongoing Project"}{" "}
+              </Link>
               {/* {data?.projectid || "N/A"} */}
             </div>
           </div>
-          <AddNotes />
+          {addNotes && <AddNotes />}
         </div>
         <div className="px-2 pt-8 flex justify-start">
-          <NotesTabs notes={data} />
+          <NotesTabs notes={data} addNotes={addNotes} />
         </div>
       </section>
     </main>

@@ -27,7 +27,7 @@ const query = [
   {
     id: 2,
     queryNumber: "Q-1002",
-    status: "Active",
+    status: "Resolved",
     time: "11:03AM",
     description: "Payment failed but amount deducted.",
     chat: [
@@ -61,7 +61,7 @@ const query = [
   {
     id: 4,
     queryNumber: "Q-1003",
-    status: "Not yet started",
+    status: "Resolved",
     time: "12:47PM",
     description: "App keeps crashing on login.",
     chat: [],
@@ -74,14 +74,6 @@ function Page() {
   return (
     <main className="bg-[#F9F9F9]">
       <div className="p-2">
-        <div className="flex justify-between flex-wrap gap-3 mt-5 mx-auto items-center max-w-7xl">
-          <span>Ongoing Project / #HA-81923642 / Support</span>
-          {query.length > 0 && (
-            <span>
-              <AddQueryButton />
-            </span>
-          )}
-        </div>
         <div className="mx-3 md:mx-auto py-8 max-w-3xl">
           {query?.length > 0 ? (
             <>
@@ -89,7 +81,7 @@ function Page() {
               <section className="bg-white p-3 rounded-2xl shadow">
                 {query?.map((data) => (
                   <Link
-                    href={`/customer/ongoing-work/service/${serviceid}/support/${data.id}`}
+                    href={`/customer/completed-work/service/${serviceid}/support/${data.id}`}
                     key={data.id}
                     className="my-4"
                   >
@@ -121,14 +113,12 @@ function Page() {
                 <Image
                   src="/customer/root/support/support-fallback.png"
                   alt="No Query Image"
-                  height={200}
-                  width={200}
+                  height={300}
+                  width={300}
                 />
-                <p className="text-[#9D9D9D] max-w-md text-center">
-                  Use the add button to ask your question, and our team will get
-                  back to you soon.
+                <p className="text-[#9D9D9D] mt-5 text-2xl max-w-md text-center">
+                  No queries found
                 </p>
-                <AddQueryButton />
               </div>
             </>
           )}
