@@ -136,8 +136,8 @@ const query = [
 ];
 
 async function Page({ params }) {
-  const { id } = await params;
-  const data = query.find((item) => Number(item.id) === Number(id));
+  const { supportId } = await params;
+  const data = query.find((item) => Number(item.id) === Number(supportId));
   return (
     <main>
       <div className="p-3">
