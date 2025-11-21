@@ -178,7 +178,7 @@ function Header() {
 
           {/* Avatar */}
           <div className="max-lg:hidden">
-            <Link href="/customer/profile">
+            <Link href="/customer/profile/personal-information">
               <Avatar>
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>CN</AvatarFallback>

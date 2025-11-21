@@ -12,7 +12,8 @@ function NoNotes({ addNotes = true }) {
         />
       </div>
       <p className="text-[#9D9D9D] text-center">
-        There are no notes. Click the Add button to add notes.
+        There are no notes.
+        {addNotes && "Click the Add button to add notes."}
       </p>
       <div>{addNotes && <AddNotes />}</div>
     </main>

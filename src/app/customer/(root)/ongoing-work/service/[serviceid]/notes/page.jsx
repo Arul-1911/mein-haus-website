@@ -3,7 +3,11 @@ import NotesTabs from "@/components/customer/notes-page/tabs";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
-export default function Notes({ addNotes = true, title }) {
+export default function Notes({
+  addNotes = true,
+  title,
+  url = "ongoing-work",
+}) {
   const data = [
     {
       id: 1,
@@ -297,10 +301,10 @@ export default function Notes({ addNotes = true, title }) {
         <div className="px-2 flex justify-between items-center pt-6">
           <div>
             <div className="flex items-center  gap-1">
-              <Link href="/customer/ongoing-work">
+              <Link href={`/customer/${url}`}>
                 <ChevronLeft />
               </Link>
-              <Link href="/customer/ongoing-work">
+              <Link href={`/customer/${url}`}>
                 {title || "Ongoing Project"}{" "}
               </Link>
               {/* {data?.projectid || "N/A"} */}

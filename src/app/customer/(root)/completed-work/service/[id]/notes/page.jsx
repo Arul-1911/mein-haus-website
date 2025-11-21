@@ -4,7 +4,11 @@ function Page() {
   return (
     <main>
       <div>
-        <Notes addNotes={false} title={"Completed Project"} />
+        <Notes
+          addNotes={false}
+          title={"Completed Project"}
+          url="completed-work"
+        />
       </div>
     </main>
   );
