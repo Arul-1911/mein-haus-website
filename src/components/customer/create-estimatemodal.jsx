@@ -204,7 +204,7 @@ export default function CreateEstimate({ mode = false, onClose }) {
                 </Select>
               ) : (
                 <p
-                  onClick={() => router.push("/profile/add-address")}
+                  onClick={() => router.push("/profile/personal-information")}
                   className="text-red-500 cursor-pointer text-sm"
                 >
                   No address found. Click here to add address.

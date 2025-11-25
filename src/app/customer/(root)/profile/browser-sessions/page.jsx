@@ -6,7 +6,7 @@ function Page() {
   return (
     <main className="p-3 bg-[#F9F9F9]">
       {/* back  */}
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         <Link href="/customer/profile" className="flex gap-2 my-4">
           <span>
             <MoveLeftIcon />
@@ -16,11 +16,11 @@ function Page() {
       </div>
       <section className="grid grid-cols-12 gap-8 my-5 mx-auto max-w-7xl">
         {/* left  */}
-        <div className="hidden md:block md:col-span-3">
+        <div className="hidden lg:block lg:col-span-3">
           <ProfileSideNav />
         </div>
         {/* right  */}
-        <div className="col-span-12 md:col-span-9">Browser sessions Page</div>
+        <div className="col-span-12 lg:col-span-9">Browser sessions Page</div>
       </section>
     </main>
   );
