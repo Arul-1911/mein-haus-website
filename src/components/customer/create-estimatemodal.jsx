@@ -172,7 +172,7 @@ export default function CreateEstimate({ mode = false, onClose }) {
                   value={watch("address")}
                   onValueChange={(val) => {
                     if (val === "add_new") {
-                      router.push("/profile/add-address");
+                      router.push("/customer/profile/personal-information");
                       return;
                     }
                     setValue("address", val, { shouldValidate: true });

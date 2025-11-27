@@ -103,7 +103,7 @@ function CloseTicketButton() {
             className="bg-[#67A90B] hover:bg-[#67A90B] text-white"
             onClick={() => setModalOpen(true)}
           >
-            Close Ticket
+            Keep open
           </Button>
         </div>
       </div>

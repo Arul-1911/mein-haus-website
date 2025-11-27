@@ -107,7 +107,7 @@ function KeepOpenButton() {
             className="bg-secondary hover:bg-secondary text-white"
             onClick={() => setModalOpen(true)}
           >
-            Keep Open
+            Close Ticket
           </Button>
         </div>
       </div>

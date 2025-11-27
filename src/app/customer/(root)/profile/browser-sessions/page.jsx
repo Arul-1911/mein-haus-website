@@ -1,6 +1,7 @@
 import ProfileSideNav from "@/components/customer/profile/profile-side-nav";
 import { MoveLeftIcon } from "lucide-react";
 import Link from "next/link";
+import BrowserSession from "@/components/customer/profile/browser-session";
 
 function Page() {
   return (
@@ -20,7 +21,9 @@ function Page() {
           <ProfileSideNav />
         </div>
         {/* right  */}
-        <div className="col-span-12 lg:col-span-9">Browser sessions Page</div>
+        <div className="col-span-12 lg:col-span-9">
+          <BrowserSession />
+        </div>
       </section>
     </main>
   );

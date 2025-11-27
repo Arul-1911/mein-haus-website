@@ -1,4 +1,6 @@
+import UpdatePassword from "@/components/customer/profile/password-security";
 import ProfileSideNav from "@/components/customer/profile/profile-side-nav";
+import TwoFactor from "@/components/customer/profile/two-factor";
 import { MoveLeftIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -20,7 +22,14 @@ function Page() {
           <ProfileSideNav />
         </div>
         {/* right  */}
-        <div className="col-span-12 lg:col-span-9">Password security Page</div>
+        <div className="col-span-12 lg:col-span-9">
+          <div>
+            <UpdatePassword />
+          </div>
+          <div>
+            <TwoFactor />
+          </div>
+        </div>
       </section>
     </main>
   );

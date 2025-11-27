@@ -6,22 +6,25 @@ import * as yup from "yup";
 import { Button } from "@/components/ui/button";
 
 const validationSchema = yup.object().shape({
-  firstname: yup
+  currentpassword: yup
     .string()
-    .required("First name is required")
-    .min(2, "Too short"),
-  lastname: yup.string().required("Last name is required").min(1, "Too short"),
-  email: yup
+    .required("Current password is required")
+    .min(6, "Too short"),
+  newpassword: yup
     .string()
-    .required("Email is required")
-    .email("Invalid email format"),
-  phone: yup
+    .required("New password is required")
+    .min(6, "Too short")
+    .notOneOf(
+      [yup.ref("currentpassword")],
+      "New password must be diffrent from old password"
+    ),
+  confirmpassword: yup
     .string()
-    .required("Phone number is required")
-    .matches("Phone number must be 10 digits"),
+    .required("Confirm password is required")
+    .oneOf([yup.ref("newpassword")], "Password do not match"),
 });
 
-function PersonalInformation() {
+function UpdatePassword() {
   const {
     register,
     handleSubmit,
@@ -36,7 +39,10 @@ function PersonalInformation() {
   };
   return (
     <main className="bg-white rounded-xl p-4">
-      <h2 className="font-semibold text-xl">Personal Information</h2>
+      <h2 className="font-semibold text-xl">Update Password</h2>
+      <p className="font-medium text-[#9D9D9D]">
+        Ensure your account is using a long, random password to stay secure.
+      </p>
       <hr
         className="my-3
       "
@@ -47,39 +53,37 @@ function PersonalInformation() {
           <div className="grid md:grid-cols-2 md:gap-5">
             <div className="mb-4">
               <label className="block font-medium my-1">
-                First Name
+                Current password
                 <span className="text-red-500 text-lg mx-1 mt-3">*</span>
               </label>
               <input
                 type="text"
-                {...register("firstname")}
+                {...register("currentpassword")}
                 className="border rounded p-2 w-full"
-                placeholder="Enter first name"
+                placeholder="Enter current password"
                 required
-                defaultValue="Arul"
               />
-              {errors.firstname && (
+              {errors.currentpassword && (
                 <p className="text-red-500 mt-1 text-sm">
-                  {errors.firstname.message}
+                  {errors.currentpassword.message}
                 </p>
               )}
             </div>
 
             <div className="mb-4">
               <label className="block font-medium my-1">
-                Last Name
+                New password
                 <span className="text-red-500 text-lg mx-1 mt-3">*</span>
               </label>
               <input
                 type="text"
-                {...register("lastname")}
+                {...register("newpassword")}
                 className="border rounded p-2 w-full"
-                placeholder="Enter last name"
-                defaultValue="M"
+                placeholder="Enter new password"
               />
-              {errors.lastname && (
+              {errors.newpassword && (
                 <p className="text-red-500 mt-1 text-sm">
-                  {errors.lastname.message}
+                  {errors.newpassword.message}
                 </p>
               )}
             </div>
@@ -89,44 +93,25 @@ function PersonalInformation() {
           <div className="grid md:gap-5 md:grid-cols-2">
             <div className="mb-4">
               <label className="block font-medium my-1">
-                Email
-                <span className="text-red-500 text-lg mx-1 mt-3">*</span>
-              </label>
-              <input
-                type="email"
-                {...register("email")}
-                className="border rounded p-2 w-full"
-                placeholder="Enter email"
-                defaultValue="arul@gmail.com"
-              />
-              {errors.email && (
-                <p className="text-red-500 mt-1 text-sm">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            <div className="mb-4">
-              <label className="block font-medium my-1 text-md">
-                Phone Number
+                Confirm password
                 <span className="text-red-500 text-lg mx-1 mt-3">*</span>
               </label>
               <input
                 type="text"
-                {...register("phone")}
+                {...register("confirmpassword")}
                 className="border rounded p-2 w-full"
-                placeholder="Enter phone number"
+                placeholder="Enter confirm password"
               />
-              {errors.phone && (
+              {errors.confirmpassword && (
                 <p className="text-red-500 mt-1 text-sm">
-                  {errors.phone.message}
+                  {errors.confirmpassword.message}
                 </p>
               )}
             </div>
           </div>
 
           <div className="text-white  rounded flex justify-end w-full">
-            <Button variant="black">Update</Button>
+            <Button variant="black">Save</Button>
           </div>
         </form>
       </div>
@@ -134,4 +119,4 @@ function PersonalInformation() {
   );
 }
 
-export default PersonalInformation;
+export default UpdatePassword;
