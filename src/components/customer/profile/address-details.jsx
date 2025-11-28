@@ -303,7 +303,7 @@ function AddressDetails() {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   return (
     <main className="bg-white rounded-xl p-4">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-wrap gap-3">
         <h2 className="font-semibold text-xl">Address Details</h2>
         <button
           value="add_new"
