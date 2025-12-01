@@ -139,7 +139,7 @@ const Page = () => {
         <NoBookingsFallback
           title="Ongoing work"
           desc="No Ongoing Projects"
-          content="You don’t have any ongoing projects at the moment. Click below to create a new estimate and start your next project."
+          content="You don't have any ongoing projects at the moment. Click below to create a new estimate and start your next project."
         />
       ) : (
         <div className="mx-auto max-w-7xl mt-8">
@@ -175,7 +175,7 @@ const Page = () => {
       {/* {Services}  */}
       <div className="bg-[#FAFAFA] py-8 my-7">
         <div className="flex justify-between max-lg:flex-wrap max-sm:gap-4  mx-auto items-center  max-w-7xl px-3 md:px-5 lg:6">
-          <div className="max-sm:text-center w-[100%] md:w-[30%]">
+          <div className="max-sm:text-center w-full md:w-[30%]">
             <h2 className="text-[#1E9BD0] font-medium text-md my-2">
               Our Services
             </h2>
@@ -183,7 +183,7 @@ const Page = () => {
               Services We Provide
             </h1>
           </div>
-          <div className="w-[100%] md:w-[70%]">
+          <div className="w-full md:w-[70%]">
             <p className="text-[#545454] max-sm:text-center px-2 font-medium max-w-4xl">
               From full-scale renovations to everyday plumbing fixes, we offer a
               wide range of home services tailored to your needs. Whether you're
