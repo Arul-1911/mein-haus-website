@@ -72,7 +72,7 @@ const RightSection = () => {
   ];
 
   return (
-    <section className="bg-[#F0F0F0] flex flex-col justify-center items-center max-2xl:px-4 w-full lg:fixed text-center lg:top-0 lg:right-0 lg:w-1/2 h-auto max-lg:pb-2 lg:h-[100dvh] lg:overflow-y-auto z-4 pt-2 scrollbar-hide">
+    <section className="bg-[#F0F0F0] flex flex-col justify-center items-center max-2xl:px-4 w-full lg:fixed text-center lg:top-0 lg:right-0 lg:w-1/2 h-auto max-lg:pb-2 lg:h-dvh lg:overflow-y-auto z-4 pt-2 scrollbar-hide">
       <div className="mx-auto md:mt-1">
         <h1 className="font-secondary mb-7 font-bold text-xl text-center md:text-4xl">
           Any Reno. Any Size. Any Time.

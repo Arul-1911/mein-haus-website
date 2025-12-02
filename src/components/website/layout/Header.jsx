@@ -172,10 +172,7 @@ export default function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link
-                    href="https://meinhaus.ca/professional/login"
-                    className="w-fit"
-                  >
+                  <Link href="/professional/login" className="w-fit">
                     Login as Professional
                   </Link>
                 </DropdownMenuItem>

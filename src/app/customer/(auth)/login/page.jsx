@@ -7,7 +7,7 @@ const CustomerLoginPage = () => {
     <main>
       <section className="grid md:grid-cols-2 h-screen">
         {/* {Left section } */}
-        <div className="bg-[var(--primary-light)] h-full">
+        <div className="bg-(--primary-light) h-full">
           <div className="mx-auto max-w-2xl flex flex-col items-center py-3 h-full w-full justify-center gap-1 md:gap-3">
             <div className="relative group w-40 h-10 md:w-90 md:h-17">
               <Image
@@ -22,7 +22,7 @@ const CustomerLoginPage = () => {
               />
             </div>
             <div className="my-2">
-              <h1 className="font-primary text-[var(--primary)] px-1 my-3 font-bold text-xl text-center md:text-2xl">
+              <h1 className="font-primary text-primary px-1 my-3 font-bold text-xl text-center md:text-2xl">
                 Any Reno. Any Size. Any Time.
               </h1>
             </div>
@@ -57,9 +57,7 @@ const CustomerLoginPage = () => {
                 <p className="text-[#545454] font-normal text-center">
                   Don't have an account?{" "}
                   <Link href="/customer/register">
-                    <span className="text-[var(--secondary)] font-medium">
-                      Register
-                    </span>
+                    <span className="text-secondary font-medium">Register</span>
                   </Link>
                 </p>
               </div>

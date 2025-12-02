@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { Button } from "../ui/button";
-import { Checkbox } from "../ui/checkbox";
+import { Checkbox } from "@/components/ui/checkbox";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Button } from "@/components/ui/button";
 
 const schema = yup.object().shape({
   email: yup
@@ -17,7 +17,7 @@ const schema = yup.object().shape({
   password: yup.string().required("Password is required !"),
 });
 
-const LoginForm = () => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -93,13 +93,13 @@ const LoginForm = () => {
           <div className="text-[#545454]">Remember me</div>
         </div>
         <div>
-          <Link href="/customer/reset-mail" className="text-[#545454]">
+          <Link href="/professional/reset-mail" className="text-[#545454]">
             Forgot Password?
           </Link>
         </div>
       </div>
       <div className="cursor-pointer">
-        <Link href="/customer/skip">
+        <Link href="/professional">
           <Button className="w-full text-[#FFFFFF] text-lg font-semibold cursor-pointer">
             Login
           </Button>
@@ -109,4 +109,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default Login;

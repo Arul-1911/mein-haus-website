@@ -100,14 +100,10 @@ CUSTOMER THEME
 PROFESSIONAL THEME
 ======================= */
 .professional-theme {
-  --primary: oklch(0.55 0.25 70); /* orange */
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.96 0.08 70);
-  --secondary-foreground: oklch(0.205 0 0);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --accent: oklch(0.95 0.1 70);
-  --accent-foreground: oklch(0.145 0 0);
+  --primary: #fd760d;
+  --primary-light: #f88b361a;
+  --secondary: #1e9bd0;
+  --secondary-light: #1e9bd00f;
 }
 
 @layer base {

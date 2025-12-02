@@ -24,9 +24,7 @@ const CustomerRegisterPage = () => {
                 <p className="text-[#545454] font-normal text-center">
                   Already have an account?{" "}
                   <Link href="/customer/login">
-                    <span className="text-[var(--secondary)] font-medium">
-                      Login
-                    </span>
+                    <span className="text-secondary font-medium">Login</span>
                   </Link>
                 </p>
               </div>
@@ -56,7 +54,7 @@ const CustomerRegisterPage = () => {
           </div>
         </div>
         {/* {Right section } */}
-        <div className="bg-[var(--primary-light)] order-1 md:order-2 h-full">
+        <div className="bg-(--primary-light) order-1 md:order-2 h-full">
           <div className="mx-auto max-w-2xl flex flex-col items-center py-3 h-full w-full justify-center gap-1 md:gap-3">
             <div className="relative group w-40 h-10 md:w-90 md:h-17">
               <Image
@@ -70,7 +68,7 @@ const CustomerRegisterPage = () => {
               />
             </div>
             <div className="my-2">
-              <h1 className="font-primary text-[var(--primary)] px-1 my-3 font-bold text-xl text-center md:text-2xl">
+              <h1 className="font-primary text-primary px-1 my-3 font-bold text-xl text-center md:text-2xl">
                 Any Reno. Any Size. Any Time.
               </h1>
             </div>
