@@ -51,6 +51,14 @@ const CustomerLoginPage = () => {
             <div className="">
               <LoginForm />
             </div>
+            <div className="text-center">
+              <Link
+                href="/customer/phone-number"
+                className="text-center text-primary font-medium"
+              >
+                Login with OTP
+              </Link>
+            </div>
             <div className="space-y-3">
               {/* Already a customer */}
               <div>
