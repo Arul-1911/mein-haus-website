@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { Button } from "../ui/button";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Link from "next/link";
 
 const schema = yup.object().shape({
   email: yup
@@ -78,9 +79,14 @@ const RegisterForm = () => {
               <span className="ml-3 text-gray-500 select-none">+1</span>
               {/* <span className="text-gray-500 ml-3 ">|</span> */}
               <input
-                type="tel"
+                type="text"
                 id="phone"
+                inputMode="numeric"
                 {...register("phone")}
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, "");
+                  setValue("phone", value, { shouldValidate: true });
+                }}
                 className="w-full p-2  text-sm rounded-md focus:outline-none"
                 placeholder="Phone No (without country code) *"
                 autoComplete="tel"
@@ -149,14 +155,16 @@ const RegisterForm = () => {
             isValid ? "cursor-pointer" : "cursor-not-allowed"
           } mt-5`}
         >
-          <Button
-            className={`w-full text-[#FFFFFF] text-lg font-semibold ${
-              isValid ? "cursor-pointer" : "cursor-not-allowed"
-            }`}
-            disabled={!isValid || isSubmitting}
-          >
-            Register
-          </Button>
+          <Link href="/customer/verify-otp">
+            <Button
+              className={`w-full text-[#FFFFFF] text-lg font-semibold ${
+                isValid ? "cursor-pointer" : "cursor-not-allowed"
+              }`}
+              disabled={!isValid || isSubmitting}
+            >
+              Register
+            </Button>
+          </Link>
         </div>
       </form>
     </section>
