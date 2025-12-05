@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { ShieldCheck } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 function VerifyOtp() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -96,19 +96,12 @@ function VerifyOtp() {
       return;
     }
 
-    // Here you would typically verify the OTP with your backend
-    console.log("Verifying OTP:", otpString);
-
-    // Simulate API call
     // On success, redirect to next page
-    router.push("/customer");
+    router.push("/professional/trades");
   };
 
   const handleResendOtp = () => {
     if (!canResend) return;
-
-    // Here you would typically call your API to resend OTP
-    console.log("Resending OTP...");
 
     // Reset timer and OTP fields
     setResendTimer(30);
@@ -128,7 +121,7 @@ function VerifyOtp() {
       <div className="text-center flex items-center gap-2 justify-center mb-5">
         <span>6379556813</span>
         <span>
-          <Link className="text-secondary" href="/customer/phone-number">
+          <Link className="text-secondary" href="/professional/phone-number">
             Change
           </Link>
         </span>

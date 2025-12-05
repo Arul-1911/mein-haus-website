@@ -1,30 +1,13 @@
-import ResetMail from "@/components/customer/ResetMail";
+import VerifyOtp from "@/components/professional/auth/OtpForm";
 import Image from "next/image";
 import React from "react";
 
-const ResetMailPage = () => {
+function Page() {
   return (
     <main>
       <section className="grid md:grid-cols-2 h-screen">
         {/* {Left section } */}
-        <div className="h-full order-2 md:order-1 flex  items-center justify-center">
-          <div className="w-full flex flex-col gap-7 px-4 mb-3 max-w-xl">
-            <div className="flex flex-col justify-center items-center gap-4">
-              <h2 className="font-semibold text-center text-2xl mt-3 md:mt-1 md:text-4xl">
-                Reset Password
-              </h2>
-              <p className="text-(--gray) max-w-sm text-center">
-                Please enter your email, and we'll send you a password reset
-                link.
-              </p>
-            </div>
-            <div className="">
-              <ResetMail />
-            </div>
-          </div>
-        </div>
-        {/* {Right section } */}
-        <div className="bg-(--primary-light) order-1 md:order-2 h-full">
+        <div className="bg-(--primary-light) h-full">
           <div className="mx-auto max-w-2xl flex flex-col items-center py-3 h-full w-full justify-center gap-1 md:gap-3">
             <div className="relative group w-40 h-10 md:w-90 md:h-17">
               <Image
@@ -45,21 +28,37 @@ const ResetMailPage = () => {
             </div>
             <div className="mt-2 relative group h-[25dvh] w-[35dvh] md:w-[70%] md:h-[50%]">
               <Image
-                alt="Reset people image"
+                alt="Login people image"
                 // height={200}
                 // width={450}
                 fill
-                src="/customer/auth/reset-mail.png"
-                className="object-cover"
+                src="/professional/auth/otp.png"
+                className="object-contain"
                 priority
                 sizes="(max-width: 768px) 160px, 360px"
               />
             </div>
           </div>
         </div>
+        {/* {Right section } */}
+        <div className="h-full flex max-w-md w-full mx-auto  items-center justify-center">
+          <div className="w-full flex flex-col gap-3 px-4 mb-3 max-w-xl">
+            <div className="">
+              <h2 className="font-semibold text-center text-2xl mt-3 md:mt-1 md:text-4xl">
+                OTP Verification
+              </h2>
+              <p className="text-center text-[#9D9D9D] my-2 text-sm font-medium">
+                We have sent an OTP to the mobile number you entered.
+              </p>
+            </div>
+            <div className="">
+              <VerifyOtp />
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
-};
+}
 
-export default ResetMailPage;
+export default Page;

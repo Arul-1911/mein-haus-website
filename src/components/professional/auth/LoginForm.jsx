@@ -99,7 +99,7 @@ const Login = () => {
         </div>
       </div>
       <div className="cursor-pointer">
-        <Link href="/professional">
+        <Link href="/professional/trades">
           <Button className="w-full text-[#FFFFFF] text-lg font-semibold cursor-pointer">
             Login
           </Button>

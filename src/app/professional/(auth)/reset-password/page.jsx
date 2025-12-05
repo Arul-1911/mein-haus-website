@@ -1,8 +1,8 @@
-import ResetMail from "@/components/customer/ResetMail";
+import NewPassword from "@/components/professional/auth/NewPassword";
 import Image from "next/image";
 import React from "react";
 
-const ResetMailPage = () => {
+const ResetPasswordPage = () => {
   return (
     <main>
       <section className="grid md:grid-cols-2 h-screen">
@@ -11,15 +11,14 @@ const ResetMailPage = () => {
           <div className="w-full flex flex-col gap-7 px-4 mb-3 max-w-xl">
             <div className="flex flex-col justify-center items-center gap-4">
               <h2 className="font-semibold text-center text-2xl mt-3 md:mt-1 md:text-4xl">
-                Reset Password
+                Set a new Password
               </h2>
               <p className="text-(--gray) max-w-sm text-center">
-                Please enter your email, and we'll send you a password reset
-                link.
+                Please enter your new password.
               </p>
             </div>
             <div className="">
-              <ResetMail />
+              <NewPassword />
             </div>
           </div>
         </div>
@@ -45,11 +44,11 @@ const ResetMailPage = () => {
             </div>
             <div className="mt-2 relative group h-[25dvh] w-[35dvh] md:w-[70%] md:h-[50%]">
               <Image
-                alt="Reset people image"
+                alt="Reset password people image"
                 // height={200}
                 // width={450}
                 fill
-                src="/customer/auth/reset-mail.png"
+                src="/professional/auth/new-password.png"
                 className="object-cover"
                 priority
                 sizes="(max-width: 768px) 160px, 360px"
@@ -62,4 +61,4 @@ const ResetMailPage = () => {
   );
 };
 
-export default ResetMailPage;
+export default ResetPasswordPage;

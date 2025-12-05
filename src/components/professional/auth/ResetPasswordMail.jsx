@@ -4,8 +4,8 @@ import { Mail } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { Button } from "../ui/button";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const schema = yup.object().shape({
   email: yup
@@ -47,7 +47,7 @@ const ResetMail = () => {
       </div>
 
       <div className="cursor-pointer">
-        <Link href="/customer/reset-password">
+        <Link href="/professional/reset-password">
           <Button className="w-full text-[#FFFFFF] text-lg font-semibold cursor-pointer">
             Send Password Reset Link
           </Button>
@@ -55,7 +55,7 @@ const ResetMail = () => {
       </div>
       <div>
         {linkSent && (
-          <div className="bg-(--primary-light) rounded-md p-3 mt-3">
+          <div className="bg-[#F88B361F] rounded-md p-3 mt-3">
             <p className="text-xs text-center text-primary font-medium">
               Please check your email. We've sent you a reset link - follow it
               to reset your password.

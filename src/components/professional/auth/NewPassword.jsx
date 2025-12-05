@@ -4,8 +4,9 @@ import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { Button } from "../ui/button";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
   email: yup
@@ -40,7 +41,9 @@ const NewPassword = () => {
     formState: { errors },
     setValue,
     reset,
-  } = useForm({});
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   return (
     <section className="flex flex-col gap-4">
       <div className="space-y-6">
@@ -125,7 +128,7 @@ const NewPassword = () => {
       </div>
 
       <div className="cursor-pointer">
-        <Link href="/customer/reset-password">
+        <Link href="/professional/reset-password">
           <Button className="w-full text-[#FFFFFF] text-lg  font-semibold cursor-pointer">
             Reset Password
           </Button>
@@ -137,7 +140,7 @@ const NewPassword = () => {
             <p className="text-xs text-center text-primary font-medium">
               Your password has been successfully reset. You can now{" "}
               <span className="text-black">
-                <Link href="/customer/login">login</Link>
+                <Link href="/professional/login">login</Link>
               </span>
             </p>
           </div>

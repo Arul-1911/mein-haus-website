@@ -52,6 +52,9 @@ const ProfessionalLoginPage = () => {
             <div className="">
               <LoginForm />
             </div>
+            <Link href="/professional/phone-number" className="text-center">
+              <span className="text-secondary font-medium">Login with OTP</span>
+            </Link>
             <div className="space-y-3">
               {/* Already a customer */}
               <div>
@@ -62,6 +65,7 @@ const ProfessionalLoginPage = () => {
                   </Link>
                 </p>
               </div>
+              <div></div>
               {/* {OR}  */}
               <div className="flex items-center justify-center gap-3">
                 <hr className="text-[#E6E6E6]  w-[30%]" />

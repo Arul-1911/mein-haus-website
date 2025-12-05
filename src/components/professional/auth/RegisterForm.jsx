@@ -163,14 +163,16 @@ const RegisterForm = () => {
             isValid && checked ? "cursor-pointer" : "cursor-not-allowed"
           } mt-5`}
         >
-          <Button
-            className={`w-full text-[#FFFFFF] text-lg font-semibold ${
-              isValid && checked ? "cursor-pointer" : "cursor-not-allowed"
-            }`}
-            disabled={!isValid || isSubmitting || !checked}
-          >
-            Register
-          </Button>
+          <Link href="/professional/verify-otp">
+            <Button
+              className={`w-full text-[#FFFFFF] text-lg font-semibold ${
+                isValid && checked ? "cursor-pointer" : "cursor-not-allowed"
+              }`}
+              disabled={!isValid || isSubmitting || !checked}
+            >
+              Register
+            </Button>
+          </Link>
         </div>
       </form>
     </section>

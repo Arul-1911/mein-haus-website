@@ -1,4 +1,4 @@
-import ResetMail from "@/components/customer/ResetMail";
+import ResetMail from "@/components/professional/auth/ResetPasswordMail";
 import Image from "next/image";
 import React from "react";
 
@@ -49,7 +49,7 @@ const ResetMailPage = () => {
                 // height={200}
                 // width={450}
                 fill
-                src="/customer/auth/reset-mail.png"
+                src="/professional/auth/reset-mail.png"
                 className="object-cover"
                 priority
                 sizes="(max-width: 768px) 160px, 360px"

@@ -3,10 +3,10 @@
 import { Phone } from "lucide-react";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Button } from "../ui/button";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const schema = yup.object({
   phone: yup
@@ -28,7 +28,7 @@ function OtpPhoneNumber() {
   const router = useRouter();
   const onSubmit = (data) => {
     console.log(data);
-    router.push("/customer/verify-otp");
+    router.push("/professional/verify-otp");
   };
   return (
     <div>
@@ -43,7 +43,7 @@ function OtpPhoneNumber() {
             >
               <Phone className="w-5 h-5 text-black ml-3" />
               <span className="ml-3 text-gray-500 select-none">+1</span>
-              {/* <span className="text-gray-500 ml-3 ">|</span> */}
+
               <input
                 type="tel"
                 id="phone"

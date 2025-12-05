@@ -70,7 +70,7 @@ function EstiamtedCard({ estimate }) {
                   <p className="text-[#9D9D9D] font-normal text-md">
                     Project Deadline
                   </p>
-                  <p>${estimate.deadline || "N/A"}</p>
+                  <p>{estimate.deadline || "N/A"}</p>
                 </div>
               )}
               {estimate.status === "estimated" && (
